@@ -17,7 +17,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ modalOpen, setModalOpen, se
 					onClick={() => setModalOpen(false)} // Close modal when clicking outside
 				>
 					<div
-						className='bg-gray-800 p-5 rounded-md relative'
+						className='bg-gray-800 p-5 rounded-md relative max-w-2xl min-w-md min-h-[400px]'
 						onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from bubbling up
 					>
 						<button className='absolute top-2 right-2' onClick={() => setModalOpen(false)}>

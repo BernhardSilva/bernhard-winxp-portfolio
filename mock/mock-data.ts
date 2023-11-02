@@ -85,7 +85,7 @@ export const projects: Project[] = [
 			modalImage: '/images/portfolio/financeml-modal.webp'
 		},
 		skills: ['1', '2', '3']
-	},
+	}
 ];
 
 export const workExperience: WorkExperience[] = [

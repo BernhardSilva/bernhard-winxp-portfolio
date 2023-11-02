@@ -1,7 +1,7 @@
+import { words } from '@/mock/mock-data';
 import React, { useState, useEffect } from 'react';
 
 const speed = 200;
-const words = ['Fullstack Developer.', 'Programmer Analyst.'];
 
 const TypingAnimation = () => {
 	const [text, setText] = useState('');

@@ -1,10 +1,11 @@
-import { projects, skills, workExperience } from '@/mock/mock-data';
-import Intro from '../components/sections/intro/intro';
-
-
+import Menu from '@/components/menu';
 
 const Home = () => {
-	return <Intro skills={skills} projects={projects} workExperience={workExperience} />;
+	return (
+		<>
+			<Menu />
+		</>
+	);
 };
 
 export default Home;

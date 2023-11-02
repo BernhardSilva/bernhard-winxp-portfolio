@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export type Project = {
 	id: string;
 	title: string;
@@ -23,4 +25,17 @@ export type Image = {
 	id: string;
 	thumbnail: string;
 	modalImage: string;
+};
+
+export type Tag = {
+	id: string;
+	name: string;
+};
+
+export type Page = {
+	name: string;
+	id: string;
+	component: ReactElement<any, any>;
+	icon?: string;
+	isOpen?: boolean;
 };

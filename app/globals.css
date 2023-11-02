@@ -3,35 +3,72 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	/* color: rgb(var(--foreground-rgb)); */
+	color: '#222';
+	background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .blink {
-  animation: blink 1s infinite;
+	animation: blink 1s infinite;
+}
+
+.title-bar {
+	font-family: Trebuchet MS;
+	background: linear-gradient(
+		180deg,
+		#0997ff,
+		#0053ee 8%,
+		#0050ee 40%,
+		#06f 88%,
+		#06f 93%,
+		#005bff 95%,
+		#003dd7 96%,
+		#003dd7
+	);
+	padding: 3px 5px 3px 3px;
+	border-top: 1px solid #0831d9;
+	border-left: 1px solid #0831d9;
+	border-right: 1px solid #001ea0;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 7px;
+	text-shadow: 1px 1px #0f1089;
+	height: 30px;
+	display: grid;
+	place-items: 'center';
+	align-items: center;
+}
+
+.window {
+	box-shadow: inset -1px -1px #00138c, inset 1px 1px #0831d9, inset -2px -2px #001ea0, inset 2px 2px #166aee,
+		inset -3px -3px #003bda, inset 3px 3px #0855dd;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	padding: 0 0 3px;
+	-webkit-font-smoothing: antialiased;
 }
