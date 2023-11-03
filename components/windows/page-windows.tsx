@@ -1,3 +1,4 @@
+import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import ButtonCloseWindows from '../ui/button-close-windows';
 import { useResize } from '@/hooks/useResize';
 
@@ -16,18 +17,22 @@ const initialDimentions = {
 
 const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(initialDimentions);
+	const { dragging, onMouseDownDrag, pos } = useDragAndDrop();
+
 	const childDimentions = {
 		width: `${dimensions.width - 11}px`,
 		height: `${dimensions.height - 55}px`
 	};
+
 	return (
 		<div
-			onMouseDown={() => handleMouseDown}
+			onMouseDown={onMouseDownDrag}
 			ref={resizableDiv}
 			className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl w-2/3 h-2/3 window'
 			style={{
-				left: `${index * 2}%`,
-				top: `${index * 2}%`,
+				left: `${pos.x + index * 20}px`,
+				top: `${pos.y + index * 20}px`,
+				cursor: dragging ? 'grabbing' : 'grab',
 				zIndex: isActive ? 1 : 0,
 				width: `${dimensions.width}px`,
 				height: `${dimensions.height}px`

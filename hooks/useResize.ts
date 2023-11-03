@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type UseResizeProps = {
 	initialWidth: number;
@@ -10,21 +10,27 @@ export const useResize = ({ initialHeight, initialWidth }: UseResizeProps) => {
 	const resizableDiv = useRef<HTMLDivElement>(null);
 	const isResizing = useRef({ right: false, bottom: false, corner: false });
 
-	const handleMouseDown = (e: any): void => {
-		e.preventDefault();
-		if (e.target instanceof Element) {
-			if (e.target.className.includes('resize-right')) {
-				isResizing.current.right = true;
-			} else if (e.target.className.includes('resize-bottom')) {
-				isResizing.current.bottom = true;
-			} else if (e.target.className.includes('resize-corner')) {
-				isResizing.current.corner = true;
+	const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+		try {
+			if (e.target instanceof Element) {
+				if (e.target.className.includes('resize-right')) {
+					isResizing.current.right = true;
+				} else if (e.target.className.includes('resize-bottom')) {
+					isResizing.current.bottom = true;
+				} else if (e.target.className.includes('resize-corner')) {
+					isResizing.current.corner = true;
+				}
 			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			e.stopPropagation();
+			e.preventDefault();
 		}
 	};
 
 	useEffect(() => {
-		const handleMouseMove = (e: any) => {
+		const handleMouseMove = (e: MouseEvent) => {
 			if (
 				resizableDiv.current &&
 				(isResizing.current.right || isResizing.current.bottom || isResizing.current.corner)
@@ -34,6 +40,8 @@ export const useResize = ({ initialHeight, initialWidth }: UseResizeProps) => {
 				newWidth = newWidth < initialWidth - 200 ? initialWidth - 200 : newWidth;
 				newHeight = newHeight < initialHeight - 200 ? initialHeight - 200 : newHeight;
 				setDimensions({ width: newWidth, height: newHeight });
+				e.stopPropagation();
+				e.preventDefault();
 			}
 		};
 
@@ -52,20 +60,4 @@ export const useResize = ({ initialHeight, initialWidth }: UseResizeProps) => {
 	}, [initialHeight, initialWidth]);
 
 	return { handleMouseDown, resizableDiv, dimensions };
-	// <div className="flex items-center justify-center h-screen bg-gray-800">
-	//   <div
-	//     ref={resizableDiv}
-	//     style={{ width: `${dimensions.width}px`, height: `${dimensions.height}px` }}
-	//     className="relative bg-white"
-	//   >
-	//     <div
-	//       onMouseDown={handleMouseDown}
-	//       className="absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right bg-gray-500"
-	//     ></div>
-	//     <div
-	//       onMouseDown={handleMouseDown}
-	//       className="absolute left-0 bottom-0 right-0 h-2 cursor-ns-resize resize-bottom bg-gray-500"
-	//     ></div>
-	//   </div>
-	// </div>
 };
