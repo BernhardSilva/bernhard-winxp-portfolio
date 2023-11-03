@@ -1,7 +1,9 @@
 'use client';
-import { skills } from '@/mock/mock-data';
+import SocialMediaButton from '@/components/ui/social-media-buttons';
+import { mockUser } from '@/mock/mock-data';
 import SkillsComponent from './skills';
 import TypingAnimation from './typing-animation';
+import Profile from './profile';
 
 const Intro = () => {
 	return (
@@ -10,7 +12,11 @@ const Intro = () => {
 				<p className='text-xl text-gray-800'>Hello!</p>
 				<h1 className='text-4xl font-bold mb-2'>{"I'm Bernhard Silva"}</h1>
 				<TypingAnimation />
-				<SkillsComponent skills={skills} />
+				<div className='p-20'>
+					<SocialMediaButton />
+				</div>
+				<SkillsComponent skills={mockUser.skills} />
+				<Profile profile={mockUser} />
 			</div>
 		</section>
 	);

@@ -10,7 +10,7 @@ type ProjectProps = {
 const ProjectCard = ({ handleProjectClick, project }: ProjectProps) => {
 	return (
 		<div
-			key={project.id}
+			key={project._id}
 			className='bg-blue-600 p-3 rounded-md cursor-pointer hover:bg-blue-500'
 			onClick={() => handleProjectClick(project)}
 		>

@@ -38,7 +38,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ modalOpen, setModalOpen, se
 							/>
 							<h3 className='text-lg mt-2'>{selectedProject?.title}</h3>
 							<p className='text-sm'>{selectedProject?.description}</p>
-							<p className='text-sm'>{selectedProject?.skills}</p>
+							<p className='text-sm'>{selectedProject?.skills.map((item) => item.name)}</p>
 							<div className='flex space-x-2 mt-3'>
 								<button className='px-3 py-2 rounded-md bg-green-500 text-white'>Live Code</button>
 								<button className='px-3 py-2 rounded-md bg-blue-500 text-white'>Github Code</button>

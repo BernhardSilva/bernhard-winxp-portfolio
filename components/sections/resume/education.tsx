@@ -1,9 +1,18 @@
-import React from 'react'
+import { Education } from '@/types';
+import React from 'react';
 
-const Education = () => {
-  return (
-    <div>Education</div>
-  )
-}
+type EducationProps = {
+	education: Education[];
+};
 
-export default Education
+const Education = ({ education }: EducationProps) => {
+	return (
+		<div>
+			{education.map((item, index) => {
+				return <div key={index}>{item?.title}</div>;
+			})}
+		</div>
+	);
+};
+
+export default Education;

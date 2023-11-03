@@ -1,4 +1,4 @@
-import { words } from '@/mock/mock-data';
+import { words } from '@/app/pages-data';
 import React, { useState, useEffect } from 'react';
 
 const speed = 200;
@@ -35,9 +35,9 @@ const TypingAnimation = () => {
 
 	return (
 		<div className='flex items-center justify-center text-blue-500'>
-			<h1 className='text-4xl font-bold'>
+			<h1 className='text-5xl font-bold'>
 				{text}
-				<span className='text-red-500 text-3xl blink'>|</span>
+				<span className='text-blue-500 blink'>|</span>
 			</h1>
 		</div>
 	);

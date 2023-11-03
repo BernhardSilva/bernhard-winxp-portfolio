@@ -1,9 +1,18 @@
-import React from 'react'
+import { User } from '@/types';
+import React from 'react';
 
-const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+type ProfileProps = {
+	profile: User;
+};
 
-export default Profile
+const Profile = ({ profile }: ProfileProps) => {
+	return (
+		<>
+			<h5>About me</h5>
+			<h2>Let me introduce myself.</h2>
+			<p>{profile.about}</p>
+		</>
+	);
+};
+
+export default Profile;

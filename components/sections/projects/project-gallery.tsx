@@ -13,7 +13,7 @@ const ProjectGallery = ({ projects, handleProjectClick }: ProjectProps) => {
 			<h3>Take a look at one of my recent projects.</h3>
 			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2'>
 				{projects.map((project) => (
-					<ProjectCard key={project.id} project={project} handleProjectClick={handleProjectClick} />
+					<ProjectCard key={project._id} project={project} handleProjectClick={handleProjectClick} />
 				))}
 			</div>
 		</div>

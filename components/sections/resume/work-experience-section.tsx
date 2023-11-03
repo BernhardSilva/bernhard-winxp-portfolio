@@ -1,7 +1,11 @@
+import { WorkExperience } from '../../../types';
 import React from 'react';
-import { workExperience } from '@/mock/mock-data';
 
-const WorkExperience = () => {
+type WorkExperienceProps = {
+	workExperience: WorkExperience[];
+};
+
+const WorkExperience = ({ workExperience }: WorkExperienceProps) => {
 	return (
 		<div className='mt-10'>
 			<h2 className='text-2xl font-bold mb-5'>Work Experience</h2>

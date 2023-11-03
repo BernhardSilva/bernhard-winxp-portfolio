@@ -1,8 +1,11 @@
+import Resume from '@/components/sections/resume';
 import About from '../components/sections/about';
 import Contact from '../components/sections/contact';
 import Intro from '../components/sections/intro';
 import Projects from '../components/sections/projects';
-import WorkExperience from '../components/sections/resume/work-experience-section';
+import SecretPage from '@/components/secret-page';
+
+export const words = ['Fullstack Developer.', 'Programmer Analyst.'];
 
 export const pagesData = [
 	{ id: 'intro', name: 'Intro', component: <Intro />, icon: 'fa6-brands:dev', isOpen: false },
@@ -28,10 +31,18 @@ export const pagesData = [
 		isOpen: false
 	},
 	{
-		id: 'experience',
-		name: 'Work Experience',
-		component: <WorkExperience />,
+		id: 'resume',
+		name: 'Resume',
+		component: <Resume />,
 		icon: 'game-icons:skills',
 		isOpen: false
 	}
 ];
+
+export const secretPage = {
+	id: 'secret',
+	name: 'Secret Page',
+	component: <SecretPage />,
+	icon: 'game-icons:skills',
+	isOpen: false
+};

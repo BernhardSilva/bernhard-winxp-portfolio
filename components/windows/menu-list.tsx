@@ -13,7 +13,7 @@ const MenuList = ({ page, handleClick }: MenuItemProps) => {
 		<div className='rounded-t-xl'>
 			<li
 				className='p-2 py-5 hover:bg-blue-300 rounded-md cursor-pointer text-black'
-				onClick={() => handleClick(page.name.toLocaleLowerCase())}
+				onClick={() => handleClick(page.id)}
 			>
 				<div className='flex justify-start'>
 					<Icon icon={page.icon} className='mr-2' />

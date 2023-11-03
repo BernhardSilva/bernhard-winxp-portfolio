@@ -1,18 +1,40 @@
-import { IconifyIcon } from '@iconify/react/dist/iconify.js';
-import { ReactElement } from 'react';
-
-export type Project = {
-	id: string;
-	title: string;
-	description: string;
-	image: Image;
-	skills: string[];
+export type User = {
+	_id: string;
+	name: string;
+	role: string;
+	profileImage: string;
+	languages: string[];
+	about: string;
+	contact: Contact;
+	skills: Skill[];
+	services: Service[];
+	workExperience: WorkExperience[];
+	education: Education[];
+	certificates: Certificate[];
 };
 
-export type Skill = {
-	id: string;
+export type Service = {
 	name: string;
 	icon: string;
+	description: string;
+};
+
+export type Contact = {
+	email: string;
+	phone: string;
+	location: string;
+	website: string;
+	cv: string;
+};
+
+export type Education = {
+	title: string;
+	university: string;
+	degree?: string;
+	gpa?: string;
+	major?: string;
+	endDate: string;
+	description: string;
 };
 
 export type WorkExperience = {
@@ -22,21 +44,43 @@ export type WorkExperience = {
 	description: string;
 };
 
+export type Project = {
+	_id: string;
+	title: string;
+	description: string;
+	image: Image;
+	skills: Skill[];
+	tags: string[];
+	userId: string;
+};
+
+export type Skill = {
+	_id: string;
+	name: string;
+	icon: string;
+};
+
+export type Tag = {
+	_id: string;
+	name: string;
+};
+
 export type Image = {
-	id: string;
 	thumbnail: string;
 	modalImage: string;
 };
 
-export type Tag = {
-	id: string;
+export type Certificate = {
 	name: string;
+	credentialId: string;
+	credentialUrl: string;
 };
 
+//this is only for the client side
 export type Page = {
 	name: string;
 	id: string;
-	component: ReactElement<any, any>;
-	icon: string | IconifyIcon;
+	component: JSX.Element;
+	icon: string;
 	isOpen: boolean;
 };
