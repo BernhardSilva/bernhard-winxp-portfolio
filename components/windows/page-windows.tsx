@@ -24,7 +24,7 @@ const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
 		<div
 			onMouseDown={() => handleMouseDown}
 			ref={resizableDiv}
-			className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl w-2/3 h-2/3'
+			className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl w-2/3 h-2/3 window'
 			style={{
 				left: `${index * 2}%`,
 				top: `${index * 2}%`,
