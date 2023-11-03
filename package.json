@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
-    "iconify": "^1.4.0",
+    "@iconify/react": "^4.1.1",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",

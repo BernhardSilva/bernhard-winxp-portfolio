@@ -1,14 +1,14 @@
-// Menu.js
+// Desktop.js
 'use client';
 import { useState } from 'react';
 import { useCurrentTime } from '../../hooks/useCurrentTime';
-import MenuItem from './menu-item';
-import { pagesData } from './pages-data';
+import ButtonStartWindows from './button-start-windows';
+import MenuList from './menu-list';
+import PageWindows from './page-windows';
+import { pagesData } from '../../app/pages-data';
 import Tab from './tab';
-import WindowPage from './window-page';
-import WindowsButton from './windows-button';
 
-const Menu = () => {
+const Desktop = () => {
 	const [pages, setPages] = useState(pagesData);
 	const [isStartMenuOpen, setStartMenuOpen] = useState(false);
 	const currentTime = useCurrentTime();
@@ -26,19 +26,19 @@ const Menu = () => {
 	};
 
 	return (
-		<div
-			id='background'
-			className='min-h-screen bg-gray-900 text-white p-10'
+		<section
+			id='windows'
+			className='min-h-screen bg-gray-900 text-white'
 			style={{ backgroundImage: `url(${'https://images2.alphacoders.com/941/941898.jpg'})`, backgroundSize: 'cover' }}
 		>
 			<div className='fixed bottom-0 left-0 right-0 bg-gradient-to-t from-blue-900 to-blue-500 p-1 flex items-center justify-between'>
 				<div className='flex items-center space-x-4'>
-					<WindowsButton handleStartClick={handleStartClick} />
+					<ButtonStartWindows handleStartClick={handleStartClick} />
 					{isStartMenuOpen && (
-						<div className='absolute bottom-10 left-0 bg-gray-700 rounded-md shadow-lg'>
-							<ul>
+						<div className='absolute bottom-12 left-0 rounded-md'>
+							<ul className='p-4 bg-white py-5'>
 								{pages.map((page) => (
-									<MenuItem key={page.id} page={page} onClick={handlePageClick} />
+									<MenuList key={page.id} page={page} handleClick={handlePageClick} />
 								))}
 							</ul>
 						</div>
@@ -51,8 +51,8 @@ const Menu = () => {
 							))}
 					</div>
 				</div>
-				<div className='bg-blue-400 w-1/12'>
-					<div className='text-sm pr-2'>
+				<div>
+					<div className='text-sm pr-3'>
 						{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
 					</div>
 				</div>
@@ -60,10 +60,10 @@ const Menu = () => {
 			{pages
 				.filter((page) => page.isOpen)
 				.map((page, index) => (
-					<WindowPage key={page.id} page={page} index={index} onClose={handlePageClose} />
+					<PageWindows key={page.id} page={page} index={index} onClose={handlePageClose} />
 				))}
-		</div>
+		</section>
 	);
 };
 
-export default Menu;
+export default Desktop;

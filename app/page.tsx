@@ -1,11 +1,7 @@
-import Menu from '@/components/menu';
+import Desktop from '@/components/windows';
 
 const Home = () => {
-	return (
-		<>
-			<Menu />
-		</>
-	);
+	return <Desktop />;
 };
 
 export default Home;

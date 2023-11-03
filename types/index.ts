@@ -1,4 +1,5 @@
-import { ReactElement } from "react";
+import { IconifyIcon } from '@iconify/react/dist/iconify.js';
+import { ReactElement } from 'react';
 
 export type Project = {
 	id: string;
@@ -36,6 +37,6 @@ export type Page = {
 	name: string;
 	id: string;
 	component: ReactElement<any, any>;
-	icon?: string;
-	isOpen?: boolean;
+	icon: string | IconifyIcon;
+	isOpen: boolean;
 };

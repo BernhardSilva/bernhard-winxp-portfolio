@@ -1,16 +1,18 @@
 'use client';
+import { skills } from '@/mock/mock-data';
+import SkillsComponent from './skills';
 import TypingAnimation from './typing-animation';
 
 const Intro = () => {
 	return (
-		// <div className='min-h-screen bg-gray-800 text-white p-10'>
-			<div className='text-center'>
-				<h1 className='text-4xl font-bold mb-2'>Bernhard</h1>
-				<p className='text-xl'>Fullstack Programmer</p>
+		<section id='intro'>
+			<div className='text-center bg-slate-100 text-gray-900 p-10 mx-5 rounded-xl'>
+				<p className='text-xl text-gray-800'>Hello!</p>
+				<h1 className='text-4xl font-bold mb-2'>{"I'm Bernhard Silva"}</h1>
 				<TypingAnimation />
-				<p className='text-md text-gray-400 mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				<SkillsComponent skills={skills} />
 			</div>
-		// </div>
+		</section>
 	);
 };
 

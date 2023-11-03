@@ -1,13 +1,16 @@
 import Image from 'next/image';
 import React from 'react';
 
-type WindowsButton = {
+type ButtonStartWindows = {
 	handleStartClick: () => void;
 };
 
-const WindowsButton = ({ handleStartClick }: WindowsButton) => {
+const ButtonStartWindows = ({ handleStartClick }: ButtonStartWindows) => {
 	return (
-		<button onClick={handleStartClick} className='px-3 py-2 rounded-md bg-green-700 text-white flex gap-1'>
+		<button
+			onClick={handleStartClick}
+			className='px-3 py-2 rounded-md bg-green-700 hover:bg-green-600 text-white flex gap-1'
+		>
 			<Image
 				className='mt-1'
 				src='https://www.pngall.com/wp-content/uploads/2/Windows-Logo.png'
@@ -20,4 +23,4 @@ const WindowsButton = ({ handleStartClick }: WindowsButton) => {
 	);
 };
 
-export default WindowsButton;
+export default ButtonStartWindows;
