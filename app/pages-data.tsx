@@ -36,7 +36,7 @@ export const pagesData = [
 		component: <Contact />,
 		icon: 'fxemoji:contact',
 		isOpen: false
-	}
+	},
 ];
 
 export const secretPage = {

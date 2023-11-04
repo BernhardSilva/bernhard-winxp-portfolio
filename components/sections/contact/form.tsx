@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 
 const ContactForm = () => {
 	const [email, setEmail] = useState('');
@@ -75,7 +75,7 @@ const ContactForm = () => {
 				{errors.message && <p className='text-red-500 text-xs italic'>{errors.message}</p>}
 			</div>
 			<div className='flex items-center justify-between'>
-				<button type='submit' className='windows-button'>
+				<button className='window-button' type='submit'>
 					Send
 				</button>
 			</div>
