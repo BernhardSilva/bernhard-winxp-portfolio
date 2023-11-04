@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/react/dist/iconify.js';
 import React from 'react';
 
 type ButtonCloseWindows = {
@@ -12,9 +13,9 @@ const ButtonCloseWindows = ({ closeHandler }: ButtonCloseWindows) => {
 	return (
 		<button
 			onClick={handleClose}
-			className='w-6 h-6 bg-red-500 hover:bg-red-600 active:bg-red-700 border-[1px] border-white rounded text-white text-sm font-bold'
+			className='w-5 h-5 bg-red-500 hover:bg-red-600 active:bg-red-700 border-[1px] border-white rounded text-white text-sm font-bold'
 		>
-			X
+			<Icon className='ml-[1.37px]' icon='ic:round-close' width={15} height={15} />
 		</button>
 	);
 };

@@ -43,7 +43,7 @@ export const useKonamiCode = (callback: () => void) => {
 		return () => {
 			window.removeEventListener('keydown', handleKeyDown as any);
 		};
-	}, [sequenceIndex, konamiCodeSequence, callback]);
+	}, [sequenceIndex, konamiCodeSequence, callback, isKonamiCodeActivated]);
 
 	const resetSequence = () => setSequenceIndex(0);
 

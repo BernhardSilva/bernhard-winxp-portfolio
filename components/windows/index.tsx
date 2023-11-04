@@ -84,13 +84,7 @@ const Desktop = () => {
 					.filter((page) => page.isOpen)
 					.map((page, index) => (
 						<div key={page.id} onClick={() => handlePageClick(page.id)}>
-							<PageWindows
-								key={page.id}
-								page={page}
-								index={index}
-								onClose={handlePageClose}
-								isActive={page.id === activePageId}
-							/>
+							<PageWindows page={page} index={index} onClose={handlePageClose} isActive={page.id === activePageId} />
 						</div>
 					))}
 			</div>
