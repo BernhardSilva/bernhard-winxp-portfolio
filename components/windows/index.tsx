@@ -5,6 +5,7 @@ import { Page } from '@/types';
 import { useState } from 'react';
 import { pagesData, secretPage } from '../../app/pages-data';
 import Desktop from './desktop';
+import Files from './files';
 import TaskBar from './taskbar';
 import PageWindows from './window';
 
@@ -34,6 +35,7 @@ const Windows = () => {
 
 	return (
 		<Desktop>
+			<Files />
 			<TaskBar
 				handlePageClick={handlePageClick}
 				handlePageClose={handlePageClose}

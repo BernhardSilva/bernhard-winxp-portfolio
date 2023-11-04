@@ -2,17 +2,28 @@
 
 import { useEffect, useState } from 'react';
 
-export const useDragAndDrop = () => {
+type Pos = {
+	x: number;
+	y: number;
+};
+
+type UseDragAndDropProps = {
+	element: string;
+	initialPosition: Pos;
+};
+
+export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps) => {
 	const [dragging, setDragging] = useState(false);
-	const [pos, setPos] = useState({ x: 0, y: 0 });
-	const [rel, setRel] = useState<any>(null); // position relative to the cursor
+	const [pos, setPos] = useState<Pos>(initialPosition);
+	const [rel, setRel] = useState<any>(); // position relative to the cursor
 
 	const onMouseDownDrag = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.button !== 0) return;
 		const target = e.target as HTMLElement;
 
 		// Check if the target has the 'drag-window' class
-		if (!target.classList.contains('drag-window')) return;
+		const draggableElement = target.closest(`.${element}`);
+		if (!draggableElement) return;
 
 		const box = target.getBoundingClientRect();
 		setDragging(true);
@@ -33,8 +44,8 @@ export const useDragAndDrop = () => {
 	const onMouseMove = (e: MouseEvent) => {
 		if (!dragging) return;
 		setPos({
-			x: e.pageX - rel.x,
-			y: e.pageY - rel.y
+			x: e.pageX - rel?.x,
+			y: e.pageY - rel?.y
 		});
 		e.stopPropagation();
 		e.preventDefault();

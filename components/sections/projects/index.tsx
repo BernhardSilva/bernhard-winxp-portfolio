@@ -26,7 +26,7 @@ const Projects = () => {
 	);
 
 	return (
-		<div className={`min-h-screen bg-black text-white p-10 ${isModalOpen ? 'bg-opacity-50' : ''}`}>
+		<div className={`min-h-full bg-black text-white p-10 ${isModalOpen ? 'bg-opacity-50' : ''}`}>
 			<div className='relative'>
 				<input
 					type='text'

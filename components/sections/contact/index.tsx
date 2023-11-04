@@ -6,21 +6,27 @@ import ContactForm from './form';
 const Contact = () => {
 	return (
 		<section id='contact'>
-			<div className='min-h-full text-white flex items-center justify-center  p-10'>
+			<div className='min-h-full text-white flex justify-center items-center p-10'>
 				<ContactForm />
-			</div>
-			<div className='flex justify-center place-items-center'>
-				<div className='flex justify-center items-center gap-10'>
-					<Image
-						className='cursor-pointer hover:scale-125 transition'
-						src={wsp}
-						alt='whatsapp'
-						width={80}
-						height={80}
-					/>
-					<Image className='cursor-pointer hover:scale-125 transition' src={mail} alt='email' width={80} height={80} />
+				
+					<div className='flex justify-center items-center gap-10'>
+						<Image
+							className='cursor-pointer hover:scale-125 transition'
+							src={wsp}
+							alt='whatsapp'
+							width={80}
+							height={80}
+						/>
+						<Image
+							className='cursor-pointer hover:scale-125 transition'
+							src={mail}
+							alt='email'
+							width={80}
+							height={80}
+						/>
+					</div>
 				</div>
-			</div>
+			
 		</section>
 	);
 };

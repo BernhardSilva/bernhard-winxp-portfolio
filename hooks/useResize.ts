@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-type UseResizeProps = {
-	initialWidth: number;
-	initialHeight: number;
-};
-
-export const useResize = ({ initialHeight, initialWidth }: UseResizeProps) => {
+export const useResize = (initialWidth: number, initialHeight: number) => {
 	// State to hold current dimensions
 	const [dimensions, setDimensions] = useState({ width: initialWidth, height: initialHeight });
 	// Ref to the resizable div

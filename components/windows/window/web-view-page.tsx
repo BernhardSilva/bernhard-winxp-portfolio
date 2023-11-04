@@ -1,11 +1,9 @@
-type WebViewProps = {
-	src: string;
-	width?: string;
-	height?: string;
+type WebViewProps = React.IframeHTMLAttributes<HTMLIFrameElement> & {
+	className?: string;
 };
 
-const WebView = ({ src, width = '100%', height = '100%' }: WebViewProps) => {
-	return <iframe src={src} width={width} height={height} style={{ border: 0 }} allowFullScreen />;
+const WebView: React.FC<WebViewProps> = ({ className, ...props }) => {
+	return <iframe className={className} style={{ border: 0 }} allowFullScreen {...props} />;
 };
 
 export default WebView;

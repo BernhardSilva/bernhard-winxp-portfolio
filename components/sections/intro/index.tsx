@@ -6,7 +6,7 @@ import TypingAnimation from './typing-animation';
 
 const Intro = () => {
 	return (
-		<section id='intro'>
+		<section id='intro' className='min-h-full flex justify-center items-center'>
 			<div className='relative text-center bg-slate-100 text-gray-700 p-10 mx-5 rounded-xl'>
 				<SocialMediaButton social={mockUser.contact.socialMedia} className='absolute top-0 left-0 mt-2 ml-2' />
 				<p className='text-xl text-gray-800'>Hello!</p>

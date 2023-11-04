@@ -25,7 +25,7 @@ const TaskBar = ({
 	const currentTime = useCurrentTime();
 
 	return (
-		<div className='fixed bottom-0 left-0 right-0 bg-gradient-to-t from-blue-900 to-blue-500 p-1 flex items-center justify-between'>
+		<div className='fixed bottom-0 left-0 right-0 b p-1 flex items-center justify-between task-bar'>
 			<div className='flex items-center space-x-4 z-50' ref={elementRef}>
 				<WindowsButtonStart handleStartClick={handleStartClick} />
 
@@ -40,8 +40,8 @@ const TaskBar = ({
 							</div>
 						))}
 				</div>
+				<Clock className='absolute right-0 bottom-3' currentTime={currentTime} />
 			</div>
-			<Clock currentTime={currentTime} />
 		</div>
 	);
 };

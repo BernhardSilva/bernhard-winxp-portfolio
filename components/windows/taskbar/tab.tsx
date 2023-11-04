@@ -1,6 +1,6 @@
 import { Page } from '@/types';
 import React from 'react';
-import ButtonCloseWindows from '../ui/button-close-windows';
+import ButtonCloseWindows from '../buttons/button-close-windows';
 
 type TabProps = {
 	page: Page;

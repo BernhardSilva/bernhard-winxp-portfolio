@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 const ContactForm = () => {
 	const [email, setEmail] = useState('');
@@ -21,7 +21,6 @@ const ContactForm = () => {
 	};
 
 	const handleSubmit = (e: FormEvent) => {
-		console.log(e);
 		e.preventDefault();
 		if (!validateForm()) return;
 		alert(`Email sent to ${email} with Subject to ${subject} and message: ${message}`);
@@ -76,10 +75,7 @@ const ContactForm = () => {
 				{errors.message && <p className='text-red-500 text-xs italic'>{errors.message}</p>}
 			</div>
 			<div className='flex items-center justify-between'>
-				<button
-					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-					type='submit'
-				>
+				<button type='submit' className='windows-button'>
 					Send
 				</button>
 			</div>
