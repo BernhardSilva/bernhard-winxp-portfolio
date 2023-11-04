@@ -1,5 +1,5 @@
 import { User } from '@/types';
-import React from 'react';
+import Image from 'next/image';
 
 type ProfileProps = {
 	profile: User;
@@ -8,9 +8,10 @@ type ProfileProps = {
 const Profile = ({ profile }: ProfileProps) => {
 	return (
 		<>
-			<h5>About me</h5>
-			<h2>Let me introduce myself.</h2>
-			<p>{profile.about}</p>
+			<div className='flex items-center space-x-10 justify-center'>
+				<Image className='rounded-full' src={profile.profileImage} width={250} height={250} alt='profile' />
+				<p className='max-w-md'>{profile.about}</p>
+			</div>
 		</>
 	);
 };

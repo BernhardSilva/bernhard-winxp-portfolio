@@ -9,7 +9,12 @@ export const useDragAndDrop = () => {
 
 	const onMouseDownDrag = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.button !== 0) return;
-		const box = (e.target as HTMLElement).getBoundingClientRect();
+		const target = e.target as HTMLElement;
+
+		// Check if the target has the 'drag-window' class
+		if (!target.classList.contains('drag-window')) return;
+
+		const box = target.getBoundingClientRect();
 		setDragging(true);
 		setRel({
 			x: e.pageX - box.left,

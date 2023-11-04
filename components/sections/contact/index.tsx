@@ -1,11 +1,14 @@
-import Image from 'next/image';
-import React from 'react';
-import wsp from '@/public/images/logos/wsp.webp';
 import mail from '@/public/images/logos/mail.webp';
+import wsp from '@/public/images/logos/wsp.webp';
+import Image from 'next/image';
+import ContactForm from './form';
 
 const Contact = () => {
 	return (
 		<section id='contact'>
+			<div className='min-h-full text-white flex items-center justify-center  p-10'>
+				<ContactForm />
+			</div>
 			<div className='flex justify-center place-items-center'>
 				<div className='flex justify-center items-center gap-10'>
 					<Image

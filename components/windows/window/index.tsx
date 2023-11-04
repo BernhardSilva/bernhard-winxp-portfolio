@@ -17,13 +17,13 @@ type ResizeHandleProps = {
 };
 
 const initialDimentions = {
-	initialWidth: 1024,
-	initialHeight: 600
+	initialWidth: 900,
+	initialHeight: 800
 };
 
 const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(initialDimentions);
-	const { dragging, onMouseDownDrag, pos } = useDragAndDrop();
+	const { onMouseDownDrag, pos } = useDragAndDrop();
 
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
@@ -39,23 +39,23 @@ const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
 	const style = {
 		left: isMaximized ? `0px` : `${pos.x + index * 20}px`,
 		top: isMaximized ? `0px` : `${pos.y + index * 20}px`,
-		cursor: dragging ? 'grabbing' : 'grab',
 		zIndex: isMaximized || isActive ? 1 : 0, // Add isMaximized to the condition
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
 		height: isMaximized ? `95vh` : `${dimensions.height}px`
 	};
 
-	const ResizeHandle = ({ className, handleMouseDown }: ResizeHandleProps) => (
+	const childStyle = {
+		width: isMaximized ? `99vw` : childDimensions.width,
+		height: isMaximized ? `89vh` : childDimensions.height,
+		overflow: 'auto'
+	};
+
+	const DivSectionHandler = ({ className, handleMouseDown }: ResizeHandleProps) => (
 		<div onMouseDown={handleMouseDown} className={`absolute ${className}`} />
 	);
 
 	return (
-		<div
-			onMouseDown={onMouseDownDrag}
-			ref={resizableDiv}
-			className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl w-2/3 h-2/3 window'
-			style={style}
-		>
+		<div ref={resizableDiv} className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl w-2/3 h-2/3 window' style={style}>
 			<div className='title-bar'>
 				<div className='flex items-center justify-between'>
 					<h2 className='ml-2 font-bold'>{page.name}</h2>
@@ -65,26 +65,23 @@ const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
 						<ButtonCloseWindows closeHandler={() => onClose(page.id)} />
 					</div>
 				</div>
-				<div
-					className='mt-5'
-					style={{
-						width: childDimensions.width,
-						height: childDimensions.height,
-						overflow: 'auto'
-					}}
-				>
-					{page.component}
+				<div className='mt-5' style={childStyle}>
+					<div>{page.component}</div>
 				</div>
 			</div>
-			<ResizeHandle
+			<DivSectionHandler
+				className='absolute top-0 w-[94%] h-[30px] cursor-grab drag-window'
+				handleMouseDown={onMouseDownDrag}
+			/>
+			<DivSectionHandler
 				className='absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right'
 				handleMouseDown={handleMouseDown}
 			/>
-			<ResizeHandle
+			<DivSectionHandler
 				className='absolute left-0 bottom-0 right-0 h-2 cursor-ns-resize resize-bottom'
 				handleMouseDown={handleMouseDown}
 			/>
-			<ResizeHandle
+			<DivSectionHandler
 				className='absolute bottom-0 right-0 h-2 w-2 cursor-nwse-resize resize-corner-right'
 				handleMouseDown={handleMouseDown}
 			/>

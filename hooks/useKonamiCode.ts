@@ -24,7 +24,7 @@ export const useKonamiCode = (callback: () => void) => {
 		const handleKeyDown = (event: KeyboardEvent) => {
 			const sequence = konamiCodeSequence[sequenceIndex];
 			//I add the lenght condition to avoid the shift key
-			const eventKey = event.key.length > 1 ? event.key : event.key.toLowerCase();
+			const eventKey = event?.key?.length > 1 ? event?.key : event?.key?.toLowerCase();
 			if (eventKey === sequence) {
 				setSequenceIndex(sequenceIndex + 1);
 

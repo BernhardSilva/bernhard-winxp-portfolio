@@ -13,6 +13,28 @@ export type User = {
 	certificates: Certificate[];
 };
 
+export type SocialMedia = {
+	name: string;
+	url: string;
+	icon: string;
+	active: boolean;
+	color?: string;
+};
+
+export type UserUpdate = {
+	name?: string;
+	role?: string;
+	profileImage?: string;
+	languages?: string[];
+	about?: string;
+	contact?: Contact;
+	skills?: string[];
+	services?: string[];
+	workExperience?: WorkExperience[];
+	education?: Education[];
+	certificates?: Certificate[];
+};
+
 export type Service = {
 	name: string;
 	icon: string;
@@ -25,6 +47,7 @@ export type Contact = {
 	location: string;
 	website: string;
 	cv: string;
+	socialMedia: SocialMedia[];
 };
 
 export type Education = {

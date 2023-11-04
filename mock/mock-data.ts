@@ -5,31 +5,96 @@ export const mockUser: User = {
 	_id: '1',
 	name: 'Bernhard Silva',
 	role: 'Software Engineer',
-	profileImage: '/images/profile.jpg',
+	profileImage: '/images/profile/profile.webp',
 	languages: ['English', 'Spanish'],
-	about: `I'm a software engineer based in the Philippines. I have a passion for web development and love to create for web and mobile devices. I have a strong interest in UI/UX design and love to create for web and mobile devices.`,
+	about: `I'm a software engineer with +6 years of experience in web development.
+	I'm passionate about building software that solves real-world problems.
+	I worked end to end projects for start-ups and big companies.`,
 	contact: {
 		email: 'bernhard.silva@gmail.com',
 		phone: '+56946143198',
 		location: 'Santiago, Chile',
 		website: 'https://portfolio.berspai.com',
-		cv: 'https://drive.google.com/file/d/1cIJzQWedKW6JJ6bnGM1xY-6AyOVjZ1Ew/view'
+		cv: 'https://drive.google.com/file/d/1cIJzQWedKW6JJ6bnGM1xY-6AyOVjZ1Ew/view',
+		socialMedia: [
+			{
+				name: 'LinkedIn',
+				url: 'https://www.linkedin.com/in/bernhard-silva/',
+				icon: 'entypo-social:linkedin-with-circle',
+				active: true,
+				color: '#0077B5'
+			},
+			{
+				name: 'GitHub',
+				url: 'https://github.com/BernhardSilva',
+				icon: 'logos:github-icon',
+				active: true
+			},
+			{
+				name: 'Twitter',
+				url: 'https://twitter.com/bernhard_silva',
+				icon: 'logos:twitter',
+				active: true
+			}
+		]
 	},
 	skills: [
 		{
 			_id: '201',
 			name: 'React',
-			icon: 'https://example.com/react-icon.svg'
+			icon: 'logos:react'
 		},
 		{
 			_id: '202',
-			name: 'JavaScript',
-			icon: 'https://example.com/javascript-icon.svg'
+			name: 'React Query',
+			icon: 'logos:react-query-icon'
 		},
 		{
-			_id: '202',
+			_id: '203',
 			name: 'TypeScript',
-			icon: 'https://example.com/javascript-icon.svg'
+			icon: 'devicon:typescript'
+		},
+		{
+			_id: '204',
+			name: 'React',
+			icon: 'logos:react'
+		},
+		{
+			_id: '205',
+			name: 'React Query',
+			icon: 'logos:react-query-icon'
+		},
+		{
+			_id: '206',
+			name: 'TypeScript',
+			icon: 'devicon:typescript'
+		},
+		{
+			_id: '207',
+			name: 'React',
+			icon: 'logos:react'
+		},
+		{
+			_id: '208',
+			name: 'React Query',
+			icon: 'logos:react-query-icon'
+		},
+		{
+			_id: '209',
+			name: 'TypeScript',
+			icon: 'devicon:typescript'
+		}
+	],
+	services: [
+		{
+			name: 'Web Development',
+			icon: 'https://example.com/web-development-icon.svg',
+			description: 'lorem ipsum'
+		},
+		{
+			name: 'Web Development',
+			icon: 'https://example.com/web-development-icon.svg',
+			description: 'lorem ipsum'
 		}
 	],
 	workExperience: [
@@ -43,18 +108,6 @@ export const mockUser: User = {
 			title: 'Full-stack Engineer',
 			date: 'Apr 2021 - Jan 2022',
 			company: 'Coval',
-			description: 'lorem ipsum'
-		}
-	],
-	services: [
-		{
-			name: 'Web Development',
-			icon: 'https://example.com/web-development-icon.svg',
-			description: 'lorem ipsum'
-		},
-		{
-			name: 'Web Development',
-			icon: 'https://example.com/web-development-icon.svg',
 			description: 'lorem ipsum'
 		}
 	],

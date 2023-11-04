@@ -1,25 +1,24 @@
 import { Skill } from '@/types';
-import React from 'react';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 type SkillsProp = {
 	skills: Skill[];
 };
 
-const SkillsComponent = ({ skills }: SkillsProp) => {
+const Skills = ({ skills }: SkillsProp) => {
 	return (
-		<div className='p-5 text-center'>
-			<h2 className='text-2xl font-bold mb-5'>
-				I specialize in the development of Web applications with different technologies.
-			</h2>
-			<ul className='flex space-x-3'>
-				{skills.map((skill, index) => (
-					<li key={index} className='bg-gray-700 px-3 py-1 rounded-md'>
-						{skill.name}
-					</li>
+		<div className='mt-10'>
+			<h2 className='text-2xl font-bold mb-5'>Skills</h2>
+			<div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4'>
+				{skills.map((skill) => (
+					<div key={skill._id} className='flex items-center space-x-2 bg-gray-200 p-3 rounded-md shadow-xl'>
+						<Icon icon={skill.icon} />
+						{/* <span>{skill.name}</span> */}
+					</div>
 				))}
-			</ul>
+			</div>
 		</div>
 	);
 };
 
-export default SkillsComponent;
+export default Skills;
