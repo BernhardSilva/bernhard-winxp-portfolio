@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
 
-type ButtonStartWindows = {
+type WindowsButtonStart = {
 	handleStartClick: () => void;
 };
 
-const ButtonStartWindows = ({ handleStartClick }: ButtonStartWindows) => {
+const WindowsButtonStart = ({ handleStartClick }: WindowsButtonStart) => {
 	return (
 		<button
 			onClick={handleStartClick}
@@ -16,11 +16,11 @@ const ButtonStartWindows = ({ handleStartClick }: ButtonStartWindows) => {
 				src='https://www.pngall.com/wp-content/uploads/2/Windows-Logo.png'
 				width={20}
 				height={20}
-				alt='hi'
+				alt='windows-start'
 			/>
 			Start
 		</button>
 	);
 };
 
-export default ButtonStartWindows;
+export default WindowsButtonStart;

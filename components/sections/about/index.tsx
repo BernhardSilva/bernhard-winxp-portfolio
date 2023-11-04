@@ -1,5 +1,3 @@
-import Contact from '../contact';
-
 const About = () => {
 	return (
 		<section id='about'>

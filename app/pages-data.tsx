@@ -1,9 +1,9 @@
 import Resume from '@/components/sections/resume';
-import About from '../components/sections/about';
-import Contact from '../components/sections/contact';
-import Intro from '../components/sections/intro';
-import Projects from '../components/sections/projects';
-import SecretPage from '@/components/secret-page';
+import About from '@/components/sections/about';
+import Contact from '@/components/sections/contact';
+import Intro from '@/components/sections/intro';
+import Projects from '@/components/sections/projects';
+import SecretPage from '@/components/sections/secret/secret-page';
 
 export const words = ['Fullstack Developer.', 'Programmer Analyst.'];
 

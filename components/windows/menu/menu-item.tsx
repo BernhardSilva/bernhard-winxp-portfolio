@@ -1,4 +1,3 @@
-// MenuList.js
 import { Page } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React from 'react';
@@ -8,7 +7,7 @@ type MenuItemProps = {
 	handleClick: (id: string) => void;
 };
 
-const MenuList = ({ page, handleClick }: MenuItemProps) => {
+const MenuItem = ({ page, handleClick }: MenuItemProps) => {
 	return (
 		<div className='rounded-t-xl'>
 			<li
@@ -24,4 +23,4 @@ const MenuList = ({ page, handleClick }: MenuItemProps) => {
 	);
 };
 
-export default MenuList;
+export default MenuItem;
