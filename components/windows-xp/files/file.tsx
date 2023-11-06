@@ -20,7 +20,7 @@ const File = ({ file }: DesktopFileProps) => {
 		element: file.element,
 		initialPosition: file.initialPosition
 	};
-	const { pos, onMouseDownDrag } = useDragAndDrop(drogAndDropValues);
+	const { position, onMouseDownDrag } = useDragAndDrop(drogAndDropValues);
 
 	const handleDoubleClick = (e: any) => {
 		e.stopPropagation();
@@ -30,8 +30,9 @@ const File = ({ file }: DesktopFileProps) => {
 	return (
 		<div onMouseDown={onMouseDownDrag} onDoubleClick={handleDoubleClick}>
 			<div
-				className={`absolute flex flex-col items-center bg-blue-500 bg-opacity-30 hover:bg-opacity-60 rounded-lg shadow-xl p-1 ${file.element} max-w-[100px] min-w-[100px]`}
-				style={{ left: pos.x, top: pos.y }}
+				className={`absolute flex flex-col items-center bg-blue-500 bg-opacity-30
+				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element}`}
+				style={{ left: position.x, top: position.y }}
 			>
 				<Icon icon={file.icon} height={file.size} width={file.size} color={file.color} />
 

@@ -1,7 +1,12 @@
-import React from 'react';
+'use client';
 
 const Blogs = () => {
-	return <section id="blogs">Blogs</section>;
+
+	return (
+		<section id='blogs'>
+			
+		</section>
+	);
 };
 
 export default Blogs;

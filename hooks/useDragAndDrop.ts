@@ -6,13 +6,14 @@ type Pos = {
 };
 
 type UseDragAndDropProps = {
-	element: string;
+	element: string | undefined;
 	initialPosition: Pos;
+	pageIndex: number;
 };
 
-export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps) => {
+export const useDragAndDrop = ({ element, initialPosition, pageIndex }: UseDragAndDropProps) => {
 	const [dragging, setDragging] = useState(false);
-	const [pos, setPos] = useState<Pos>(initialPosition);
+	const [position, setPosition] = useState<Pos>(initialPosition);
 	const [rel, setRel] = useState<any>(); // position relative to the cursor
 
 	const stopPropagationHandler = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
@@ -31,8 +32,8 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 		const box = target.getBoundingClientRect();
 		setDragging(true);
 		setRel({
-			x: e.pageX - box.left,
-			y: e.pageY - box.top
+			x: e.clientX - box.left,
+			y: e.clientY - box.top
 		});
 		stopPropagationHandler(e);
 	};
@@ -44,29 +45,18 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 
 	const onMouseMove = (e: MouseEvent) => {
 		if (!dragging) return;
-
-		const nextPos = {
-			x: e.pageX - rel?.x,
-			y: e.pageY - rel?.y
+		console.log(rel.x, rel.y);
+		const newPosition = {
+			x: e.clientX - rel.x,
+			y: e.clientY - rel.y
 		};
 
-		// Prevent the draggable element from going out of the viewport
-		if (isOutOfViewport(nextPos)) {
-			return;
-		}
-
-		setPos(nextPos);
+		// // Ensure the element stays within the screen bounds
+		console.log(pageIndex);
+		newPosition.x = Math.max(0, Math.min(newPosition.x, window.window.innerWidth - 100));
+		newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - 100));
+		setPosition(newPosition);
 		stopPropagationHandler(e);
-	};
-
-	const isOutOfViewport = (nextPos: Pos) => {
-		// Check if the nextPos is out of the viewport
-		// Here, we are using a custom size box of the size of the draggable element, adjust accordingly
-		if (nextPos.x < 0 || nextPos.y < 0 || nextPos.x + 70 > window.innerWidth || nextPos.y + 120 > window.innerHeight) {
-			return true;
-		}
-
-		return false;
 	};
 
 	useEffect(() => {
@@ -77,5 +67,5 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 			document.removeEventListener('mouseup', onMouseUp);
 		};
 	});
-	return { onMouseDownDrag, pos, dragging };
+	return { onMouseDownDrag, position, dragging };
 };

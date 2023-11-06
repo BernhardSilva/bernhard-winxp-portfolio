@@ -5,13 +5,9 @@ import { Page } from '@/types';
 import { useState } from 'react';
 import { pagesData, secretPage } from '../../app/pages-data';
 import Desktop from './desktop';
-
-import TaskBar from './taskbar';
-
 import Files from './files';
-import WindowsPages from './windows-pages';
-
-
+import TaskBar from './taskbar';
+import WindowsPages from './window';
 
 const Windows = () => {
 	const [pages, setPages] = useState(pagesData.map((page, index) => (index === 0 ? { ...page, isOpen: true } : page))); //this is for the app, not the user

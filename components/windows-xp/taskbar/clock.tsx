@@ -1,3 +1,4 @@
+import { useHasMounted } from '@/hooks/useHasMounted';
 import React from 'react';
 
 type ClockProps = {
@@ -6,6 +7,12 @@ type ClockProps = {
 };
 
 const Clock = ({ currentTime, className }: ClockProps) => {
+	const hasMounted = useHasMounted();
+
+	if (!hasMounted) {
+		return null;
+	}
+
 	return (
 		<div id='Clock'>
 			<div className={`text-sm pr-3 ${className}`}>

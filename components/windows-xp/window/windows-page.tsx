@@ -4,35 +4,37 @@ import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
-import { useCallback, useMemo, useState } from 'react'; 
+import { Page } from '@/types';
+import { useCallback, useMemo, useState } from 'react';
 import ButtonCloseWindows from '../buttons/button-close-windows';
 import ButtonMaximize from '../buttons/button-maximize-windows';
 
 type WindowsPageProps = {
-	page: any;
+	page: Page;
 	index: number;
 	onClose: (id: string) => void;
 	isActive: boolean;
 };
 
-const dragDropValues = {
-	element: 'drag-window',
-	initialPosition: { x: 30, y: 30 }
-};
-
 const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
+	const dragDropValues = {
+		element: 'drag-window',
+		pageIndex: index,
+		initialPosition: { x: 30, y: 30 }
+	};
+	console.log(index);
 	const { width, height } = useWindowDimensions();
 
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
 
-	const { onMouseDownDrag: dragWindow, pos: posWindow } = useDragAndDrop(dragDropValues);
+	const { onMouseDownDrag, position } = useDragAndDrop(dragDropValues);
 
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
 
 	const style = {
-		left: isMaximized ? `0px` : `${posWindow.x + index * 20}px`,
-		top: isMaximized ? `0px` : `${posWindow.y + index * 20}px`,
+		left: isMaximized ? `0px` : `${position.x + index * 20}px`,
+		top: isMaximized ? `0px` : `${position.y + index * 20}px`,
 		zIndex: isMaximized || isActive ? 1 : 0, // Add isMaximized to the condition
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
 		height: isMaximized ? `96vh` : `${dimensions.height}px`
@@ -82,7 +84,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 			<DivSectionHandler
 				onDoubleClick={onDoubleClickHandler}
 				className='absolute top-0 w-[94%] h-[30px] cursor-grab drag-window'
-				onMouseDown={dragWindow}
+				onMouseDown={onMouseDownDrag}
 			/>
 			<DivSectionHandler
 				className='absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right'

@@ -2,8 +2,10 @@ import Contact from '@/components/sections/contact';
 import Intro from '@/components/sections/intro';
 import Projects from '@/components/sections/projects';
 import Portfolio from '@/components/sections/portfolio';
-import SecretPage from '@/components/sections/secret';
+
 import Servicies from '@/components/sections/services';
+import Blogs from '@/components/sections/blogs';
+import SecretPage from '@/components/sections/secret/secret-page';
 
 export const words = ['Fullstack Developer.', 'Programmer Analyst.'];
 
@@ -37,6 +39,13 @@ export const pagesData = [
 		icon: 'ph:phone-fill',
 		isOpen: false
 	},
+	{
+		id: 'blogs',
+		name: 'blogs',
+		component: <Blogs />,
+		icon: 'ph:phone-fill',
+		isOpen: false
+	}
 ];
 
 export const secretPage = {
