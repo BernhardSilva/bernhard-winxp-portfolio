@@ -8,9 +8,9 @@ type ProfileProps = {
 const Profile = ({ profile }: ProfileProps) => {
 	return (
 		<>
-			<div className='flex items-center space-x-10 justify-center'>
-				<Image className='rounded-full' src={profile.profileImage} width={250} height={250} alt='profile' />
-				<p className='max-w-md'>{profile.about}</p>
+			<div className='grid place-items-center space-y-5'>
+				<Image className='rounded-full mt-5' src={profile.profileImage} width={250} height={250} alt='profile' />
+				<p className='w-fit'>{profile.about}</p>
 			</div>
 		</>
 	);

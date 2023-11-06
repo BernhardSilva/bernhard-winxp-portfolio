@@ -34,7 +34,7 @@ export const pagesData = [
 		id: 'contact',
 		name: 'Contact',
 		component: <Contact />,
-		icon: 'fxemoji:contact',
+		icon: 'ph:phone-fill',
 		isOpen: false
 	},
 ];

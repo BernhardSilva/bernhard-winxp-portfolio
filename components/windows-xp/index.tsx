@@ -5,9 +5,12 @@ import { Page } from '@/types';
 import { useState } from 'react';
 import { pagesData, secretPage } from '../../app/pages-data';
 import Desktop from './desktop';
-import Files from './files';
+
 import TaskBar from './taskbar';
-import PageWindows from './window';
+import WindowsPages from './window/windows-pages';
+import Files from './files/files';
+
+
 
 const Windows = () => {
 	const [pages, setPages] = useState(pagesData.map((page, index) => (index === 0 ? { ...page, isOpen: true } : page))); //this is for the app, not the user
@@ -34,8 +37,16 @@ const Windows = () => {
 	};
 
 	return (
-		<Desktop>
-			<Files />
+		<>
+			<Desktop>
+				<Files />
+				<WindowsPages
+					pages={pages}
+					activePageId={activePageId}
+					handlePageClick={handlePageClick}
+					handlePageClose={handlePageClose}
+				/>
+			</Desktop>
 			<TaskBar
 				handlePageClick={handlePageClick}
 				handlePageClose={handlePageClose}
@@ -44,14 +55,7 @@ const Windows = () => {
 				elementRef={elementRef}
 				pages={pages}
 			/>
-			{pages
-				.filter((page) => page.isOpen)
-				.map((page, index) => (
-					<div key={page.id} onClick={() => handlePageClick(page.id)}>
-						<PageWindows page={page} index={index} onClose={handlePageClose} isActive={page.id === activePageId} />
-					</div>
-				))}
-		</Desktop>
+		</>
 	);
 };
 

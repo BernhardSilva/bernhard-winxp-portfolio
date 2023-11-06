@@ -10,13 +10,10 @@ type MenuItemProps = {
 const MenuItem = ({ page, handleClick }: MenuItemProps) => {
 	return (
 		<div className='rounded-t-xl'>
-			<li
-				className='p-2 py-5 hover:bg-blue-300 rounded-md cursor-pointer text-black'
-				onClick={() => handleClick(page.id)}
-			>
-				<div className='flex justify-start'>
+			<li className='p-2 hover:bg-blue-300 rounded-md cursor-pointer text-black' onClick={() => handleClick(page.id)}>
+				<div className='flex justify-start place-items-center'>
 					<Icon icon={page.icon} className='mr-2' />
-					{page?.name}
+					<span className='text-lg'>{page?.name}</span>
 				</div>
 			</li>
 		</div>

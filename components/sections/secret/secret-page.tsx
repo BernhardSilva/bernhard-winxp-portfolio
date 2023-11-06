@@ -1,4 +1,4 @@
-import WebView from '@/components/windows/window/web-view-page';
+import WebView from '@/components/windows-xp/window/web-view-page';
 import React from 'react';
 
 const SecretPage = () => {

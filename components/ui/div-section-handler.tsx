@@ -7,7 +7,7 @@ export const DivSectionHandler = ({
 	onClick,
 	onDoubleClick,
 	onMouseDown,
-	children,
+	content,
 	...props
 }: DivSectionHandlerProps) => {
 	return (
@@ -18,7 +18,7 @@ export const DivSectionHandler = ({
 			className={`absolute ${className}`}
 			{...props}
 		>
-			{children}
+			{content}
 		</div>
 	);
 };

@@ -9,11 +9,15 @@ const Intro = () => {
 		<section id='intro' className='min-h-full flex justify-center items-center'>
 			<div className='relative text-center bg-slate-100 text-gray-700 p-10 mx-5 rounded-xl'>
 				<SocialMediaButton social={mockUser.contact.socialMedia} className='absolute top-0 left-0 mt-2 ml-2' />
-				<p className='text-xl text-gray-800'>Hello!</p>
-				<h1 className='text-4xl font-bold mb-2'>{`I'm ${mockUser.name}`}</h1>
-				<TypingAnimation />
-				<Profile profile={mockUser} />
-				<Skills skills={mockUser.skills} />
+				<div className='space-y-7'>
+					<div>
+						<p className='text-xl text-gray-800'>Hello!</p>
+						<h1 className='text-4xl font-bold mb-2'>{`I'm ${mockUser.name}`}</h1>
+						<TypingAnimation />
+					</div>
+					<Profile profile={mockUser} />
+					<Skills skills={mockUser.skills} />
+				</div>
 			</div>
 		</section>
 	);

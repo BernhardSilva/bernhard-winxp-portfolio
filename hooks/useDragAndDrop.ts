@@ -17,6 +17,11 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 	const [pos, setPos] = useState<Pos>(initialPosition);
 	const [rel, setRel] = useState<any>(); // position relative to the cursor
 
+	const stopPropagationHandler = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
+		e.stopPropagation();
+		e.preventDefault();
+	};
+
 	const onMouseDownDrag = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.button !== 0) return;
 		const target = e.target as HTMLElement;
@@ -31,14 +36,12 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 			x: e.pageX - box.left,
 			y: e.pageY - box.top
 		});
-		e.stopPropagation();
-		e.preventDefault();
+		stopPropagationHandler(e);
 	};
 
 	const onMouseUp = (e: MouseEvent) => {
 		setDragging(false);
-		e.stopPropagation();
-		e.preventDefault();
+		stopPropagationHandler(e);
 	};
 
 	const onMouseMove = (e: MouseEvent) => {
@@ -47,8 +50,7 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 			x: e.pageX - rel?.x,
 			y: e.pageY - rel?.y
 		});
-		e.stopPropagation();
-		e.preventDefault();
+		stopPropagationHandler(e);
 	};
 
 	useEffect(() => {

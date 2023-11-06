@@ -8,7 +8,7 @@ const Desktop = ({ children }: DesktopProps) => {
 	return (
 		<div
 			id='desktop'
-			className='min-h-screen bg-gray-900 text-white'
+			className=' bg-gray-900 text-white relative h-[96vh] overflow-hidden'
 			style={{ backgroundImage: `url(${'https://images2.alphacoders.com/941/941898.jpg'})`, backgroundSize: 'cover' }}
 		>
 			{children}

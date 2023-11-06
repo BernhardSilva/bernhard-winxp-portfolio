@@ -1,9 +1,9 @@
 import { Page } from '@/types';
-import Tab from '../taskbar/tab';
-import WindowsButtonStart from '../taskbar/windows-button-start';
-import Clock from './clock';
 import { useCurrentTime } from '@/hooks/useCurrentTime';
+import Tab from './tab';
 import Menu from '../menu';
+import Clock from './clock';
+import WindowsStartButton from './windows-start-button';
 
 type TaskBarProps = {
 	elementRef: React.RefObject<HTMLDivElement>;
@@ -25,9 +25,9 @@ const TaskBar = ({
 	const currentTime = useCurrentTime();
 
 	return (
-		<div className='fixed bottom-0 left-0 right-0 b p-1 flex items-center justify-between task-bar'>
-			<div className='flex items-center space-x-4 z-50' ref={elementRef}>
-				<WindowsButtonStart handleStartClick={handleStartClick} />
+		<div className='fixed bottom-0 w-full p-1 flex items-center justify-between z-50 task-bar'>
+			<div className='flex items-center space-x-4' ref={elementRef}>
+				<WindowsStartButton handleStartClick={handleStartClick} />
 
 				{isOpenClickOutside && <Menu pages={pages} handlePageClick={handlePageClick} />}
 

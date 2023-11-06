@@ -1,4 +1,4 @@
-import Desktop from '@/components/windows';
+import Desktop from '@/components/windows-xp';
 
 const Home = () => {
 	return <Desktop />;

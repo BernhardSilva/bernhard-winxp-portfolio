@@ -10,14 +10,15 @@ type SocialMediaProps = {
 const SocialMedia = ({ social, className }: SocialMediaProps) => {
 	return (
 		<div className={className}>
-			<div className='flex justify-center gap-5'></div>
-			{social.map((item, index) => (
-				<a key={index} href={item.url} target='_blank' rel='noopener noreferrer'>
-					<button className='shadow-xl rounded-full p-1'>
-						<Icon icon={item.icon} width={32} height={32} color={item?.color} />
-					</button>
-				</a>
-			))}
+			<div className='flex justify-center gap-1'>
+				{social.map((item, index) => (
+					<a key={index} href={item.url} target='_blank' rel='noopener noreferrer'>
+						<button className='shadow-xl rounded-full p-1'>
+							<Icon icon={item.icon} width={32} height={32} color={item?.color} />
+						</button>
+					</a>
+				))}
+			</div>
 		</div>
 	);
 };

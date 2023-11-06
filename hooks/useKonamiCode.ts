@@ -10,12 +10,11 @@ export const useKonamiCode = (callback: () => void) => {
 			'ArrowDown',
 			'ArrowDown',
 			'ArrowLeft',
-			'ArrowLeft',
 			'ArrowRight',
+			'ArrowLeft',
 			'ArrowRight',
 			'a',
 			'b',
-			'Enter'
 		],
 		[]
 	);

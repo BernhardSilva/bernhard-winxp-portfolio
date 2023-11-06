@@ -4,11 +4,11 @@ import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
-import { useCallback, useMemo, useState } from 'react'; // Add useState import
+import { useCallback, useMemo, useState } from 'react'; 
 import ButtonCloseWindows from '../buttons/button-close-windows';
 import ButtonMaximize from '../buttons/button-maximize-windows';
 
-type PageWindowsProps = {
+type WindowsPageProps = {
 	page: any;
 	index: number;
 	onClose: (id: string) => void;
@@ -20,7 +20,7 @@ const dragDropValues = {
 	initialPosition: { x: 30, y: 30 }
 };
 
-const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
+const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	const { width, height } = useWindowDimensions();
 
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
@@ -35,7 +35,7 @@ const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
 		top: isMaximized ? `0px` : `${posWindow.y + index * 20}px`,
 		zIndex: isMaximized || isActive ? 1 : 0, // Add isMaximized to the condition
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
-		height: isMaximized ? `95vh` : `${dimensions.height}px`
+		height: isMaximized ? `95.6vh` : `${dimensions.height}px`
 	};
 
 	const childDimensions = useMemo(
@@ -100,4 +100,4 @@ const PageWindows = ({ page, index, onClose, isActive }: PageWindowsProps) => {
 	);
 };
 
-export default PageWindows;
+export default WindowsPage;
