@@ -170,13 +170,13 @@ export const mockProjects: Project[] = [
 		},
 		skills: [
 			{
-				_id: '201',
-				name: 'React',
+				_id: '203',
+				name: 'Typescript',
 				icon: 'https://example.com/react-icon.svg'
 			},
 			{
-				_id: '202',
-				name: 'JavaScript',
+				_id: '204',
+				name: 'Redux',
 				icon: 'https://example.com/javascript-icon.svg'
 			}
 		],
@@ -193,13 +193,13 @@ export const mockProjects: Project[] = [
 		},
 		skills: [
 			{
-				_id: '201',
-				name: 'React',
+				_id: '205',
+				name: 'Nextjs',
 				icon: 'https://example.com/react-icon.svg'
 			},
 			{
-				_id: '202',
-				name: 'JavaScript',
+				_id: '206',
+				name: 'Tailwindcss',
 				icon: 'https://example.com/javascript-icon.svg'
 			}
 		],

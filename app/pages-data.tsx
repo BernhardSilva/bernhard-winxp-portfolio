@@ -2,7 +2,7 @@ import Contact from '@/components/sections/contact';
 import Intro from '@/components/sections/intro';
 import Projects from '@/components/sections/projects';
 import Portfolio from '@/components/sections/portfolio';
-import SecretPage from '@/components/sections/secret/secret-page';
+import SecretPage from '@/components/sections/secret';
 import Servicies from '@/components/sections/services';
 
 export const words = ['Fullstack Developer.', 'Programmer Analyst.'];

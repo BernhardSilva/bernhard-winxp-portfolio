@@ -7,8 +7,9 @@ import { pagesData, secretPage } from '../../app/pages-data';
 import Desktop from './desktop';
 
 import TaskBar from './taskbar';
-import WindowsPages from './window/windows-pages';
-import Files from './files/files';
+
+import Files from './files';
+import WindowsPages from './windows-pages';
 
 
 

@@ -1,7 +1,7 @@
-import Desktop from '@/components/windows-xp';
+import Windows from '@/components/windows-xp';
 
 const Home = () => {
-	return <Desktop />;
+	return <Windows />;
 };
 
 export default Home;

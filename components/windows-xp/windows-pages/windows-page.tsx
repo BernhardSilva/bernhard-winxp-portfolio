@@ -35,7 +35,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 		top: isMaximized ? `0px` : `${posWindow.y + index * 20}px`,
 		zIndex: isMaximized || isActive ? 1 : 0, // Add isMaximized to the condition
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
-		height: isMaximized ? `95.6vh` : `${dimensions.height}px`
+		height: isMaximized ? `96vh` : `${dimensions.height}px`
 	};
 
 	const childDimensions = useMemo(

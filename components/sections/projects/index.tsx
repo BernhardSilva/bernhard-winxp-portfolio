@@ -21,12 +21,17 @@ const Projects = () => {
 		setIsModalOpen(false);
 	};
 
-	const filteredProjects = mockProjects.filter((project) =>
-		project.title.toLowerCase().includes(searchTerm.toLowerCase())
+	const filteredProjects = mockProjects.filter(
+		(project) =>
+			project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			project.skills.some((skill) => skill.name.toLowerCase().includes(searchTerm.toLowerCase()))
 	);
 
 	return (
-		<div className={`min-h-full bg-black text-white p-10 ${isModalOpen ? 'bg-opacity-50' : ''}`}>
+		<div className='min-h-full bg-black text-white p-10'>
+			{isModalOpen && (
+				<div className='fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-10' onClick={closeModal} />
+			)}
 			<div className='relative'>
 				<input
 					type='text'
@@ -71,8 +76,8 @@ const Projects = () => {
 				))}
 			</div>
 			{isModalOpen && selectedProject && (
-				<div className='fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-10'>
-					<div className='bg-white text-black p-5 rounded-md w-full max-w-lg'>
+				<div className='fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-20'>
+					<div className='bg-white text-black p-5 rounded-md w-full sm:w-auto max-w-lg'>
 						<h2 className='text-2xl font-bold mb-3'>{selectedProject.title}</h2>
 						<Image
 							className='w-full h-64 rounded-md object-cover mb-3'

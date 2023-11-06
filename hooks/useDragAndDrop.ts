@@ -1,5 +1,3 @@
-//drag and drop
-
 import { useEffect, useState } from 'react';
 
 type Pos = {
@@ -26,7 +24,7 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 		if (e.button !== 0) return;
 		const target = e.target as HTMLElement;
 
-		// Check if the target has the 'drag-window' class
+		// Check if the target has the 'element' class
 		const draggableElement = target.closest(`.${element}`);
 		if (!draggableElement) return;
 
@@ -46,11 +44,29 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 
 	const onMouseMove = (e: MouseEvent) => {
 		if (!dragging) return;
-		setPos({
+
+		const nextPos = {
 			x: e.pageX - rel?.x,
 			y: e.pageY - rel?.y
-		});
+		};
+
+		// Prevent the draggable element from going out of the viewport
+		if (isOutOfViewport(nextPos)) {
+			return;
+		}
+
+		setPos(nextPos);
 		stopPropagationHandler(e);
+	};
+
+	const isOutOfViewport = (nextPos: Pos) => {
+		// Check if the nextPos is out of the viewport
+		// Here, we are using a custom size box of the size of the draggable element, adjust accordingly
+		if (nextPos.x < 0 || nextPos.y < 0 || nextPos.x + 70 > window.innerWidth || nextPos.y + 120 > window.innerHeight) {
+			return true;
+		}
+
+		return false;
 	};
 
 	useEffect(() => {

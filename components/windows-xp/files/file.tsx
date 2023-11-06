@@ -18,7 +18,7 @@ type DesktopFileProps = {
 const File = ({ file }: DesktopFileProps) => {
 	const drogAndDropValues = {
 		element: file.element,
-		initialPosition: file.initialPosition,
+		initialPosition: file.initialPosition
 	};
 	const { pos, onMouseDownDrag } = useDragAndDrop(drogAndDropValues);
 

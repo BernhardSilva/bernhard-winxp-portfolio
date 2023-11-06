@@ -13,7 +13,7 @@ const SocialMedia = ({ social, className }: SocialMediaProps) => {
 			<div className='flex justify-center gap-1'>
 				{social.map((item, index) => (
 					<a key={index} href={item.url} target='_blank' rel='noopener noreferrer'>
-						<button className='shadow-xl rounded-full p-1'>
+						<button className='shadow-xl rounded-full p-1 cursor-pointer transform hover:scale-110 transition-transform'>
 							<Icon icon={item.icon} width={32} height={32} color={item?.color} />
 						</button>
 					</a>
