@@ -8,7 +8,7 @@ type Pos = {
 type UseDragAndDropProps = {
 	element: string | undefined;
 	initialPosition: Pos;
-	pageIndex: number;
+	pageIndex?: number;
 };
 
 export const useDragAndDrop = ({ element, initialPosition, pageIndex }: UseDragAndDropProps) => {
