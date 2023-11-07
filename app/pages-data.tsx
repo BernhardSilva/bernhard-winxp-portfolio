@@ -5,7 +5,7 @@ import Portfolio from '@/components/sections/portfolio';
 
 import Servicies from '@/components/sections/services';
 import Blogs from '@/components/sections/blogs';
-import SecretPage from '@/components/sections/secret/secret-page';
+import SecretPage from '@/components/sections/secret';
 
 export const words = ['Fullstack Developer.', 'Programmer Analyst.'];
 

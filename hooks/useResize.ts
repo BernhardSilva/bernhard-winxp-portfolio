@@ -41,13 +41,17 @@ export const useResize = (initialWidth: number, initialHeight: number) => {
 
 			// Update width if right side or corner is being resized
 			if (isResizing.current.right || isResizing.current.corner) {
-				const newWidth = Math.max(clientX - resizableDiv.current.offsetLeft, initialWidth - 200);
+				let newWidth = Math.max(
+					clientX - resizableDiv.current.offsetLeft,
+					initialWidth - (initialWidth > 400 ? initialWidth * 0.7 : 0)
+				);
+				console.log(newWidth);
 				setDimensions((prev) => ({ ...prev, width: newWidth }));
 			}
 
 			// Update height if bottom side or corner is being resized
 			if (isResizing.current.bottom || isResizing.current.corner) {
-				const newHeight = Math.max(clientY - resizableDiv.current.offsetTop, initialHeight - 200);
+				const newHeight = Math.max(clientY - resizableDiv.current.offsetTop, initialHeight - initialHeight * 0.8);
 				setDimensions((prev) => ({ ...prev, height: newHeight }));
 			}
 

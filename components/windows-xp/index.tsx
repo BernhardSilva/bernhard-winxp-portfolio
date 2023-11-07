@@ -8,8 +8,10 @@ import Desktop from './desktop';
 import Files from './files';
 import TaskBar from './taskbar';
 import WindowsPages from './window';
+import useCustomAudio from '@/hooks/useCustomAudio';
 
 const Windows = () => {
+	useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
 	const [pages, setPages] = useState(pagesData.map((page, index) => (index === 0 ? { ...page, isOpen: true } : page))); //this is for the app, not the user
 	const [activePageId, setActivePageId] = useState('');
 

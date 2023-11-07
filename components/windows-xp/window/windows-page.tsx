@@ -17,14 +17,13 @@ type WindowsPageProps = {
 };
 
 const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
+	const { width, height } = useWindowDimensions();
+
 	const dragDropValues = {
 		element: 'drag-window',
 		pageIndex: index,
-		initialPosition: { x: 30, y: 30 }
+		initialPosition: { x: 0, y: 0 }
 	};
-	console.log(index);
-	const { width, height } = useWindowDimensions();
-
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
 
 	const { onMouseDownDrag, position } = useDragAndDrop(dragDropValues);
@@ -49,7 +48,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	);
 
 	const childStyle = {
-		width: isMaximized ? `99vw` : childDimensions.width,
+		width: isMaximized ? `100%` : childDimensions.width,
 		height: isMaximized ? `89vh` : childDimensions.height,
 		overflow: 'auto'
 	};

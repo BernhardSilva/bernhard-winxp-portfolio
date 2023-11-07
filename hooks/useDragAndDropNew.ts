@@ -8,13 +8,13 @@ type Props = {
 export const useDragAndDropNew = ({ elementRef, initialPosition }: Props) => {
 	const [position, setPosition] = useState(initialPosition);
 
-	const handleMouseDown = (e) => {
+	const handleMouseDown = (e: MouseEvent) => {
 		e.preventDefault();
 		const squareRect = elementRef.current.getBoundingClientRect();
 		const offsetX = e.clientX - squareRect.left;
 		const offsetY = e.clientY - squareRect.top;
 
-		const handleMouseMove = (e) => {
+		const handleMouseMove = (e: MouseEvent) => {
 			let newX = e.clientX - offsetX;
 			let newY = e.clientY - offsetY;
 
