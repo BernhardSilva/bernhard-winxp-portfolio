@@ -6,8 +6,8 @@ import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { Page } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
-import ButtonCloseWindows from '../buttons/button-close-windows';
-import ButtonMaximize from '../buttons/button-maximize-windows';
+import WindowsCloseButton from '../buttons/windows-close-button';
+import WindowsMaximizeButton from '../buttons/windows-maximize-button';
 import Section from './sections';
 
 type WindowsPageProps = {
@@ -73,8 +73,8 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 					<h2 className='ml-2 font-bold'>{page.name}</h2>
 					<div className='flex gap-1'>
 						{/* <ButtonMinimize minimizeHandler={setIsMinimized((prev) => !prev)} /> */}
-						<ButtonMaximize maximizeHandler={handleMaximize} />
-						<ButtonCloseWindows closeHandler={handleClose} />
+						<WindowsMaximizeButton maximizeHandler={handleMaximize} />
+						<WindowsCloseButton closeHandler={handleClose} />
 					</div>
 				</div>
 			</div>

@@ -88,14 +88,39 @@ export const mockUser: User = {
 	],
 	services: [
 		{
-			name: 'Web Development',
-			icon: 'https://example.com/web-development-icon.svg',
-			description: 'lorem ipsum'
+			name: 'SaaS',
+			icon: '🖥️',
+			description: 'Software as a Service application development using AI and cutting edge technologies.'
 		},
 		{
-			name: 'Web Development',
-			icon: 'https://example.com/web-development-icon.svg',
-			description: 'lorem ipsum'
+			name: 'SPA',
+			icon: '🧑‍💻',
+			description: 'Single Page Application development using modern web technologies.'
+		},
+		{
+			name: 'MVP',
+			icon: '🚀',
+			description: 'Minimum Viable Product development to validate your idea quickly.'
+		},
+		{
+			name: 'Apps End to End',
+			icon: '📱',
+			description: 'Full-cycle application development, from concept to deployment.'
+		},
+		{
+			name: 'Design',
+			icon: '🎨',
+			description: 'FIGMA, TAILWINDCSS, SHADCN, MUI, ANTDESIGN, BOOTSTRAP, HTML, CSS, SASS for amazing responsive apps.'
+		},
+		{
+			name: 'Full-Stack Development',
+			icon: '💻',
+			description: 'Frontend & Backend web development with React and Node.js/Spring Boot.'
+		},
+		{
+			name: 'Project management',
+			icon: '📋',
+			description: 'Agile methodology based on Scrum and/or Kanban.'
 		}
 	],
 	workExperience: [
@@ -141,7 +166,8 @@ export const mockProjects: Project[] = [
 	{
 		_id: '101',
 		title: 'Portfolio Website',
-		description: 'Developed my personal portfolio website to showcase my projects and skills.',
+		description:
+			'Developed my personal portfolio website to showcase my projects and skills. Developed my personal portfolio website to showcase my projects and skills. Developed my personal portfolio website to showcase my projects and skills.',
 		image: {
 			thumbnail: '/images/portfolio/e-cms.webp',
 			modalImage: '/images/portfolio/e-cms-modal.webp'
@@ -150,12 +176,12 @@ export const mockProjects: Project[] = [
 			{
 				_id: '201',
 				name: 'React',
-				icon: 'https://example.com/react-icon.svg'
+				icon: 'logos:react'
 			},
 			{
 				_id: '202',
 				name: 'JavaScript',
-				icon: 'https://example.com/javascript-icon.svg'
+				icon: 'logos:javascript'
 			}
 		],
 		tags: ['Web Development', 'Portfolio'],
@@ -173,12 +199,12 @@ export const mockProjects: Project[] = [
 			{
 				_id: '203',
 				name: 'Typescript',
-				icon: 'https://example.com/react-icon.svg'
+				icon: 'devicon:typescript'
 			},
 			{
 				_id: '204',
 				name: 'Redux',
-				icon: 'https://example.com/javascript-icon.svg'
+				icon: 'logos:redux'
 			}
 		],
 		tags: ['Web Development', 'Portfolio'],
@@ -196,12 +222,12 @@ export const mockProjects: Project[] = [
 			{
 				_id: '205',
 				name: 'Nextjs',
-				icon: 'https://example.com/react-icon.svg'
+				icon: 'logos:nextjs-icon'
 			},
 			{
 				_id: '206',
 				name: 'Tailwindcss',
-				icon: 'https://example.com/javascript-icon.svg'
+				icon: 'skill-icons:tailwindcss-dark'
 			}
 		],
 		tags: ['Web Development', 'Portfolio'],
@@ -219,12 +245,12 @@ export const mockProjects: Project[] = [
 			{
 				_id: '201',
 				name: 'React',
-				icon: 'https://example.com/react-icon.svg'
+				icon: 'logos:react'
 			},
 			{
 				_id: '202',
 				name: 'JavaScript',
-				icon: 'https://example.com/javascript-icon.svg'
+				icon: 'logos:javascript'
 			}
 		],
 		tags: ['Web Development', 'Portfolio'],
@@ -242,12 +268,12 @@ export const mockProjects: Project[] = [
 			{
 				_id: '203',
 				name: 'Typescript',
-				icon: 'https://example.com/react-icon.svg'
+				icon: 'devicon:typescript'
 			},
 			{
 				_id: '204',
 				name: 'Redux',
-				icon: 'https://example.com/javascript-icon.svg'
+				icon: 'logos:redux'
 			}
 		],
 		tags: ['Web Development', 'Portfolio'],
@@ -265,12 +291,12 @@ export const mockProjects: Project[] = [
 			{
 				_id: '205',
 				name: 'Nextjs',
-				icon: 'https://example.com/react-icon.svg'
+				icon: 'logos:nextjs-icon'
 			},
 			{
 				_id: '206',
 				name: 'Tailwindcss',
-				icon: 'https://example.com/javascript-icon.svg'
+				icon: 'devicon:tailwindcss'
 			}
 		],
 		tags: ['Web Development', 'Portfolio'],

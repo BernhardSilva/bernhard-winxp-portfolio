@@ -9,7 +9,7 @@ const Contact = () => {
 			<div className='min-h-full text-white flex justify-center items-center p-10'>
 				<ContactForm />
 				
-					<div className='flex justify-center items-center gap-10'>
+					{/* <div className='flex justify-center items-center gap-10'>
 						<Image
 							className='cursor-pointer hover:scale-125 transition'
 							src={wsp}
@@ -24,7 +24,7 @@ const Contact = () => {
 							width={80}
 							height={80}
 						/>
-					</div>
+					</div> */}
 				</div>
 			
 		</section>

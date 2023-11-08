@@ -9,6 +9,13 @@ import Servicies from '@/components/windows-xp/window/sections/services';
 export const pagesData = [
 	{ id: 'intro', name: 'Intro', component: <Intro />, icon: 'fa6-brands:dev', isOpen: false },
 	{
+		id: 'portfolio',
+		name: 'Portfolio',
+		component: <Portfolio />,
+		icon: 'game-icons:skills',
+		isOpen: false
+	},
+	{
 		id: 'projects',
 		name: 'Projects',
 		component: <Projects />,
@@ -23,26 +30,19 @@ export const pagesData = [
 		isOpen: false
 	},
 	{
-		id: 'portfolio',
-		name: 'Portfolio',
-		component: <Portfolio />,
-		icon: 'game-icons:skills',
-		isOpen: false
-	},
-	{
 		id: 'contact',
 		name: 'Contact',
 		component: <Contact />,
 		icon: 'ph:phone-fill',
 		isOpen: false
 	},
-	{
-		id: 'blogs',
-		name: 'blogs',
-		component: <Blogs />,
-		icon: 'ph:phone-fill',
-		isOpen: false
-	}
+	// {
+	// 	id: 'blogs',
+	// 	name: 'blogs',
+	// 	component: <Blogs />,
+	// 	icon: 'ph:phone-fill',
+	// 	isOpen: false
+	// }
 ];
 
 export const secretPage = {

@@ -13,7 +13,7 @@ const Skills = ({ skills, ...props  }: SkillsProp) => {
 				{skills.map((skill) => (
 					<div
 						key={skill._id}
-						className={`flex items-center space-x-2 bg-white dark:bg-slate-800 p-3 rounded-md shadow-xl hover:scale-105`}
+						className={`flex items-center space-x-2 bg-white dark:bg-slate-800 p-3 rounded-md shadow-xl transition duration-500 ease-in-out transform hover:scale-105`}
 					>
 						<Icon icon={skill.icon} />
 						<span className='hidden md:inline'>{skill.name}</span>

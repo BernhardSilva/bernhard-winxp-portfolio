@@ -8,12 +8,10 @@ type ProjectProps = {
 
 const ProjectGallery = ({ projects, handleProjectClick }: ProjectProps) => {
 	return (
-		<div className='m-5 text-center text-xl bg-white'>
-			<h2>PORTFOLIO</h2>
-			<h3>Take a look at one of my recent projects.</h3>
-			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2'>
+		<div className='text-center text-xl'>
+			<div className='flex flex-wrap gap-4 justify-center mt-5'>
 				{projects.map((project) => (
-					<ProjectCard key={project._id} project={project} handleProjectClick={handleProjectClick} />
+					<ProjectCard key={project._id} handleProjectClick={handleProjectClick} project={project} />
 				))}
 			</div>
 		</div>

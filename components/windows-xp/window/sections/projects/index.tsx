@@ -1,9 +1,10 @@
 import { mockProjects } from '@/mock/mock-data';
 import { Project } from '@/types';
-import { Icon } from '@iconify/react/dist/iconify.js';
 import { ChangeEvent, useState } from 'react';
-import ProjectCard from './project-card';
+import ProjectGallery from './project-gallery';
 import ProjectModal from './project-modal';
+import ProejctSearch from './project-search';
+import ProjectSkillFilter from './project-skill-filter';
 
 const Projects = () => {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -45,37 +46,9 @@ const Projects = () => {
 	return (
 		<div className='flex flex-col items-center'>
 			{isModalOpen && <div className='z-10' onClick={closeModal} />}
-			<div className='relative'>
-				<input
-					type='text'
-					placeholder='Search Projects'
-					className='px-3 py-2 rounded-md bg-white dark:bg-slate-700 text-black dark:text-white'
-					onChange={handleSearch}
-				/>
-				<button className='absolute right-2 top-2.5'>
-					<Icon icon='akar-icons:search' className='text-slate-500 dark:text-gray-200' />
-				</button>
-			</div>
-			<div className='mt-5 flex space-x-2'>
-				{Array.from(new Set(mockProjects.flatMap((project) => project.skills.map((skill) => skill.name)))).map(
-					(skillName, index) => (
-						<button
-							key={index}
-							onClick={() => handleSkillClick(skillName)}
-							className={`px-3 py-2 rounded-md text-sm shadow-md hover:scale-105 ${
-								selectedSkill === skillName ? 'bg-blue-600 text-white' : 'bg-white dark:bg-slate-700'
-							}`}
-						>
-							{skillName}
-						</button>
-					)
-				)}
-			</div>
-			<div className='flex flex-wrap gap-4 justify-center mt-5'>
-				{filteredProjects.map((project) => (
-					<ProjectCard key={project._id} handleProjectClick={handleProjectClick} project={project} />
-				))}
-			</div>
+			<ProejctSearch handleSearch={handleSearch} />
+			<ProjectSkillFilter selectedSkill={selectedSkill} projects={mockProjects} handleSkillClick={handleSkillClick} />
+			<ProjectGallery projects={filteredProjects} handleProjectClick={handleProjectClick} />
 			<ProjectModal isModalOpen={isModalOpen} selectedProject={selectedProject} closeModal={closeModal} />
 		</div>
 	);

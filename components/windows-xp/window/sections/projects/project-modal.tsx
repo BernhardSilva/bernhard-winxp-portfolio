@@ -1,4 +1,4 @@
-import ButtonCloseWindows from '@/components/windows-xp/buttons/button-close-windows';
+import WindowsCloseButton from '@/components/windows-xp/buttons/windows-close-button';
 import { Project } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Image from 'next/image';
@@ -19,23 +19,28 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 					onClick={closeModal} // Close modal when clicking outside
 				>
 					<div
-						className='bg-slate-100 p-5 rounded-md relative max-w-2xl min-w-md min-h-[400px]'
+						className='relative rounded-md max-w-2xl min-w-md min-h-[400px] max-h-[80%]'
 						onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from bubbling up
 					>
-						<ButtonCloseWindows closeHandler={closeModal} className='' />
-
-						<div className='bg-slate-200 rounded-md p-10'>
+						<WindowsCloseButton closeHandler={closeModal} className='absolute top-3 right-3' />
+						<div className='bg-white dark:bg-slate-950 rounded-md p-10'>
 							<Image
-								className='w-full h-32 object-cover rounded-md'
+								className='w-full object-cover rounded-md h-[200px]'
 								src={selectedProject?.image.modalImage}
 								alt={selectedProject?.title}
 								width={500}
 								height={300}
 							/>
-							<h3 className='text-lg mt-2'>{selectedProject?.title}</h3>
-							<p className='text-sm'>{selectedProject?.description}</p>
-							<p className='text-sm'>{selectedProject?.skills.map((item) => item.name)}</p>
-							<div className='flex space-x-2 mt-3'>
+							<div className='bg-slate-100 dark:bg-slate-900 p-2 rounded-md mt-3'>
+								<h3 className='text-lg mt-2'>{selectedProject?.title}</h3>
+								<p className='text-sm'>{selectedProject?.description}</p>
+								<div className='flex flex-wrap justify-center gap-2 my-2'>
+									{selectedProject?.skills.map((item) => (
+										<Icon key={item._id} icon={item.icon} width={30} height={30} className='hover:scale-105' />
+									))}
+								</div>
+							</div>
+							<div className='flex space-x-2 mt-3 justify-center'>
 								<button className='px-3 py-2 rounded-md bg-green-500 text-white'>Live Code</button>
 								<button className='px-3 py-2 rounded-md bg-blue-500 text-white'>Github Code</button>
 							</div>
@@ -45,31 +50,6 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 			)}
 		</div>
 	);
-	{
-		/* {modalOpen && selectedProject && (
-				<div className='fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-20'>
-					<div className='bg-white text-black p-5 rounded-md w-full sm:w-auto max-w-lg'>
-						<h2 className='text-2xl font-bold mb-3'>{selectedProject.title}</h2>
-						<Image
-							className='w-full h-64 rounded-md object-cover mb-3'
-							src={selectedProject.image.modalImage}
-							alt={selectedProject.title}
-							width={500}
-							height={500}
-						/>
-						<p className='mb-3'>{selectedProject.description}</p>
-						<div className='flex justify-end space-x-2'>
-							<button className='px-3 py-2 rounded-md bg-red-500 text-white' onClick={() => setModalOpen(!modalOpen)}>
-								Close
-							</button>
-							<button className='px-3 py-2 rounded-md bg-green-500 text-white'>Live Project</button>
-						</div>
-					</div>
-				</div>
-			)}
-		</div>
-	); */
-	}
 };
 
 export default ProjectModal;

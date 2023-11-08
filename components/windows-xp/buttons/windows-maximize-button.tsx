@@ -1,23 +1,24 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React from 'react';
 
-type ButtonMinimizeProps = {
-	minimizeHandler: () => void;
+type ButtonMaximizeProps = {
+	maximizeHandler: () => void;
 };
 
-const ButtonMinimize = ({ minimizeHandler }: ButtonMinimizeProps) => {
-	const handleMinimize = (e: React.MouseEvent<HTMLElement>) => {
+const WindowsMaximizeButton = ({ maximizeHandler }: ButtonMaximizeProps) => {
+	const handleMaximize = (e: React.MouseEvent<HTMLElement>) => {
 		e.stopPropagation(); //prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.
-		minimizeHandler();
+		maximizeHandler();
 	};
+
 	return (
 		<button
-			onClick={handleMinimize}
+			onClick={handleMaximize}
 			className='w-5 h-5 bg-blue-500 hover:bg-blue-600 active:bg-red-700 border-[1px] border-white rounded text-white text-sm font-bold'
 		>
-			<Icon className='ml-[1.37px]' icon='ic:twotone-minimize' width={15} height={15} />
+			<Icon className='ml-[1.37px]' icon='ph:square-bold' width={15} height={15} />
 		</button>
 	);
 };
 
-export default ButtonMinimize;
+export default WindowsMaximizeButton;

@@ -12,7 +12,7 @@ type ThemeProviderProps = {
 };
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-	const [theme, setTheme] = useState('dark'); // default theme
+	const [theme, setTheme] = useState('dark');
 
 	useEffect(() => {
 		const html = document.querySelector('html');

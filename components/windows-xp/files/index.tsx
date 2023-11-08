@@ -23,7 +23,7 @@ const Files = () => {
 			icon: theme === 'dark' ? 'fa-solid:moon' : 'fa-solid:sun',
 			className: theme === 'light' ? 'text-yellow-500' : 'text-slate-200',
 			size: 50,
-			initialPosition: { x: 40, y: 900 },
+			initialPosition: { x: 20, y: 20 },
 			onOpen: () => themeToggle()
 		},
 		{
@@ -32,7 +32,7 @@ const Files = () => {
 			icon: 'bx:file',
 			color: '#ffffff',
 			size: 50,
-			initialPosition: { x: 40, y: 700 },
+			initialPosition: { x: 20, y: 120 },
 			onOpen: () => openFile()
 		},
 		{
@@ -41,7 +41,7 @@ const Files = () => {
 			icon: 'fa-brands:internet-explorer',
 			color: '#3381f7',
 			size: 50,
-			initialPosition: { x: 40, y: 800 },
+			initialPosition: { x: 20, y: 220 },
 			onOpen: () => openEplorer()
 		}
 	];

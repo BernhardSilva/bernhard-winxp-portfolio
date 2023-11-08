@@ -86,6 +86,8 @@ export type Project = {
 	_id: string;
 	title: string;
 	description: string;
+	liveUrl?: string;
+	repoUrl?: string;
 	image: Image;
 	skills: Skill[];
 	tags: string[];

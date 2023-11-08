@@ -75,7 +75,10 @@ const ContactForm = () => {
 				{errors.message && <p className='text-red-500 text-xs italic'>{errors.message}</p>}
 			</div>
 			<div className='flex items-center justify-between'>
-				<button className='window-button' type='submit'>
+				<button
+					type='submit'
+					className='bg-slate-200 dark:bg-slate-600 p-2 w-52 transition duration-500 ease-in-out transform  hover:scale-105 rounded-md'
+				>
 					Send
 				</button>
 			</div>

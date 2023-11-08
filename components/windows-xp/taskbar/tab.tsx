@@ -1,6 +1,5 @@
 import { Page } from '@/types';
-import React from 'react';
-import ButtonCloseWindows from '../buttons/button-close-windows';
+import WindowsCloseButton from '../buttons/windows-close-button';
 
 type TabProps = {
 	page: Page;
@@ -15,7 +14,7 @@ const Tab = ({ page, handlePageClose }: TabProps) => {
 			flex place-items-center justify-evenly gap-2 min-w-[100px]`}
 		>
 			<span>{page.name}</span>
-			<ButtonCloseWindows closeHandler={() => handlePageClose(page.id)} />
+			<WindowsCloseButton closeHandler={() => handlePageClose(page.id)} />
 		</div>
 	);
 };
