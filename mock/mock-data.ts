@@ -7,6 +7,7 @@ export const mockUser: User = {
 	role: 'Software Engineer',
 	profileImage: '/images/profile/profile.webp',
 	languages: ['English', 'Spanish'],
+	typingAnimationText: ['Fullstack Developer.', 'Programmer Analyst.'],
 	about: `I'm a software engineer with +6 years of experience in web development.
 	I'm passionate about building software that solves real-world problems.
 	I worked end to end projects for start-ups and big companies.`,
@@ -185,6 +186,75 @@ export const mockProjects: Project[] = [
 	},
 	{
 		_id: '103',
+		title: 'Portfolio Website3',
+		description: 'Developed my personal portfolio website to showcase my projects and skills.',
+		image: {
+			thumbnail: '/images/portfolio/financeml.webp',
+			modalImage: '/images/portfolio/financeml-modal.webp'
+		},
+		skills: [
+			{
+				_id: '205',
+				name: 'Nextjs',
+				icon: 'https://example.com/react-icon.svg'
+			},
+			{
+				_id: '206',
+				name: 'Tailwindcss',
+				icon: 'https://example.com/javascript-icon.svg'
+			}
+		],
+		tags: ['Web Development', 'Portfolio'],
+		userId: '1'
+	},
+	{
+		_id: '104',
+		title: 'Portfolio Website',
+		description: 'Developed my personal portfolio website to showcase my projects and skills.',
+		image: {
+			thumbnail: '/images/portfolio/e-cms.webp',
+			modalImage: '/images/portfolio/e-cms-modal.webp'
+		},
+		skills: [
+			{
+				_id: '201',
+				name: 'React',
+				icon: 'https://example.com/react-icon.svg'
+			},
+			{
+				_id: '202',
+				name: 'JavaScript',
+				icon: 'https://example.com/javascript-icon.svg'
+			}
+		],
+		tags: ['Web Development', 'Portfolio'],
+		userId: '1'
+	},
+	{
+		_id: '105',
+		title: 'Portfolio Website2',
+		description: 'Developed my personal portfolio website to showcase my projects and skills.',
+		image: {
+			thumbnail: '/images/portfolio/va.webp',
+			modalImage: '/images/portfolio/va-modal.webp'
+		},
+		skills: [
+			{
+				_id: '203',
+				name: 'Typescript',
+				icon: 'https://example.com/react-icon.svg'
+			},
+			{
+				_id: '204',
+				name: 'Redux',
+				icon: 'https://example.com/javascript-icon.svg'
+			}
+		],
+		tags: ['Web Development', 'Portfolio'],
+		userId: '1'
+	},
+	{
+		_id: '106',
 		title: 'Portfolio Website3',
 		description: 'Developed my personal portfolio website to showcase my projects and skills.',
 		image: {

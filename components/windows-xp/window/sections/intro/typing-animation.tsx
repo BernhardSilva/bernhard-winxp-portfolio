@@ -1,9 +1,12 @@
-import { words } from '@/app/pages-data';
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const speed = 200;
 
-const TypingAnimation = () => {
+type TypingAnimationProps = {
+	userText: string[];
+};
+
+const TypingAnimation = ({ userText }: TypingAnimationProps) => {
 	const [text, setText] = useState('');
 	const [index, setIndex] = useState(0);
 	const [isDeleting, setIsDeleting] = useState(false);
@@ -13,8 +16,8 @@ const TypingAnimation = () => {
 		const typingSpeed = speed - Math.random() * 100;
 		const timeout = setTimeout(
 			() => {
-				const current = loopNum % words.length;
-				const fullText = words[current];
+				const current = loopNum % userText.length;
+				const fullText = userText[current];
 
 				setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
 
@@ -31,7 +34,7 @@ const TypingAnimation = () => {
 		);
 
 		return () => clearTimeout(timeout);
-	}, [text, isDeleting, index, loopNum]);
+	}, [text, isDeleting, index, loopNum, userText]);
 
 	return (
 		<div className='flex items-center justify-center text-blue-500'>

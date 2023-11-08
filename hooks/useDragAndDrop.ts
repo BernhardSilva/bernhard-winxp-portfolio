@@ -8,13 +8,14 @@ type Pos = {
 type UseDragAndDropProps = {
 	element: string | undefined;
 	initialPosition: Pos;
-	pageIndex?: number;
 };
 
-export const useDragAndDrop = ({ element, initialPosition, pageIndex }: UseDragAndDropProps) => {
+export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps) => {
 	const [dragging, setDragging] = useState(false);
 	const [position, setPosition] = useState<Pos>(initialPosition);
 	const [rel, setRel] = useState<any>(); // position relative to the cursor
+	const [clickCount, setClickCount] = useState(0);
+	let singleClickTimer: ReturnType<typeof setTimeout>;
 
 	const stopPropagationHandler = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
 		e.stopPropagation();
@@ -24,7 +25,6 @@ export const useDragAndDrop = ({ element, initialPosition, pageIndex }: UseDragA
 	const onMouseDownDrag = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.button !== 0) return;
 		const target = e.target as HTMLElement;
-		console.log(pageIndex);
 
 		// Check if the target has the 'element' class
 		const draggableElement = target.closest(`.${element}`);
@@ -36,6 +36,22 @@ export const useDragAndDrop = ({ element, initialPosition, pageIndex }: UseDragA
 			x: e.clientX - box.left,
 			y: e.clientY - box.top
 		});
+
+		// Handle single/double click and dragging
+		setClickCount((prev) => prev + 1);
+		if (clickCount === 1) {
+			// Single click
+			singleClickTimer = setTimeout(() => {
+				console.log('single click');
+				setClickCount(0);
+			}, 50);
+		} else if (clickCount >= 2) {
+			// Double click
+			console.log('double click');
+			clearTimeout(singleClickTimer);
+			setClickCount(0);
+		}
+
 		stopPropagationHandler(e);
 	};
 
@@ -53,9 +69,9 @@ export const useDragAndDrop = ({ element, initialPosition, pageIndex }: UseDragA
 		};
 
 		// Get the size of the draggable element
-		const draggableElement = document.querySelector(`.${element}`);
-		const elementWidth = draggableElement ? draggableElement.getBoundingClientRect().width : 0;
-		const elementHeight = draggableElement ? draggableElement.getBoundingClientRect().height : 0;
+		// const draggableElement = document.querySelector(`.${element}`);
+		// const elementWidth = draggableElement ? draggableElement.getBoundingClientRect().width : 0;
+		// const elementHeight = draggableElement ? draggableElement.getBoundingClientRect().height : 0;
 
 		// Ensure the element stays within the screen bounds
 		newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - 100));
@@ -75,8 +91,3 @@ export const useDragAndDrop = ({ element, initialPosition, pageIndex }: UseDragA
 	});
 	return { onMouseDownDrag, position, dragging };
 };
-
-// console.log(newPosition)
-
-// newPosition.x = Math.max(0, Math.min(newPosition.x, window.window.innerWidth - 100));
-// newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - 100));

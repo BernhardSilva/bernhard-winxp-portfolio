@@ -11,18 +11,18 @@ const ProjectCard = ({ handleProjectClick, project }: ProjectProps) => {
 	return (
 		<div
 			key={project._id}
-			className='bg-blue-600 p-3 rounded-md cursor-pointer hover:bg-blue-500'
+			className='p-3 border border-blue-500 rounded-md cursor-pointer transform hover:scale-105 transition-transform'
 			onClick={() => handleProjectClick(project)}
 		>
 			<Image
-				className='w-full h-32 object-cover rounded-md'
+				className='w-full max-h-[300px] rounded-md object-cover mb-2'
 				src={project.image.thumbnail}
 				alt={project.title}
-				width={1024}
-				height={768}
+				width={300}
+				height={300}
 			/>
-			<h3 className='text-lg mt-2'>{project.title}</h3>
-			<p className='text-sm'>{project.description}</p>
+			<h3 className='text-lg font-bold'>{project.title}</h3>
+			<p className='text-sm text-gray-400'>{project.description}</p>
 		</div>
 	);
 };

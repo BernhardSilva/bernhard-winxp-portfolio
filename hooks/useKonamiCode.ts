@@ -13,8 +13,8 @@ export const useKonamiCode = (callback: () => void) => {
 			'ArrowRight',
 			'ArrowLeft',
 			'ArrowRight',
-			'a',
 			'b',
+			'a'
 		],
 		[]
 	);

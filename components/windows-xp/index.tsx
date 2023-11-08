@@ -1,17 +1,18 @@
 'use client';
+import { pagesData, secretPage } from '@/app/pages-data';
+import { useTheme } from '@/context/theme/useTheme';
 import { useClickOutside } from '@/hooks/useClickOuside';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
 import { Page } from '@/types';
 import { useState } from 'react';
-import { pagesData, secretPage } from '../../app/pages-data';
 import Desktop from './desktop';
 import Files from './files';
+import SecretWallpaper from './secret';
 import TaskBar from './taskbar';
 import WindowsPages from './window';
-import useCustomAudio from '@/hooks/useCustomAudio';
 
 const Windows = () => {
-	useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
+	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
 	const [pages, setPages] = useState(pagesData.map((page, index) => (index === 0 ? { ...page, isOpen: true } : page))); //this is for the app, not the user
 	const [activePageId, setActivePageId] = useState('');
 
@@ -38,6 +39,7 @@ const Windows = () => {
 	return (
 		<>
 			<Desktop>
+				{pages.some((page) => page.id === 'secret') && <SecretWallpaper />}
 				<Files />
 				<WindowsPages
 					pages={pages}

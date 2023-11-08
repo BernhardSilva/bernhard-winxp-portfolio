@@ -10,7 +10,7 @@ const Profile = ({ profile }: ProfileProps) => {
 		<>
 			<div className='grid place-items-center space-y-5'>
 				<Image className='rounded-full mt-5' src={profile.profileImage} width={250} height={250} alt='profile' />
-				<p className='w-fit'>{profile.about}</p>
+				<p className='w-fit max-w-lg'>{profile.about}</p>
 			</div>
 		</>
 	);

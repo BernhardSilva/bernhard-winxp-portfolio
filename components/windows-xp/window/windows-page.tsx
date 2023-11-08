@@ -8,6 +8,7 @@ import { Page } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
 import ButtonCloseWindows from '../buttons/button-close-windows';
 import ButtonMaximize from '../buttons/button-maximize-windows';
+import Section from './sections';
 
 type WindowsPageProps = {
 	page: Page;
@@ -22,7 +23,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	const dragDropValues = {
 		element: 'drag-window',
 		pageIndex: index,
-		initialPosition: { x: 0, y: 0 }
+		initialPosition: { x: 30, y: 30 }
 	};
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
 
@@ -31,7 +32,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
 
-	const style = {
+	const windowStyle = {
 		left: isMaximized ? `0px` : `${position.x + index * 20}px`,
 		top: isMaximized ? `0px` : `${position.y + index * 20}px`,
 		zIndex: isMaximized || isActive ? 1 : 0, // Add isMaximized to the condition
@@ -41,15 +42,15 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 
 	const childDimensions = useMemo(
 		() => ({
-			width: isMaximized ? `100vw` : `${dimensions.width - 11}px`,
-			height: isMaximized ? `95vw` : `${dimensions.height - 55}px`
+			width: isMaximized ? `100%` : `${dimensions.width - 11}px`,
+			height: isMaximized ? `90vh` : `${dimensions.height - 55}px`
 		}),
 		[dimensions, isMaximized]
 	);
 
 	const childStyle = {
-		width: isMaximized ? `100%` : childDimensions.width,
-		height: isMaximized ? `89vh` : childDimensions.height,
+		width: childDimensions.width,
+		height: childDimensions.height,
 		overflow: 'auto'
 	};
 
@@ -66,7 +67,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	}
 
 	return (
-		<div ref={resizableDiv} className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window' style={style}>
+		<div ref={resizableDiv} className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window' style={windowStyle}>
 			<div className='title-bar'>
 				<div className='flex items-center justify-between'>
 					<h2 className='ml-2 font-bold'>{page.name}</h2>
@@ -76,9 +77,9 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 						<ButtonCloseWindows closeHandler={handleClose} />
 					</div>
 				</div>
-				<div className='mt-5' style={childStyle}>
-					{page.component}
-				</div>
+			</div>
+			<div className='flex justify-center place-items-center m-2 bg-slate-100 dark:bg-slate-900 text-black dark:text-gray-100'>
+				<Section page={page} style={childStyle} />
 			</div>
 			<DivSectionHandler
 				onDoubleClick={onDoubleClickHandler}

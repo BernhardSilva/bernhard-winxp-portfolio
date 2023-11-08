@@ -11,7 +11,7 @@ const Certificates = ({ certificates }: CertificatesProps) => {
 			{certificates.map((cert, index) => (
 				<div
 					key={index}
-					className='mb-5 p-5 rounded-md bg-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105'
+					className='mb-5 p-5 rounded-md bg-white dark:bg-gray-800 transition-all duration-500 ease-in-out transform hover:scale-105'
 				>
 					<h3 className='text-xl font-bold'>{cert.name}</h3>
 					<p className='text-gray-400'>{cert.credentialId}</p>

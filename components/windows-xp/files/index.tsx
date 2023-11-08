@@ -1,7 +1,8 @@
-import File from "./file";
-
+import { useTheme } from '@/context/theme/useTheme';
+import File from './file';
 
 const Files = () => {
+	const { theme, toggleTheme } = useTheme();
 	const openFile = () => {
 		alert('⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️🅱️🅰️');
 	};
@@ -10,7 +11,21 @@ const Files = () => {
 		alert('explorer opened');
 	};
 
+	const themeToggle = () => {
+		console.log(theme);
+		toggleTheme();
+	};
+
 	const fileList = [
+		{
+			element: 'themeToggle',
+			text: 'light/dark',
+			icon: theme === 'dark' ? 'fa-solid:moon' : 'fa-solid:sun',
+			className: theme === 'light' ? 'text-yellow-500' : 'text-slate-200',
+			size: 50,
+			initialPosition: { x: 40, y: 900 },
+			onOpen: () => themeToggle()
+		},
 		{
 			element: 'secret',
 			text: "Dont' open",

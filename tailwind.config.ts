@@ -7,6 +7,12 @@ const config: Config = {
 		'./app/**/*.{js,ts,jsx,tsx,mdx}'
 	],
 	theme: {
+		variants: {
+			extend: {
+			  transform: ['hover', 'focus'],
+			  rotate: ['hover', 'focus'],
+			},
+		  },
 		extend: {
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -14,6 +20,7 @@ const config: Config = {
 			}
 		}
 	},
+	darkMode: 'class',
 	plugins: [],
 	extend: {
 		animation: {

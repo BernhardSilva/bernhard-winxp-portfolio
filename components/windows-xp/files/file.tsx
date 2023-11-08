@@ -5,8 +5,9 @@ type File = {
 	element: string;
 	text: string;
 	icon: string;
-	color: string;
-	size: number;
+	color?: string;
+	className?: string;
+	size?: number;
 	initialPosition: { x: number; y: number };
 	onOpen: () => void;
 };
@@ -28,13 +29,15 @@ const File = ({ file }: DesktopFileProps) => {
 	};
 
 	return (
-		<div onMouseDown={onMouseDownDrag} onDoubleClick={handleDoubleClick}>
+		<div 
+		onMouseDown={onMouseDownDrag}
+		onDoubleClick={handleDoubleClick}>
 			<div
 				className={`absolute flex flex-col items-center bg-blue-500 bg-opacity-30
 				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element}`}
 				style={{ left: position.x, top: position.y }}
 			>
-				<Icon icon={file.icon} height={file.size} width={file.size} color={file.color} />
+				<Icon icon={file.icon} height={file.size} width={file.size} color={file.color} className={file.className} />
 
 				<span>{file.text}</span>
 			</div>

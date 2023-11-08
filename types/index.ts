@@ -5,6 +5,7 @@ export type User = {
 	profileImage: string;
 	languages: string[];
 	about: string;
+	typingAnimationText: string[];
 	contact: Contact;
 	skills: Skill[];
 	services: Service[];
@@ -35,6 +36,20 @@ export type UserUpdate = {
 	certificates?: Certificate[];
 };
 
+export type UserCreate = {
+	name: string;
+	role: string;
+	profileImage?: string;
+	languages?: string[];
+	about?: string;
+	contact: Contact;
+	skills: string[];
+	services: string[];
+	workExperience: WorkExperience[];
+	education: Education[];
+	certificates: Certificate[];
+};
+
 export type Service = {
 	name: string;
 	icon: string;
@@ -45,9 +60,9 @@ export type Contact = {
 	email: string;
 	phone: string;
 	location: string;
-	website: string;
-	cv: string;
-	socialMedia: SocialMedia[];
+	website?: string;
+	cv?: string;
+	socialMedia?: SocialMedia[];
 };
 
 export type Education = {
