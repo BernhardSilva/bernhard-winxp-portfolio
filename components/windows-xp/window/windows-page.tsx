@@ -6,9 +6,9 @@ import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { Page } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
+import Section from '../../sections';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
-import Section from '../../sections';
 
 type WindowsPageProps = {
 	page: Page;
@@ -43,7 +43,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	const childDimensions = useMemo(
 		() => ({
 			width: isMaximized ? `100%` : `${dimensions.width - 11}px`,
-			height: isMaximized ? `90vh` : `${dimensions.height - 55}px`
+			height: isMaximized ? `91vh` : `${dimensions.height - 45}px`
 		}),
 		[dimensions, isMaximized]
 	);

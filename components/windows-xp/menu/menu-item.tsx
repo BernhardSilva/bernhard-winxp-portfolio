@@ -12,7 +12,7 @@ const MenuItem = ({ page, handleClick }: MenuItemProps) => {
 		<div className='rounded-t-xl'>
 			<li className='p-2 hover:bg-blue-300 rounded-md cursor-pointer text-black' onClick={() => handleClick(page.id)}>
 				<div className='flex justify-start place-items-center'>
-					<Icon icon={page.icon} className='mr-2' />
+					<Icon icon={page.icon} className={`mr-2 ${page?.color}`} />
 					<span className='text-lg'>{page?.name}</span>
 				</div>
 			</li>

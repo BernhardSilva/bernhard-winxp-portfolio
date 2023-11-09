@@ -1,4 +1,4 @@
-import { useTheme } from '@/context/theme/useTheme';
+import { useTheme } from '@/hooks/useTheme';
 import File from './file';
 
 const Files = () => {
@@ -21,7 +21,7 @@ const Files = () => {
 			element: 'themeToggle',
 			text: 'light/dark',
 			icon: theme === 'dark' ? 'fa-solid:moon' : 'fa-solid:sun',
-			className: theme === 'light' ? 'text-yellow-500' : 'text-slate-200',
+			className: theme === 'dark' ? 'text-slate-200' : 'text-yellow-500',
 			size: 50,
 			initialPosition: { x: 20, y: 20 },
 			onOpen: () => themeToggle()

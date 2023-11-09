@@ -20,7 +20,7 @@ const ProjectSkillFilter = ({ projects, selectedSkill, handleSkillClick }: Props
 						<button
 							key={index}
 							onClick={() => handleSkillClick(skillName)}
-							className={`px-3 py-2 rounded-md text-sm shadow-md transition duration-500 ease-in-out transform hover:scale-105 ${
+							className={`px-3 py-2 rounded-md text-sm font-semibold shadow-md transition duration-500 ease-in-out transform hover:scale-105 ${
 								selectedSkill === skillName ? 'bg-blue-600 text-white' : 'bg-white dark:bg-slate-700'
 							}`}
 						>

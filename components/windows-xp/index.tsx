@@ -1,6 +1,5 @@
 'use client';
 import { pagesData, secretPage } from '@/app/pages-data';
-import { useTheme } from '@/context/theme/useTheme';
 import { useClickOutside } from '@/hooks/useClickOuside';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
 import { Page } from '@/types';

@@ -13,7 +13,7 @@ export const mockUser: User = {
 	I worked end to end projects for start-ups and big companies.`,
 	contact: {
 		email: 'bernhard.silva@gmail.com',
-		phone: '+56946143198',
+		phone: '56946143198',
 		location: 'Santiago, Chile',
 		website: 'https://portfolio.berspai.com',
 		cv: 'https://drive.google.com/file/d/1cIJzQWedKW6JJ6bnGM1xY-6AyOVjZ1Ew/view',
@@ -88,9 +88,14 @@ export const mockUser: User = {
 	],
 	services: [
 		{
+			name: 'AI',
+			icon: '🤖',
+			description: 'AI services, chat, chat completition, text to img, video, img to text, etc.'
+		},
+		{
 			name: 'SaaS',
 			icon: '🖥️',
-			description: 'Software as a Service application development using AI and cutting edge technologies.'
+			description: 'Software as a Service application development using cutting edge technologies.'
 		},
 		{
 			name: 'SPA',

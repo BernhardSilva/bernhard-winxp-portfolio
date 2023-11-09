@@ -35,7 +35,13 @@ const File = ({ file }: DesktopFileProps) => {
 				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element}`}
 				style={{ left: position.x, top: position.y }}
 			>
-				<Icon icon={file.icon} height={file.size} width={file.size} color={file.color} className={`transition ease-linear duration-1000 ${file.className}`} />
+				<Icon
+					icon={file.icon}
+					height={file.size}
+					width={file.size}
+					color={file.color}
+					className={`transition ease-linear duration-500 ${file.className}`}
+				/>
 
 				<span>{file.text}</span>
 			</div>

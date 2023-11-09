@@ -1,6 +1,14 @@
+import { User } from '@/types';
+import { Icon } from '@iconify/react/dist/iconify.js';
 import { FormEvent, useState } from 'react';
+import { Toaster, toast } from 'sonner';
+import { toastSuccessStyle } from '../../../helpers/toasts-style';
 
-const ContactForm = () => {
+type Props = {
+	user: User;
+};
+
+const ContactForm = ({ user }: Props) => {
 	const formFields = [
 		{
 			name: 'email',
@@ -12,13 +20,15 @@ const ContactForm = () => {
 			name: 'subject',
 			label: 'Subject',
 			type: 'text',
-			validation: (value: string) => (value.trim() ? '' : 'Subject cannot be empty')
+			validation: (value: string) =>
+				value.trim().length > 3 ? '' : 'Subject cannot be empty or less than 3 characters'
 		},
 		{
 			name: 'message',
 			label: 'Message',
 			type: 'textarea',
-			validation: (value: string) => (value.trim() ? '' : 'Message cannot be empty')
+			validation: (value: string) =>
+				value.trim().length > 10 ? '' : 'Message cannot be empty or less than 10 characters'
 		}
 	];
 
@@ -48,52 +58,74 @@ const ContactForm = () => {
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		if (validateForm()) {
+			toast.success('Email sent successfully!', {
+				style: { ...toastSuccessStyle }
+			});
 			alert(`Email sent to ${formData.email} with Subject: ${formData.subject} and Message: ${formData.message}`);
 		}
 	};
 
 	return (
-		<div className='flex items-center justify-center p-10'>
-			<form onSubmit={handleSubmit} className='w-full max-w-md'>
-				{formFields.map((field, index) => (
-					<div key={index} className='mb-4'>
-						<label htmlFor={field.name} className='block text-gray-300 text-sm font-bold mb-2'>
-							{field.label}
-						</label>
-						{field.type === 'textarea' ? (
-							<textarea
-								className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-									errors[field.name] && 'border-red-500'
-								}`}
-								id={field.name}
-								name={field.name}
-								value={formData[field.name]}
-								onChange={handleInputChange}
+		<div className='flex-inline'>
+			<h2 className='text-4xl text-gray-800 dark:text-white'>Contact Me</h2>
+			<div className='flex border-2 border-[#C8C8C8] dark:border-slate-700 items-center justify-center p-10 bg-[#dfdfdf] dark:bg-slate-800 rounded-md mt-5'>
+				<form onSubmit={handleSubmit} className='w-full max-w-md'>
+					{formFields.map((field, index) => (
+						<div key={index} className='mb-4'>
+							<label
+								htmlFor={field.name}
+								className='block text-gray-800 dark:text-gray-300 text-sm font-bold mb-2 text-start'
+							>
+								{field.label}
+							</label>
+							{field.type === 'textarea' ? (
+								<textarea
+									className={`shadow appearance-none border rounded w-full py-2 px-3 bg-[#F8F8F8] dark:bg-slate-600 text-gray-700 dark:text-white leading-tight focus:outline-none focus:shadow-outline ${
+										errors[field.name] && 'border-red-500'
+									}`}
+									id={field.name}
+									name={field.name}
+									value={formData[field.name]}
+									onChange={handleInputChange}
+								/>
+							) : (
+								<input
+									type={field.type}
+									className={`shadow appearance-none border rounded w-full py-2 px-3 bg-[#F8F8F8] dark:bg-slate-600 text-gray-700 dark:text-white leading-tight focus:outline-none focus:shadow-outline ${
+										errors[field.name] && 'border-red-500'
+									}`}
+									id={field.name}
+									name={field.name}
+									value={formData[field.name]}
+									onChange={handleInputChange}
+								/>
+							)}
+							{errors[field.name] && <p className='text-red-500 text-xs italic  text-start'>{errors[field.name]}</p>}
+						</div>
+					))}
+					<div className='flex justify-around place-items-center'>
+						<button
+							type='submit'
+							className='bg-slate-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:scale-105'
+						>
+							Send
+						</button>
+						<a
+							className='flex items-center gap-10'
+							href={`https://api.whatsapp.com/send?phone=${user.contact.phone}&text=Hola%20${user.name}`}
+							target='_blank'
+						>
+							<Icon
+								className='cursor-pointer transition duration-300 ease-in-out hover:scale-110'
+								icon='logos:whatsapp-icon'
+								width={40}
+								height={40}
 							/>
-						) : (
-							<input
-								type={field.type}
-								className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-									errors[field.name] && 'border-red-500'
-								}`}
-								id={field.name}
-								name={field.name}
-								value={formData[field.name]}
-								onChange={handleInputChange}
-							/>
-						)}
-						{errors[field.name] && <p className='text-red-500 text-xs italic'>{errors[field.name]}</p>}
+						</a>
 					</div>
-				))}
-				<div className='flex items-center justify-between'>
-					<button
-						type='submit'
-						className='bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-					>
-						Send
-					</button>
-				</div>
-			</form>
+				</form>
+				<Toaster richColors />
+			</div>
 		</div>
 	);
 };

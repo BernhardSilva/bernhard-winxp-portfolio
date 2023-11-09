@@ -26,12 +26,12 @@ const TaskBar = ({
 
 	return (
 		<div className='fixed bottom-0 w-full p-1 flex items-center justify-between z-50 task-bar'>
-			<div className='flex items-center space-x-4' ref={elementRef}>
+			<div className='flex items-center' ref={elementRef}>
 				<WindowsStartButton handleStartClick={handleStartClick} />
 
 				{isOpenClickOutside && <Menu pages={pages} handlePageClick={handlePageClick} />}
 
-				<div className='flex items-center space-x-2'>
+				<div className='flex items-center space-x-1 ml-2'>
 					{pages
 						.filter((page) => page.isOpen)
 						.map((page) => (
