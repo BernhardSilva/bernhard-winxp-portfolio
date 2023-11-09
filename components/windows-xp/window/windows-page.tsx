@@ -43,7 +43,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	const childDimensions = useMemo(
 		() => ({
 			width: isMaximized ? `100%` : `${dimensions.width - 11}px`,
-			height: isMaximized ? `91vh` : `${dimensions.height - 45}px`
+			height: isMaximized ? `89vh` : `${dimensions.height - 45}px`
 		}),
 		[dimensions, isMaximized]
 	);
@@ -67,7 +67,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	}
 
 	return (
-		<div ref={resizableDiv} className='absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window' style={windowStyle}>
+		<div ref={resizableDiv} className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${(!isActive && !isMaximized) && 'brightness-50'}`} style={windowStyle}>
 			<div className='title-bar'>
 				<div className='flex items-center justify-between'>
 					<h2 className='ml-2 font-bold'>{page.name}</h2>

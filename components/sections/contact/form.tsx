@@ -124,7 +124,7 @@ const ContactForm = ({ user }: Props) => {
 						</a>
 					</div>
 				</form>
-				<Toaster richColors />
+				<Toaster />
 			</div>
 		</div>
 	);

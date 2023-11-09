@@ -17,7 +17,7 @@ const Menu = ({ pages, handlePageClick }: MenuProps) => {
 		<div className='w-full max-w-md bg-white rounded-xl shadow-md absolute bottom-11 left-0 border-2 border-blue-600 rounded-b-none text-shadow'>
 			<div
 				className='pl-2 py-5 text-white rounded-t-md
-			bg-gradient-to-b from-[#003dd7] via-[#06f]  to-[#0997ff]
+			bg-gradient-to-t from-[#0997ff] via-[#06f] to-[#003dd7]
 			flex items-center justify-start space-x-3'
 			>
 				<Image
@@ -43,7 +43,10 @@ const Menu = ({ pages, handlePageClick }: MenuProps) => {
 						icon={theme === 'dark' ? 'fa-solid:moon' : 'fa-solid:sun'}
 						height={25}
 						width={25}
-						className={`mr-1 border-2 p-1 rounded-md hover:cursor-pointer ${theme === 'dark' ? 'text-slate-200' : 'text-yellow-500'}`}
+						className={`mr-1 border-2 p-1 bg-red-500 rounded-md hover:cursor-pointer ${
+							// theme === 'dark' ? 'text-slate-200' : 'text-yellow-500'
+							'text-white'
+						}`}
 					/>
 					<p className='text-sm'>Theme</p>
 				</div>

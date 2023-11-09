@@ -8,7 +8,7 @@ import Projects from '@/components/sections/projects';
 import SecretPage from '@/components/sections/secret';
 import Servicies from '@/components/sections/services';
 import Tetris from '@/components/sections/tetris';
-import TikTakToe from '@/components/sections/tiktaktoe';
+import TicTacToe from '@/components/sections/tictactoe';
 
 export const pagesData = [
 	{ id: 'intro', name: 'Intro', component: <Intro />, icon: 'fa6-brands:dev', isOpen: false },
@@ -62,9 +62,9 @@ export const pagesData = [
 		isOpen: false
 	},
 	{
-		id: 'tiktaktoe',
-		name: 'Tik Tak Toe',
-		component: <TikTakToe />,
+		id: 'tictactoe',
+		name: 'Tic Tac Toe',
+		component: <TicTacToe />,
 		icon: 'simple-icons:xo',
 		isOpen: false
 	},
