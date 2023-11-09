@@ -74,10 +74,8 @@ export const pagesData = [
 		component: <Tetris />,
 		icon: 'fluent:tetris-app-16-regular',
 		isOpen: false
-	},
+	}
 ];
-
-
 
 export const secretPage = {
 	id: 'secret',

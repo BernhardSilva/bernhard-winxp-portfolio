@@ -3,22 +3,24 @@ import React, { useEffect, useRef, useState } from 'react';
 type Props = {};
 
 const Paint = (props: Props) => {
-	const canvasRef = useRef<any>(null);
-	const contextRef = useRef<any>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const contextRef = useRef<CanvasRenderingContext2D | null>(null);
 	const [isDrawing, setIsDrawing] = useState(false);
 	const [color, setColor] = useState('#000000');
 	const [size, setSize] = useState(2);
-	const [history, setHistory] = useState([]);
+	const [history, setHistory] = useState<ImageData[]>([]);
 	const [step, setStep] = useState(-1);
+	const [eraser, setEraser] = useState(false);
 
 	useEffect(() => {
-		const canvas = canvasRef.current;
+		const canvas = canvasRef.current!;
+		console.log(canvas);
 		canvas.width = window.innerWidth * 2;
 		canvas.height = window.innerHeight * 2;
 		canvas.style.width = `${window.innerWidth}px`;
 		canvas.style.height = `${window.innerHeight}px`;
 
-		const context = canvas.getContext('2d');
+		const context = canvas.getContext('2d')!;
 		context.scale(2, 2);
 		context.lineCap = 'round';
 		context.strokeStyle = color;
@@ -26,68 +28,79 @@ const Paint = (props: Props) => {
 		contextRef.current = context;
 	}, []);
 
-	const startDrawing = ({ nativeEvent }) => {
+	const startDrawing = ({ nativeEvent }: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
 		const { offsetX, offsetY } = nativeEvent;
-		contextRef.current.beginPath();
-		contextRef.current.moveTo(offsetX, offsetY);
+		contextRef.current!.beginPath();
+		contextRef.current!.moveTo(offsetX, offsetY);
 		setIsDrawing(true);
 	};
 
 	const finishDrawing = () => {
-		contextRef.current.closePath();
+		contextRef.current!.closePath();
 		setIsDrawing(false);
-		setHistory([...history, contextRef.current.getImageData(0, 0, window.innerWidth * 2, window.innerHeight * 2)]);
+		setHistory([...history, contextRef.current!.getImageData(0, 0, window.innerWidth * 2, window.innerHeight * 2)]);
 		setStep(step + 1);
 	};
 
-	const draw = ({ nativeEvent }) => {
+	const draw = ({ nativeEvent }: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
 		if (!isDrawing) {
 			return;
 		}
 		const { offsetX, offsetY } = nativeEvent;
-		contextRef.current.lineTo(offsetX, offsetY);
-		contextRef.current.stroke();
+		contextRef.current!.lineTo(offsetX, offsetY);
+		contextRef.current!.stroke();
 	};
 
 	const undo = () => {
 		if (step <= 0) {
-			contextRef.current.clearRect(0, 0, window.innerWidth * 2, window.innerHeight * 2);
+			contextRef.current!.clearRect(0, 0, window.innerWidth * 2, window.innerHeight * 2);
 		} else {
 			setStep(step - 1);
-			contextRef.current.putImageData(history[step - 1], 0, 0);
+			contextRef.current!.putImageData(history[step - 1], 0, 0);
 		}
 	};
 
 	const redo = () => {
 		if (step < history.length - 1) {
 			setStep(step + 1);
-			contextRef.current.putImageData(history[step + 1], 0, 0);
+			contextRef.current!.putImageData(history[step + 1], 0, 0);
 		}
 	};
 
-	const handleColorChange = (e) => {
+	const toggleDrawEraser = () => {
+		setEraser(!eraser);
+		contextRef.current!.globalCompositeOperation = eraser ? 'source-over' : 'destination-out';
+	};
+	const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		console.log(e);
 		setColor(e.target.value);
-		contextRef.current.strokeStyle = e.target.value;
+		contextRef.current!.strokeStyle = e.target.value;
 	};
 
-	const handleSizeChange = (e) => {
-		setSize(e.target.value);
-		contextRef.current.lineWidth = e.target.value;
+	const handleSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setSize(parseInt(e.target.value));
+		contextRef.current!.lineWidth = parseInt(e.target.value);
 	};
 
 	return (
-		<div className='bg-white text-white p-5'>
+		<div className=' bg-white text-white'>
 			<div className='flex justify-between items-center'>
 				<div>
-					<h1 className='text-3xl font-bold text-blue-600'>Paint</h1>
+					<h1 className='text-3xl font-bold text-green-600'>Blackboard</h1>
 				</div>
 				<div className='flex items-center space-x-4'>
-					<input type='color' onChange={handleColorChange} className='rounded-full' />
-					<select onChange={handleSizeChange} className='p-2 rounded-md bg-gray-700 text-white'>
-						<option value='2'>Small</option>
-						<option value='5'>Medium</option>
-						<option value='10'>Large</option>
-					</select>
+					<input type='color' onChange={handleColorChange} className='rounded-md' />
+					<input
+						type='range'
+						min={1}
+						max={100}
+						value={size}
+						onChange={(e) => setSize(parseInt(e.target.value))}
+						className='p-2 rounded-md bg-gray-700 text-white'
+					/>
+					<button onClick={toggleDrawEraser} className='px-3 py-2 rounded-md bg-gray-700 text-white'>
+						Eraser
+					</button>
 					<button onClick={undo} className='px-3 py-2 rounded-md bg-gray-700 text-white'>
 						Undo
 					</button>
@@ -101,7 +114,7 @@ const Paint = (props: Props) => {
 				onMouseUp={finishDrawing}
 				onMouseMove={draw}
 				ref={canvasRef}
-				className='mt-10'
+				className={`mt-10 ${eraser ? 'cursor-eraser' : 'cursor-pointer'}`}
 			/>
 		</div>
 	);

@@ -67,7 +67,11 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	}
 
 	return (
-		<div ref={resizableDiv} className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${(!isActive && !isMaximized) && 'brightness-50'}`} style={windowStyle}>
+		<div
+			ref={resizableDiv}
+			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${!isActive && !isMaximized && 'brightness-50'}`}
+			style={windowStyle}
+		>
 			<div className='title-bar'>
 				<div className='flex items-center justify-between'>
 					<h2 className='ml-2 font-bold'>{page.name}</h2>

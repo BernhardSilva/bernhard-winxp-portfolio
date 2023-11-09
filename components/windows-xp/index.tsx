@@ -3,7 +3,7 @@ import { pagesData, secretPage } from '@/app/pages-data';
 import { useClickOutside } from '@/hooks/useClickOuside';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
 import { Page } from '@/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Desktop from './desktop';
 import Files from './files';
 import SecretWallpaper from './secret';
@@ -32,8 +32,14 @@ const Windows = () => {
 	};
 
 	const handlePageClose = (pageId: string) => {
+		if (pages.length === 1) return;
 		setPages(pages.map((page: Page) => (page.id === pageId ? { ...page, isOpen: false } : page)));
 	};
+
+	useEffect(() => {
+		const activePage = pages.find((page) => page.isOpen);
+		if (activePage) setActivePageId(activePage.id);
+	}, []);
 
 	return (
 		<>
