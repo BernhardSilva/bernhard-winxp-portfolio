@@ -11,7 +11,7 @@ const ProjectCard = ({ handleProjectClick, project }: ProjectProps) => {
 	return (
 		<div
 			key={project._id}
-			className='p-3 border-2 bg-white dark:bg-slate-950 border-blue-500 rounded-md cursor-pointer transition duration-500 ease-in-out transform hover:scale-105 max-w-[500px] '
+			className='p-3 border-2 border-slate-800 bg-white dark:bg-slate-950 hover:border-blue-500 rounded-md cursor-pointer transition duration-500 ease-in-out transform hover:scale-105 max-w-[500px] '
 			onClick={() => handleProjectClick(project)}
 		>
 			<Image

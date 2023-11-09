@@ -13,7 +13,7 @@ const SocialMedia = ({ social, ...props }: SocialMediaProps) => {
 				{social?.map((item, index) => (
 					<a key={index} href={item.url} target='_blank' rel='noopener noreferrer'>
 						<button
-							className={`shadow-xl rounded-full p-1 cursor-pointer transform hover:scale-110 transition-transform dark:bg-slate-100`}
+							className={`shadow-xl rounded-full p-1 cursor-pointer transition duration-200 ease-in-out transform hover:scale-110 dark:bg-slate-100`}
 						>
 							<Icon icon={item.icon} width={32} height={32} color={item?.color} />
 						</button>

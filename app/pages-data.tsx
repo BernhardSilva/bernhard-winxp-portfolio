@@ -1,10 +1,9 @@
-import Blogs from '@/components/windows-xp/window/sections/blogs';
-import Contact from '@/components/windows-xp/window/sections/contact';
-import Intro from '@/components/windows-xp/window/sections/intro';
-import Portfolio from '@/components/windows-xp/window/sections/portfolio';
-import Projects from '@/components/windows-xp/window/sections/projects';
-import SecretPage from '@/components/windows-xp/window/sections/secret';
-import Servicies from '@/components/windows-xp/window/sections/services';
+import Contact from '@/components/sections/contact';
+import Intro from '@/components/sections/intro';
+import Portfolio from '@/components/sections/portfolio';
+import Projects from '@/components/sections/projects';
+import SecretPage from '@/components/sections/secret';
+import Servicies from '@/components/sections/services';
 
 export const pagesData = [
 	{ id: 'intro', name: 'Intro', component: <Intro />, icon: 'fa6-brands:dev', isOpen: false },
@@ -35,7 +34,7 @@ export const pagesData = [
 		component: <Contact />,
 		icon: 'ph:phone-fill',
 		isOpen: false
-	},
+	}
 	// {
 	// 	id: 'blogs',
 	// 	name: 'blogs',

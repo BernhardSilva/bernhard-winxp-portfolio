@@ -8,7 +8,7 @@ import { Page } from '@/types';
 import { useCallback, useMemo, useState } from 'react';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
-import Section from './sections';
+import Section from '../../sections';
 
 type WindowsPageProps = {
 	page: Page;
