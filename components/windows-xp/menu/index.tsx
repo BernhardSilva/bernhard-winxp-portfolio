@@ -15,7 +15,7 @@ const Menu = ({ pages, handlePageClick }: MenuProps) => {
 
 	return (
 		<div
-			className='w-full max-w-md bg-white rounded-xl shadow-md absolute bottom-11 left-0
+			className='w-full max-w-md bg-white dark:bg-slate-900 rounded-xl shadow-md absolute bottom-11 left-0
 			border-2 border-blue-600 rounded-b-none text-shadow'
 		>
 			<div
@@ -35,7 +35,10 @@ const Menu = ({ pages, handlePageClick }: MenuProps) => {
 			</div>
 			<ul className='p-5 rounded-md grid grid-cols-2'>
 				{pages.map((page) => (
-					<MenuItem key={page.id} page={page} handleClick={handlePageClick} />
+					//  <div key={page.id} className='p-2'>
+
+					<MenuItem  key={page.id} page={page} handleClick={handlePageClick} />
+					//  </div>
 				))}
 			</ul>
 			<div

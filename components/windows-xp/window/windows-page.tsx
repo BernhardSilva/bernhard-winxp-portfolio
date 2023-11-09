@@ -1,4 +1,3 @@
-'use client';
 import { DivSectionHandler } from '@/components/ui/div-section-handler';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { useHasMounted } from '@/hooks/useHasMounted';

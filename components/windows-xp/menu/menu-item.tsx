@@ -9,8 +9,11 @@ type MenuItemProps = {
 
 const MenuItem = ({ page, handleClick }: MenuItemProps) => {
 	return (
-		<div className='rounded-t-xl'>
-			<li className='p-2 hover:bg-blue-300 rounded-md cursor-pointer text-black' onClick={() => handleClick(page.id)}>
+		<div className='rounded-t-xl p-2'>
+			<li
+				className='p-2 hover:bg-blue-50 dark:hover:bg-blue-950 rounded-md cursor-pointer text-black dark:text-gray-100'
+				onClick={() => handleClick(page.id)}
+			>
 				<div className='flex justify-start place-items-center'>
 					<Icon icon={page.icon} className={`mr-2 ${page?.color}`} />
 					<span className='text-lg'>{page?.name}</span>

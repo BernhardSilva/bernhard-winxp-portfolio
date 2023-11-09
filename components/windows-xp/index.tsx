@@ -6,9 +6,9 @@ import { Page } from '@/types';
 import { useEffect, useState } from 'react';
 import Desktop from './desktop';
 import Files from './files';
-import SecretWallpaper from './secret';
 import TaskBar from './taskbar';
 import WindowsPages from './window';
+import SecretWallpaper from './secret';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
@@ -32,13 +32,11 @@ const Windows = () => {
 	};
 
 	const handlePageClose = (pageId: string) => {
-		if (pages.length === 1) return;
 		setPages(pages.map((page: Page) => (page.id === pageId ? { ...page, isOpen: false } : page)));
 	};
 
 	useEffect(() => {
-		const activePage = pages.find((page) => page.isOpen);
-		if (activePage) setActivePageId(activePage.id);
+		setActivePageId(pages.find((page) => page.isOpen)?.id || '');
 	}, []);
 
 	return (
