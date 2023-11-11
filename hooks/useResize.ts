@@ -45,7 +45,6 @@ export const useResize = (initialWidth: number, initialHeight: number) => {
 					clientX - resizableDiv.current.offsetLeft,
 					initialWidth - (initialWidth > 400 ? initialWidth * 0.7 : 0)
 				);
-				console.log(newWidth);
 				setDimensions((prev) => ({ ...prev, width: newWidth }));
 			}
 

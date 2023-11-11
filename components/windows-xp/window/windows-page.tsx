@@ -19,22 +19,24 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const { openPage, closePage } = usePageStore();
 	const { setActivePageId, toggleMinimizePage, activePageId } = usePageStore((state) => state);
 	const { width, height } = useWindowDimensions();
+	const hasMounted = useHasMounted();
 
+	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
 	const dragDropValues = {
 		element: 'drag-window',
 		pageIndex: index,
 		initialPosition: { x: 30, y: 30 },
-		index: index
+		index: index,
+		elementRef: resizableDiv
 	};
-	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
-	const { onMouseDownDrag, position } = useDragAndDrop(dragDropValues);
+	const { position, onMouseDownDrag, dragging, draggingOut } = useDragAndDrop(dragDropValues);
 
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
 
 	const windowStyle = {
-		left: isMaximized ? `0px` : `${position.x + index * 20}px`,
-		top: isMaximized ? `0px` : `${position.y + index * 20}px`,
+		left: isMaximized ? `0px` : `${dragging || draggingOut ? position.x : position.x + index * 20}px`,
+		top: isMaximized ? `0px` : `${dragging || draggingOut ? position.y : position.y + index * 20}px`,
 		zIndex: activePageId === page.id ? 1 : 0,
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
 		height: isMaximized ? `96vh` : `${dimensions.height}px`
@@ -69,8 +71,6 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		}
 	};
 
-	const hasMounted = useHasMounted();
-
 	if (!hasMounted) {
 		return null;
 	}
@@ -90,6 +90,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 						<h2 className='ml-2 font-bold'>{page.name}</h2>
 					</div>
 					<div className='flex gap-1'>
+						{/* TODO WHEN MINIMIZE it lose previous opened pages active focus */}
 						<WindowsMinimizeButton minimizeHandler={() => toggleMinimizePage(page.id)} />
 						<WindowsMaximizeButton maximizeHandler={handleMaximize} />
 						<WindowsCloseButton closeHandler={() => closePage(page.id)} />

@@ -1,5 +1,6 @@
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import { useRef } from 'react';
 
 type File = {
 	element: string;
@@ -17,11 +18,13 @@ type DesktopFileProps = {
 };
 
 const File = ({ file }: DesktopFileProps) => {
-	const drogAndDropValues = {
+	const fileRef = useRef<React.RefObject<HTMLDivElement> | null>(null);
+	const dragAndDropValues = {
 		element: file.element,
-		initialPosition: file.initialPosition
+		initialPosition: file.initialPosition,
+		elementRef: fileRef.current
 	};
-	const { position, onMouseDownDrag } = useDragAndDrop(drogAndDropValues);
+	const { position, onMouseDownDrag, dragging, draggingOut } = useDragAndDrop(dragAndDropValues);
 
 	const handleDoubleClick = (e: any) => {
 		e.stopPropagation();
@@ -33,7 +36,10 @@ const File = ({ file }: DesktopFileProps) => {
 			<div
 				className={`absolute flex flex-col items-center bg-blue-500 bg-opacity-30
 				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element}`}
-				style={{ left: position.x, top: position.y }}
+				style={{
+					left: position.x,
+					top: position.y
+				}}
 			>
 				<Icon
 					icon={file.icon}

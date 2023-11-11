@@ -8,11 +8,12 @@ type Pos = {
 type UseDragAndDropProps = {
 	element: string | undefined;
 	initialPosition: Pos;
-	index: number;
+	elementRef: React.RefObject<HTMLDivElement> | null;
 };
 
-export const useDragAndDrop = ({ element, initialPosition, index }: UseDragAndDropProps) => {
+export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDragAndDropProps) => {
 	const [dragging, setDragging] = useState(false);
+	const [draggingOut, setDraggingOut] = useState(false);
 	const [position, setPosition] = useState<Pos>(initialPosition);
 	const [rel, setRel] = useState<any>(); // position relative to the cursor
 	const [clickCount, setClickCount] = useState(0);
@@ -30,7 +31,6 @@ export const useDragAndDrop = ({ element, initialPosition, index }: UseDragAndDr
 		// Check if the target has the 'element' class
 		const draggableElement = target.closest(`.${element}`);
 		if (!draggableElement) return;
-
 		const box = target.getBoundingClientRect();
 		setDragging(true);
 		setRel({
@@ -66,18 +66,24 @@ export const useDragAndDrop = ({ element, initialPosition, index }: UseDragAndDr
 			x: e.clientX - rel.x,
 			y: e.clientY - rel.y
 		};
-		// console.log('🚀 ~ file: useDragAndDrop.ts:70 ~ onMouseMove ~ newPosition:', newPosition);
 
-		// Get the size of the draggable element
-		// const draggableElement = document.querySelector(`.${element}`);
-		// const elementWidth = draggableElement ? draggableElement.getBoundingClientRect().width : 0;
-		// const elementHeight = draggableElement ? draggableElement.getBoundingClientRect().height : 0;
+		const elementWidth = elementRef?.current?.offsetWidth;
+		console.log('🚀 ~ file: useDragAndDrop.ts:83 ~ onMouseMove ~ elementWidth:', elementWidth);
+		const elementHeight = elementRef?.current?.offsetHeight;
+		console.log('🚀 ~ file: useDragAndDrop.ts:85 ~ onMouseMove ~ elementHeight:', elementHeight);
 
-		// Ensure the element stays within the screen bounds
-		newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - 100));
-		newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - 100));
+		if (elementWidth && elementHeight) {
+			console.log('drag ref here');
+			newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - elementWidth));
+			newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - elementHeight - 40));
+		} else {
+			console.log('drag element here');
+			newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - 100));
+			newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - 82 - 40));
+		}
 
 		setPosition(newPosition);
+		setDraggingOut(true);
 		stopPropagationHandler(e);
 	};
 
@@ -89,5 +95,5 @@ export const useDragAndDrop = ({ element, initialPosition, index }: UseDragAndDr
 			document.removeEventListener('mouseup', onMouseUp);
 		};
 	});
-	return { onMouseDownDrag, position, dragging };
+	return { onMouseDownDrag, position, dragging, draggingOut };
 };
