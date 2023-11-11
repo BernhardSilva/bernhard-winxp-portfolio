@@ -1,43 +1,35 @@
-import { Page } from '@/types';
+import { useClickOutside } from '@/hooks/useClickOuside';
 import { useCurrentTime } from '@/hooks/useCurrentTime';
-import Tab from './tab';
+import { PageState } from '@/stores/page-store';
 import Menu from '../menu';
 import Clock from './clock';
+import Tab from './tab';
 import WindowsStartButton from './windows-start-button';
 
 type TaskBarProps = {
-	elementRef: React.RefObject<HTMLDivElement>;
-	handleStartClick: () => void;
-	handlePageClick: (id: string) => void;
-	handlePageClose: (id: string) => void;
-	pages: Page[];
-	isOpenClickOutside: boolean;
+	pages: PageState[];
 };
 
-const TaskBar = ({
-	elementRef,
-	handleStartClick,
-	handlePageClick,
-	handlePageClose,
-	pages,
-	isOpenClickOutside
-}: TaskBarProps) => {
+const TaskBar = ({ pages }: TaskBarProps) => {
 	const currentTime = useCurrentTime();
 
+	const { elementRef, isOpenClickOutside, setIsOpenClickOutside } = useClickOutside(false);
+	const handleStartClick = () => {
+		setIsOpenClickOutside(!isOpenClickOutside);
+	};
+
 	return (
-		<div className='fixed bottom-0 w-full p-1 flex items-center justify-between z-50 task-bar'>
+		<div className='fixed bottom-0 w-full p-1 flex items-center justify-between z-50 task-bar' ref={elementRef}>
 			<div className='flex items-center' ref={elementRef}>
 				<WindowsStartButton handleStartClick={handleStartClick} />
 
-				{isOpenClickOutside && <Menu pages={pages} handlePageClick={handlePageClick} />}
+				{isOpenClickOutside && <Menu pages={pages} />}
 
 				<div className='flex items-center space-x-1 ml-2'>
 					{pages
 						.filter((page) => page.isOpen)
 						.map((page) => (
-							<div key={page.id} onClick={() => handlePageClick(page.id)}>
-								<Tab page={page} handlePageClose={handlePageClose} />
-							</div>
+							<Tab key={page.id} page={page} />
 						))}
 				</div>
 				<Clock className='absolute right-0 bottom-3' currentTime={currentTime} />

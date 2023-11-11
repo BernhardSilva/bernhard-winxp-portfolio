@@ -1,3 +1,4 @@
+import { usePageStore } from '@/stores/page-store';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React, { HTMLAttributes } from 'react';
 
@@ -11,6 +12,8 @@ const WindowsCloseButton = ({ closeHandler, className, ...props }: WindowsCloseB
 		e.stopPropagation(); //prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.
 		closeHandler();
 	};
+
+
 	return (
 		<button
 			onClick={handleClose}

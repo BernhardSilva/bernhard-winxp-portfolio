@@ -1,31 +1,32 @@
+import Section from '@/components/sections';
 import { DivSectionHandler } from '@/components/ui/div-section-handler';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { useHasMounted } from '@/hooks/useHasMounted';
 import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
-import { Page } from '@/types';
+import { PageState, usePageStore } from '@/stores/page-store';
 import { useCallback, useMemo, useState } from 'react';
-import Section from '../../sections';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
+import WindowsMinimizeButton from '../buttons/windows-minimize-button';
 
 type WindowsPageProps = {
-	page: Page;
+	page: PageState;
 	index: number;
-	onClose: (id: string) => void;
-	isActive: boolean;
 };
 
-const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
+const WindowsPage = ({ page, index }: WindowsPageProps) => {
+	const { openPage, closePage } = usePageStore();
+	const { setActivePageId, toggleMinimizePage, activePageId } = usePageStore((state) => state);
 	const { width, height } = useWindowDimensions();
 
 	const dragDropValues = {
 		element: 'drag-window',
 		pageIndex: index,
-		initialPosition: { x: 30, y: 30 }
+		initialPosition: { x: 30, y: 30 },
+		index: index
 	};
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
-
 	const { onMouseDownDrag, position } = useDragAndDrop(dragDropValues);
 
 	// Add a new state variable for tracking if the window is maximized
@@ -34,7 +35,7 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 	const windowStyle = {
 		left: isMaximized ? `0px` : `${position.x + index * 20}px`,
 		top: isMaximized ? `0px` : `${position.y + index * 20}px`,
-		zIndex: isMaximized || isActive ? 1 : 0, // Add isMaximized to the condition
+		zIndex: activePageId === page.id ? 1 : 0,
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
 		height: isMaximized ? `96vh` : `${dimensions.height}px`
 	};
@@ -53,11 +54,20 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 		overflow: 'auto'
 	};
 
-	const onDoubleClickHandler = useCallback(() => setIsMaximized((prev) => !prev), []);
-
+	const hanldeDoubleClick = useCallback(() => setIsMaximized((prev) => !prev), []);
 	const handleMaximize = useCallback(() => setIsMaximized((prev) => !prev), []);
 
-	const handleClose = useCallback(() => onClose(page.id), [onClose, page.id]);
+	const handleClick = (id: string) => {
+		setActivePageId(id);
+		openPage(id);
+	};
+
+	const handleDrag = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (!isMaximized) {
+			onMouseDownDrag(e);
+			setActivePageId(page.id);
+		}
+	};
 
 	const hasMounted = useHasMounted();
 
@@ -67,17 +77,20 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 
 	return (
 		<div
+			onClick={() => handleClick(page.id)}
 			ref={resizableDiv}
-			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${!isActive && !isMaximized && 'brightness-50'}`}
+			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${
+				activePageId !== page.id && !isMaximized && 'brightness-50'
+			} ${page.isMinimized && 'hidden'}`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>
 				<div className='flex items-center justify-between'>
 					<h2 className='ml-2 font-bold'>{page.name}</h2>
 					<div className='flex gap-1'>
-						{/* <ButtonMinimize minimizeHandler={setIsMinimized((prev) => !prev)} /> */}
+						<WindowsMinimizeButton minimizeHandler={() => toggleMinimizePage(page.id)} />
 						<WindowsMaximizeButton maximizeHandler={handleMaximize} />
-						<WindowsCloseButton closeHandler={handleClose} />
+						<WindowsCloseButton closeHandler={() => closePage(page.id)} />
 					</div>
 				</div>
 			</div>
@@ -85,9 +98,9 @@ const WindowsPage = ({ page, index, onClose, isActive }: WindowsPageProps) => {
 				<Section page={page} style={childStyle} />
 			</div>
 			<DivSectionHandler
-				onDoubleClick={onDoubleClickHandler}
+				onDoubleClick={hanldeDoubleClick}
 				className='absolute top-0 w-[94%] h-[30px] cursor-grab drag-window'
-				onMouseDown={onMouseDownDrag}
+				onMouseDown={handleDrag}
 			/>
 			<DivSectionHandler
 				className='absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right'

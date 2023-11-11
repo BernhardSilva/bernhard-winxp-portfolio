@@ -8,9 +8,10 @@ type Pos = {
 type UseDragAndDropProps = {
 	element: string | undefined;
 	initialPosition: Pos;
+	index: number;
 };
 
-export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps) => {
+export const useDragAndDrop = ({ element, initialPosition, index }: UseDragAndDropProps) => {
 	const [dragging, setDragging] = useState(false);
 	const [position, setPosition] = useState<Pos>(initialPosition);
 	const [rel, setRel] = useState<any>(); // position relative to the cursor
@@ -42,12 +43,10 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 		if (clickCount === 1) {
 			// Single click
 			singleClickTimer = setTimeout(() => {
-				console.log('single click');
 				setClickCount(0);
 			}, 50);
 		} else if (clickCount >= 2) {
 			// Double click
-			console.log('double click');
 			clearTimeout(singleClickTimer);
 			setClickCount(0);
 		}
@@ -67,6 +66,7 @@ export const useDragAndDrop = ({ element, initialPosition }: UseDragAndDropProps
 			x: e.clientX - rel.x,
 			y: e.clientY - rel.y
 		};
+		console.log('🚀 ~ file: useDragAndDrop.ts:70 ~ onMouseMove ~ newPosition:', newPosition);
 
 		// Get the size of the draggable element
 		// const draggableElement = document.querySelector(`.${element}`);

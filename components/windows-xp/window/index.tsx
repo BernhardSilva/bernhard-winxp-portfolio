@@ -1,22 +1,17 @@
-import { Page } from '@/types';
+import { PageState } from '@/stores/page-store';
 import WindowsPage from './windows-page';
 
 type Props = {
-	pages: Page[];
-	handlePageClick: (id: string) => void;
-	handlePageClose: (id: string) => void;
-	activePageId: string;
+	pages: PageState[];
 };
 
-const WindowsPages = ({ pages, handlePageClick, handlePageClose, activePageId }: Props) => {
+const WindowsPages = ({ pages }: Props) => {
 	return (
 		<>
 			{pages
 				.filter((page) => page.isOpen)
 				.map((page, index) => (
-					<div key={page.id} onClick={() => handlePageClick(page.id)}>
-						<WindowsPage page={page} index={index} onClose={handlePageClose} isActive={page.id === activePageId} />
-					</div>
+					<WindowsPage key={page.id} page={page} index={index} />
 				))}
 		</>
 	);

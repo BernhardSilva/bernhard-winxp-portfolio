@@ -1,17 +1,21 @@
-import { Page } from '@/types';
+import { PageState, usePageStore } from '@/stores/page-store';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React from 'react';
 
 type MenuItemProps = {
-	page: Page;
-	handleClick: (id: string) => void;
+	page: PageState;
 };
 
-const MenuItem = ({ page, handleClick }: MenuItemProps) => {
+const MenuItem = ({ page }: MenuItemProps) => {
+	const { setActivePageId, openPage } = usePageStore((state) => state);
+	const handleClick = (id: string) => {
+		openPage(id);
+		setActivePageId(id);
+	};
 	return (
 		<div className='rounded-t-xl p-2'>
 			<li
-				className='p-2 hover:bg-blue-50 dark:hover:bg-blue-950 rounded-md cursor-pointer text-black dark:text-gray-100'
+				className='p-2 text-black dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-blue-950 rounded-md cursor-pointer'
 				onClick={() => handleClick(page.id)}
 			>
 				<div className='flex justify-start place-items-center'>

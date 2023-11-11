@@ -123,5 +123,4 @@ export type Page = {
 	component: JSX.Element;
 	icon: string;
 	color?: string;
-	isOpen: boolean;
 };

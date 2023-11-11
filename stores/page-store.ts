@@ -1,70 +1,67 @@
-import create from 'zustand';
+import { pagesData } from '@/app/pages-data';
+import { create } from 'zustand';
+import { Page } from '@/types';
 
-type Page = {
-	id: string;
-	title: string;
+export type PageState = Page & {
 	isOpen: boolean;
 	isMaximized: boolean;
 	isMinimized: boolean;
-	isFocused: boolean;
-	x: number;
-	y: number;
-	width: number;
-	height: number;
 };
 
 type Store = {
-	pages: Page[];
-	activePageId: string;
-	addPage: (page: Page) => void;
-	removePage: (pageId: string) => void;
-	activatePage: (pageId: string) => void;
-	maximizePage: (pageId: string) => void;
-	minimizePage: (pageId: string) => void;
-	focusPage: (pageId: string) => void;
-	unfocusPage: (pageId: string) => void;
-	movePage: (pageId: string, x: number, y: number) => void;
-	resizePage: (pageId: string, width: number, height: number) => void;
+	pages: PageState[];
+	setPages: (pages: PageState[]) => void;
+	activePageId: string | null;
+	openPage: (id: string) => void;
+	closePage: (id: string) => void;
+	setActivePageId: (id: string) => void;
+	maximizePage: (id: string) => void;
+	toggleMinimizePage: (id: string) => void;
+	openedPages: string[];
 };
 
-const useStore = create<Store>((set) => ({
-	pages: [],
-	activePageId: '',
-	addPage: (page) =>
+export const usePageStore = create<Store>((set) => ({
+	pages: pagesData.map((page) => ({
+		...page,
+		isOpen: false,
+		isMaximized: false,
+		isMinimized: false
+	})),
+	openedPages: [],
+	setPages: (pages: PageState[]) => set({ pages }),
+	activePageId: null,
+	openPage: (id: string) =>
 		set((state) => ({
-			pages: [...state.pages, page],
-			activePageId: page.id
+			...state,
+			openedPages: [...state.openedPages, id],
+			pages: state.pages.map((page) => (page.id === id ? { ...page, isOpen: true } : page))
 		})),
-	removePage: (pageId) =>
+	closePage: (id: string) =>
+		set((state) => {
+			// Remove id of the closed page from openedPages
+			const newOpenedPages = state.openedPages.filter((pageId) => pageId !== id);
+			// Get id of the new active page (the last one in openedPages)
+			const newActivePageId = newOpenedPages[newOpenedPages.length - 1];
+			return {
+				...state,
+				pages: state.pages.map((page) => (page.id === id ? { ...page, isOpen: false } : page)),
+				openedPages: newOpenedPages,
+				activePageId: newActivePageId || null
+			};
+		}),
+	setActivePageId: (id: string) =>
 		set((state) => ({
-			pages: state.pages.filter((page) => page.id !== pageId),
-			activePageId: state.activePageId === pageId ? state.pages[0]?.id || '' : state.activePageId
+			...state,
+			activePageId: id
 		})),
-	activatePage: (pageId) => set({ activePageId: pageId }),
-	maximizePage: (pageId) =>
+	maximizePage: (id: string) =>
 		set((state) => ({
-			pages: state.pages.map((page) => (page.id === pageId ? { ...page, isMaximized: true } : page))
+			...state,
+			pages: state.pages.map((page) => (page.id === id ? { ...page, isMaximized: true } : page))
 		})),
-	minimizePage: (pageId) =>
+	toggleMinimizePage: (id: string) =>
 		set((state) => ({
-			pages: state.pages.map((page) => (page.id === pageId ? { ...page, isMinimized: true } : page))
-		})),
-	focusPage: (pageId) =>
-		set((state) => ({
-			pages: state.pages.map((page) => (page.id === pageId ? { ...page, isFocused: true } : page))
-		})),
-	unfocusPage: (pageId) =>
-		set((state) => ({
-			pages: state.pages.map((page) => (page.id === pageId ? { ...page, isFocused: false } : page))
-		})),
-	movePage: (pageId, x, y) =>
-		set((state) => ({
-			pages: state.pages.map((page) => (page.id === pageId ? { ...page, x, y } : page))
-		})),
-	resizePage: (pageId, width, height) =>
-		set((state) => ({
-			pages: state.pages.map((page) => (page.id === pageId ? { ...page, width, height } : page))
+			...state,
+			pages: state.pages.map((page) => (page.id === id ? { ...page, isMinimized: !page.isMinimized } : page))
 		}))
 }));
-
-export default useStore;

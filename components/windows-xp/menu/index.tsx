@@ -1,16 +1,15 @@
-import { Page } from '@/types';
 import MenuItem from './menu-item';
 import Image from 'next/image';
 import { mockUser } from '@/mock/mock-data';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useTheme } from '@/hooks/useTheme';
+import { PageState } from '@/stores/page-store';
 
 type MenuProps = {
-	handlePageClick: (id: string) => void;
-	pages: Page[];
+	pages: PageState[];
 };
 
-const Menu = ({ pages, handlePageClick }: MenuProps) => {
+const Menu = ({ pages }: MenuProps) => {
 	const { theme, toggleTheme } = useTheme();
 
 	return (
@@ -33,12 +32,9 @@ const Menu = ({ pages, handlePageClick }: MenuProps) => {
 				/>
 				<h1 className='text-2xl font-bold'>{mockUser.name}</h1>
 			</div>
-			<ul className='p-5 rounded-md grid grid-cols-2'>
+			<ul className='p-4 rounded-md grid grid-cols-2'>
 				{pages.map((page) => (
-					//  <div key={page.id} className='p-2'>
-
-					<MenuItem  key={page.id} page={page} handleClick={handlePageClick} />
-					//  </div>
+					<MenuItem key={page.id} page={page} />
 				))}
 			</ul>
 			<div

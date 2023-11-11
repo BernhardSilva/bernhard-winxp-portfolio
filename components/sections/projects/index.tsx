@@ -1,6 +1,6 @@
 import { mockProjects } from '@/mock/mock-data';
 import { Project } from '@/types';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 import ProjectGallery from './project-gallery';
 import ProjectModal from './project-modal';
 import ProejctSearch from './project-search';
@@ -31,17 +31,21 @@ const Projects = () => {
 
 	const lowerSearchTerm = searchTerm.toLowerCase();
 	const lowerSelectedSkill = selectedSkill.toLowerCase();
+	
+	const filteredProjects = useMemo(
+		() =>
+			mockProjects.filter((project) => {
+				const title = project.title.toLowerCase();
+				const titleMatchesSearch = title.includes(lowerSearchTerm);
+				const titleMatchesSkill = title.includes(lowerSelectedSkill);
 
-	const filteredProjects = mockProjects.filter((project) => {
-		const title = project.title.toLowerCase();
-		const titleMatchesSearch = title.includes(lowerSearchTerm);
-		const titleMatchesSkill = title.includes(lowerSelectedSkill);
+				const skillMatchingSearch = project.skills.some((skill) => skill.name.toLowerCase().includes(lowerSearchTerm));
+				const skillMatchingSkill = project.skills.some((skill) => skill.name.toLowerCase() === lowerSelectedSkill);
 
-		const skillMatchingSearch = project.skills.some((skill) => skill.name.toLowerCase().includes(lowerSearchTerm));
-		const skillMatchingSkill = project.skills.some((skill) => skill.name.toLowerCase() === lowerSelectedSkill);
-
-		return (titleMatchesSearch || skillMatchingSearch) && (titleMatchesSkill || skillMatchingSkill);
-	});
+				return (titleMatchesSearch || skillMatchingSearch) && (titleMatchesSkill || skillMatchingSkill);
+			}),
+		[lowerSearchTerm, lowerSelectedSkill]
+	);
 
 	return (
 		<div className='flex flex-col items-center'>
