@@ -10,18 +10,22 @@ export type PageState = Page & {
 
 type Store = {
 	pages: PageState[];
-	setPages: (pages: PageState[]) => void;
 	activePageId: string | null;
-	setActivePageId: (id: string) => void;
 	openedPages: string[];
+};
+
+type Actions = {
+	setPages: (pages: PageState[]) => void;
+	setActivePageId: (id: string) => void;
 	openPage: (id: string) => void;
 	closePage: (id: string) => void;
 	maximizePage: (id: string) => void;
 	toggleMinimizePage: (id: string) => void;
 	addSecretPage: (page: PageState) => void;
+	setActivePreviousPage: (id: string) => void;
 };
 
-export const usePageStore = create<Store>((set) => ({
+export const usePageStore = create<Store & Actions>((set) => ({
 	pages: pagesData.map((page) => ({
 		...page,
 		isOpen: false,
@@ -39,15 +43,9 @@ export const usePageStore = create<Store>((set) => ({
 		})),
 	closePage: (id: string) =>
 		set((state) => {
-			// Remove id of the closed page from openedPages
-			const newOpenedPages = state.openedPages.filter((pageId) => pageId !== id);
-			// Get id of the new active page (the last one in openedPages)
-			const newActivePageId = newOpenedPages[newOpenedPages.length - 1];
 			return {
 				...state,
-				pages: state.pages.map((page) => (page.id === id ? { ...page, isOpen: false } : page)),
-				openedPages: newOpenedPages,
-				activePageId: newActivePageId || null
+				pages: state.pages.map((page) => (page.id === id ? { ...page, isOpen: false } : page))
 			};
 		}),
 	setActivePageId: (id: string) =>
@@ -65,13 +63,26 @@ export const usePageStore = create<Store>((set) => ({
 			...state,
 			pages: state.pages.map((page) => (page.id === id ? { ...page, isMinimized: !page.isMinimized } : page))
 		})),
+	setActivePreviousPage: (id: string) =>
+		set((state) => {
+			// Remove id of the closed page from openedPages
+			const newOpenedPages = state.openedPages.filter((pageId) => pageId !== id);
+			// Get id of the new active page (the last one in openedPages)
+			const newActivePageId = newOpenedPages[newOpenedPages.length - 1];
+			return {
+				...state,
+				openedPages: newOpenedPages,
+				activePageId: newActivePageId || null
+			};
+		}),
+
 	addSecretPage: (page: PageState) =>
 		set((state) => {
 			return {
 				...state,
 				pages: [...state.pages, { ...page }],
 				activePageId: page.id,
-				openedPages: [...state.openedPages, page.id],
+				openedPages: [...state.openedPages, page.id]
 			};
 		})
 }));

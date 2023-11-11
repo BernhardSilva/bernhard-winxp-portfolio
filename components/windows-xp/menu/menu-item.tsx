@@ -15,7 +15,7 @@ const MenuItem = ({ page }: MenuItemProps) => {
 	return (
 		<div className='rounded-t-xl p-2'>
 			<li
-				className='p-2 text-black dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-blue-950 rounded-md cursor-pointer'
+				className='p-2 text-black dark:text-gray-100 hover:bg-blue-100 dark:hover:bg-blue-950 rounded-md cursor-pointer'
 				onClick={() => handleClick(page.id)}
 			>
 				<div className='flex justify-start place-items-center'>

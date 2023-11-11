@@ -17,7 +17,7 @@ type WindowsPageProps = {
 
 const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const { openPage, closePage } = usePageStore();
-	const { setActivePageId, toggleMinimizePage, activePageId } = usePageStore((state) => state);
+	const { setActivePageId, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore((state) => state);
 	const { width, height } = useWindowDimensions();
 	const hasMounted = useHasMounted();
 
@@ -58,6 +58,14 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 
 	const hanldeDoubleClick = useCallback(() => setIsMaximized((prev) => !prev), []);
 	const handleMaximize = useCallback(() => setIsMaximized((prev) => !prev), []);
+	const handleClose = useCallback(() => {
+		setActivePreviousPage(page.id);
+		closePage(page.id);
+	}, [page.id, closePage, setActivePreviousPage]);
+	const handleMinimize = useCallback(() => {
+		setActivePreviousPage(page.id);
+		toggleMinimizePage(page.id);
+	}, [page.id, toggleMinimizePage, setActivePreviousPage]);
 
 	const handleClick = (id: string) => {
 		setActivePageId(id);
@@ -79,9 +87,9 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		<div
 			onClick={() => handleClick(page.id)}
 			ref={resizableDiv}
-			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${
-				activePageId !== page.id && !isMaximized && 'brightness-50'
-			} ${page.isMinimized && 'hidden'}`}
+			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${activePageId !== page.id && 'brightness-50'} ${
+				page.isMinimized && 'hidden'
+			}`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>
@@ -91,14 +99,14 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 					</div>
 					<div className='flex gap-1'>
 						{/* TODO WHEN MINIMIZE it lose previous opened pages active focus */}
-						<WindowsMinimizeButton minimizeHandler={() => toggleMinimizePage(page.id)} />
+						<WindowsMinimizeButton minimizeHandler={handleMinimize} />
 						<WindowsMaximizeButton maximizeHandler={handleMaximize} />
-						<WindowsCloseButton closeHandler={() => closePage(page.id)} />
+						<WindowsCloseButton closeHandler={handleClose} />
 					</div>
 				</div>
 			</div>
 			<div className='m-2 bg-slate-100 dark:bg-slate-900 text-black dark:text-gray-100'>
-				<Section page={page} style={childStyle} />
+				<Section component={page.component} id={page.id} style={childStyle} />
 			</div>
 			<DivSectionHandler
 				className='absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right'

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type User = {
 	_id: string;
 	name: string;
@@ -120,7 +122,7 @@ export type Certificate = {
 export type Page = {
 	name: string;
 	id: string;
-	component: JSX.Element;
+	component: ReactNode;
 	icon: string;
 	color?: string;
 };

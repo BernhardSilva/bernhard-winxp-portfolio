@@ -68,9 +68,7 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 		};
 
 		const elementWidth = elementRef?.current?.offsetWidth;
-		console.log('🚀 ~ file: useDragAndDrop.ts:83 ~ onMouseMove ~ elementWidth:', elementWidth);
 		const elementHeight = elementRef?.current?.offsetHeight;
-		console.log('🚀 ~ file: useDragAndDrop.ts:85 ~ onMouseMove ~ elementHeight:', elementHeight);
 
 		if (elementWidth && elementHeight) {
 			console.log('drag ref here');

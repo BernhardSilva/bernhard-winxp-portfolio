@@ -1,11 +1,18 @@
-import { useContext } from 'react';
-import { ThemeContext } from '../context/theme/theme-context';
+import useThemeStore from '@/stores/theme-store';
+import { useEffect } from 'react';
 
-// Custom hook to use the ThemeContext
 export const useTheme = () => {
-	const context = useContext(ThemeContext);
-	if (context === undefined) {
-		throw new Error('useTheme must be used within a ThemeProvider');
-	}
-	return context;
+	const theme = useThemeStore((state) => state.theme);
+	const toggleTheme = useThemeStore((state) => state.toggleTheme);
+
+	useEffect(() => {
+		const html = document.querySelector('html');
+		if (theme === 'dark') {
+			html?.classList.add('dark');
+		} else {
+			html?.classList.remove('dark');
+		}
+	}, [theme]);
+
+	return { theme, toggleTheme };
 };

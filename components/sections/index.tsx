@@ -1,14 +1,14 @@
-import { Page } from '@/types';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type SectionsProps = React.HTMLAttributes<HTMLDivElement> & {
-	page: Page;
+	component: ReactNode;
+	id: string;
 };
 
-const Section = ({ page, ...props }: SectionsProps) => {
+const Section = ({ id, component, ...props }: SectionsProps) => {
 	return (
-		<section id={page.id} {...props}>
-			<div className='text-center p-10'>{page.component}</div>
+		<section id={id} {...props}>
+			<div className='text-center p-10 h-full'>{component}</div>
 		</section>
 	);
 };
