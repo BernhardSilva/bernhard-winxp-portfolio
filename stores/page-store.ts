@@ -1,6 +1,7 @@
 import { pagesData } from '@/app/pages-data';
-import { create } from 'zustand';
 import { Page } from '@/types';
+import { create } from 'zustand';
+import { secretPage } from '../app/pages-data';
 
 export type PageState = Page & {
 	isOpen: boolean;
@@ -12,12 +13,13 @@ type Store = {
 	pages: PageState[];
 	setPages: (pages: PageState[]) => void;
 	activePageId: string | null;
+	setActivePageId: (id: string) => void;
+	openedPages: string[];
 	openPage: (id: string) => void;
 	closePage: (id: string) => void;
-	setActivePageId: (id: string) => void;
 	maximizePage: (id: string) => void;
 	toggleMinimizePage: (id: string) => void;
-	openedPages: string[];
+	addSecretPage: (page: PageState) => void;
 };
 
 export const usePageStore = create<Store>((set) => ({
@@ -63,5 +65,15 @@ export const usePageStore = create<Store>((set) => ({
 		set((state) => ({
 			...state,
 			pages: state.pages.map((page) => (page.id === id ? { ...page, isMinimized: !page.isMinimized } : page))
-		}))
+		})),
+	addSecretPage: (page: PageState) =>
+		set((state) => {
+			if (!state.pages.some((page) => page.id === 'secret')) {
+				return {
+					...state,
+					pages: [...state.pages, { ...page }]
+				};
+			}
+			return state;
+		})
 }));

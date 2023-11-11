@@ -9,15 +9,17 @@ import SecretPage from '@/components/sections/secret';
 import Servicies from '@/components/sections/services';
 import Tetris from '@/components/sections/tetris';
 import TicTacToe from '@/components/sections/tictactoe';
+import { PageState } from '@/stores/page-store';
 import { Page } from '@/types';
 
 export const pagesData: Page[] = [
-	{ 
+	{
 		id: 'intro',
-		name: 'Intro', 
+		name: 'Intro',
 		component: <Intro />,
 		icon: 'fa6-brands:dev',
-		color: 'text-blue-500' },
+		color: 'text-blue-500'
+	},
 	{
 		id: 'portfolio',
 		name: 'Portfolio',
@@ -82,10 +84,13 @@ export const pagesData: Page[] = [
 	}
 ];
 
-export const secretPage: Page = {
+export const secretPage: PageState = {
 	id: 'secret',
 	name: 'Secret Page',
 	component: <SecretPage />,
 	icon: 'game-icons:skills',
-	color: 'text-green-500'
+	color: 'text-green-500',
+	isOpen: false,
+    isMaximized: false,
+    isMinimized: false,
 };

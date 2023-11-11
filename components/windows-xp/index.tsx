@@ -10,15 +10,8 @@ import WindowsPages from './window';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
-	const { pages, setPages } = usePageStore((state) => state);
-
-	// const addSecretPage = () => {
-	// 	if (!pages.some((page) => page.id === 'secret')) {
-	// 		setPages([...pages, secretPage]);
-	// 	}
-	// };
-
-	// useKonamiCode(addSecretPage);
+	const { pages, addSecretPage } = usePageStore((state) => state);
+	useKonamiCode(() => addSecretPage(secretPage));
 
 	return (
 		<>
