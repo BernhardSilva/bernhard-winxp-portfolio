@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
 const TicTacToe = () => {
+	const initialScoreValue = { X: 0, O: 0 }
 	const [board, setBoard] = useState(Array(9).fill(null));
 	const [xIsNext, setXIsNext] = useState(true);
-	const [score, setScore] = useState<{ [key: string]: number }>({ X: 0, O: 0 });
+	const [score, setScore] = useState<{ [key: string]: number }>(initialScoreValue);
 
 	const handleClick = (i: number) => {
 		const boardCopy = [...board];
@@ -13,7 +14,12 @@ const TicTacToe = () => {
 		setXIsNext(!xIsNext);
 	};
 
+	const resetMatch = () => {
+		setBoard(Array(9).fill(null));
+		setXIsNext(true);
+	};
 	const resetGame = () => {
+		setScore(initialScoreValue)
 		setBoard(Array(9).fill(null));
 		setXIsNext(true);
 	};
@@ -43,14 +49,14 @@ const TicTacToe = () => {
 	if (winner) {
 		status = 'Winner: ' + winner;
 		setScore({ ...score, [winner]: score[winner] + 1 });
-		resetGame();
+		resetMatch();
 	} else {
 		status = 'Next player: ' + (xIsNext ? '❌' : '🔵');
 	}
 
 	return (
-		<div className='mt-10'>
-			<div className='grid place-items-center'>
+		<div className='grid place-items-center h-full'>
+			<div className='border-2 p-10 rounded-2xl'>
 				<h1 className='text-3xl font-bold mb-4'>Tic Tac Toe</h1>
 				<div className='mb-4'>
 					<h2 className='text-xl'>{status}</h2>
@@ -68,13 +74,15 @@ const TicTacToe = () => {
 						))}
 					</div>
 					<div className='ml-4'>
-						<h2 className='text-xl mb-2'>Score</h2>
-						<p>❌: {score.X}</p>
-						<p>🔵: {score.O}</p>
+						<div className='border-2 p-2 rounded-2xl'>
+							<h2 className='text-xl mb-2'>Score</h2>
+							<p>❌: {score.X}</p>
+							<p>🔵: {score.O}</p>
+						</div>
 					</div>
 				</div>
-				<button onClick={resetGame} className='mt-4 px-4 py-2 bg-red-500 rounded hover:bg-red-600 ml-5'>
-					Reset Game
+				<button onClick={resetGame} className='mt-4 px-4 py-2 bg-red-600 rounded-md hover:bg-red-500 hover:cursor-pointer'>
+					<span className='text-white'>Reset game</span>
 				</button>
 			</div>
 		</div>

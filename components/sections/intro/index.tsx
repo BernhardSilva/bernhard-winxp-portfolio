@@ -6,12 +6,12 @@ import Skills from './skills';
 
 const Intro = () => {
 	return (
-		<div className='grid place-items-center'>
+		<div className='grid place-items-center h-full'>
 			<SocialMediaButton social={mockUser.contact.socialMedia} />
 			<div className='mt-5'>
 				<Presentation user={mockUser} />
 				<Profile profile={mockUser} />
-				<Skills className='mt-5' skills={mockUser.skills} />
+				<Skills skills={mockUser.skills} />
 			</div>
 		</div>
 	);

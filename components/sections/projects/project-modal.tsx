@@ -23,7 +23,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 						onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from bubbling up
 					>
 						<WindowsCloseButton closeHandler={closeModal} className='absolute top-3 right-3' />
-						<div className='bg-white dark:bg-slate-950 rounded-md p-10'>
+						<div className='bg-white dark:bg-slate-950 rounded-lg p-10'>
 							<Image
 								className='w-full object-cover rounded-md h-[200px]'
 								src={selectedProject?.image.modalImage}
@@ -41,8 +41,12 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 								</div>
 							</div>
 							<div className='flex space-x-2 mt-3 justify-center'>
-								<button className='px-3 py-2 rounded-md bg-green-500 text-white'>Live Code</button>
-								<button className='px-3 py-2 rounded-md bg-blue-500 text-white'>Github Code</button>
+								<button className='px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition duration-300 hover:scale-105 text-white'>
+									Live Code
+								</button>
+								<button className='px-3 py-2 rounded-md bg-gray-800 hover:bg-gray-500 transition duration-300 hover:scale-105 text-white'>
+									Github Code
+								</button>
 							</div>
 						</div>
 					</div>

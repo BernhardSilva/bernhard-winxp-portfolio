@@ -9,7 +9,7 @@ type ProjectProps = {
 const ProjectGallery = ({ projects, handleProjectClick }: ProjectProps) => {
 	return (
 		<div className='text-center text-xl'>
-			<div className='flex flex-wrap gap-4 justify-center mt-5'>
+			<div className='flex flex-wrap gap-4 justify-center mt-5 mb-10'>
 				{projects.map((project) => (
 					<ProjectCard key={project._id} handleProjectClick={handleProjectClick} project={project} />
 				))}

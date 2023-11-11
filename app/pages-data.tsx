@@ -38,7 +38,7 @@ export const pagesData: Page[] = [
 		id: 'services',
 		name: 'Services',
 		component: <Servicies />,
-		color: 'text-pink-500',
+		color: 'text-yellow-500',
 		icon: 'mingcute:code-fill'
 	},
 	{

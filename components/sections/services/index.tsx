@@ -1,9 +1,8 @@
 import { mockUser } from '@/mock/mock-data';
-import { useState } from 'react';
 
 const Servicies = () => {
 	return (
-		<div className='flex flex-col items-center justify-center'>
+		<div className='h-full w-full'>
 			<div className='text-center'>
 				<h1 className='text-3xl font-bold mb-5'>SERVICES</h1>
 				<p className='text-lg mb-10'>What can I do for you? I offer multiple services.</p>

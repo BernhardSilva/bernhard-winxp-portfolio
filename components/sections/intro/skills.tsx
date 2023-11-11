@@ -1,13 +1,13 @@
 import { Skill } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-type SkillsProp = React.HTMLAttributes<HTMLDivElement> & {
+type SkillsProp = {
 	skills: Skill[];
 };
 
-const Skills = ({ skills, ...props  }: SkillsProp) => {
+const Skills = ({ skills }: SkillsProp) => {
 	return (
-		<div {...props}>
+		<div className='mt-5 mb-10'>
 			<h2 className='text-2xl font-bold mb-5'>Skills</h2>
 			<div className='flex flex-wrap justify-center gap-4'>
 				{skills.map((skill) => (

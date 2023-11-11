@@ -83,7 +83,7 @@ const Paint = (props: Props) => {
 	};
 
 	return (
-		<div className=' bg-white text-white'>
+		<div className='h-full bg-white text-white p-5'>
 			<div className='flex justify-between items-center'>
 				<div>
 					<h1 className='text-3xl font-bold text-green-600'>Blackboard</h1>
@@ -95,11 +95,11 @@ const Paint = (props: Props) => {
 						min={1}
 						max={100}
 						value={size}
-						onChange={(e) => setSize(parseInt(e.target.value))}
+						onChange={(e) => setSize(e.target.value as unknown as number)}
 						className='p-2 rounded-md bg-gray-700 text-white'
 					/>
 					<button onClick={toggleDrawEraser} className='px-3 py-2 rounded-md bg-gray-700 text-white'>
-						Eraser
+						{eraser ? 'Drawing' : 'Erasing'}
 					</button>
 					<button onClick={undo} className='px-3 py-2 rounded-md bg-gray-700 text-white'>
 						Undo

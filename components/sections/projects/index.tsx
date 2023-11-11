@@ -31,7 +31,7 @@ const Projects = () => {
 
 	const lowerSearchTerm = searchTerm.toLowerCase();
 	const lowerSelectedSkill = selectedSkill.toLowerCase();
-	
+
 	const filteredProjects = useMemo(
 		() =>
 			mockProjects.filter((project) => {
@@ -48,7 +48,7 @@ const Projects = () => {
 	);
 
 	return (
-		<div className='flex flex-col items-center'>
+		<div className='flex flex-col items-center h-full'>
 			{isModalOpen && <div className='z-10' onClick={closeModal} />}
 			<ProejctSearch handleSearch={handleSearch} />
 			<ProjectSkillFilter selectedSkill={selectedSkill} projects={mockProjects} handleSkillClick={handleSkillClick} />
