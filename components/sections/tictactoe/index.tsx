@@ -49,7 +49,7 @@ const TicTacToe = () => {
 	}
 
 	return (
-		<>
+		<div className='mt-10'>
 			<div className='grid place-items-center'>
 				<h1 className='text-3xl font-bold mb-4'>Tic Tac Toe</h1>
 				<div className='mb-4'>
@@ -77,7 +77,7 @@ const TicTacToe = () => {
 					Reset Game
 				</button>
 			</div>
-		</>
+		</div>
 	);
 };
 

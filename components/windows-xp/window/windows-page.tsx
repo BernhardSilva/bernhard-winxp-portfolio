@@ -86,7 +86,9 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		>
 			<div className='title-bar'>
 				<div className='flex items-center justify-between'>
-					<h2 className='ml-2 font-bold'>{page.name}</h2>
+					<div className='w-full cursor-grab drag-window' onMouseDown={handleDrag} onDoubleClick={hanldeDoubleClick}>
+						<h2 className='ml-2 font-bold'>{page.name}</h2>
+					</div>
 					<div className='flex gap-1'>
 						<WindowsMinimizeButton minimizeHandler={() => toggleMinimizePage(page.id)} />
 						<WindowsMaximizeButton maximizeHandler={handleMaximize} />
@@ -94,14 +96,9 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 					</div>
 				</div>
 			</div>
-			<div className='flex justify-center place-items-center m-2 bg-slate-100 dark:bg-slate-900 text-black dark:text-gray-100'>
+			<div className='m-2 bg-slate-100 dark:bg-slate-900 text-black dark:text-gray-100'>
 				<Section page={page} style={childStyle} />
 			</div>
-			<DivSectionHandler
-				onDoubleClick={hanldeDoubleClick}
-				className='absolute top-0 w-[94%] h-[30px] cursor-grab drag-window'
-				onMouseDown={handleDrag}
-			/>
 			<DivSectionHandler
 				className='absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right'
 				onMouseDown={handleMouseDown}

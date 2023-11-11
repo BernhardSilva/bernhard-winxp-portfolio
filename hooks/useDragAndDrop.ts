@@ -66,7 +66,7 @@ export const useDragAndDrop = ({ element, initialPosition, index }: UseDragAndDr
 			x: e.clientX - rel.x,
 			y: e.clientY - rel.y
 		};
-		console.log('🚀 ~ file: useDragAndDrop.ts:70 ~ onMouseMove ~ newPosition:', newPosition);
+		// console.log('🚀 ~ file: useDragAndDrop.ts:70 ~ onMouseMove ~ newPosition:', newPosition);
 
 		// Get the size of the draggable element
 		// const draggableElement = document.querySelector(`.${element}`);

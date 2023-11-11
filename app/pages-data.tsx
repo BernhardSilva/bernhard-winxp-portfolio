@@ -90,7 +90,7 @@ export const secretPage: PageState = {
 	component: <SecretPage />,
 	icon: 'game-icons:skills',
 	color: 'text-green-500',
-	isOpen: false,
+	isOpen: true,
     isMaximized: false,
     isMinimized: false,
 };

@@ -1,7 +1,6 @@
 import { pagesData } from '@/app/pages-data';
 import { Page } from '@/types';
 import { create } from 'zustand';
-import { secretPage } from '../app/pages-data';
 
 export type PageState = Page & {
 	isOpen: boolean;
@@ -68,12 +67,11 @@ export const usePageStore = create<Store>((set) => ({
 		})),
 	addSecretPage: (page: PageState) =>
 		set((state) => {
-			if (!state.pages.some((page) => page.id === 'secret')) {
-				return {
-					...state,
-					pages: [...state.pages, { ...page }]
-				};
-			}
-			return state;
+			return {
+				...state,
+				pages: [...state.pages, { ...page }],
+				activePageId: page.id,
+				openedPages: [...state.openedPages, page.id],
+			};
 		})
 }));

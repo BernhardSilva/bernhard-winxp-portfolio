@@ -12,7 +12,6 @@ const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
 	const { pages, addSecretPage } = usePageStore((state) => state);
 	useKonamiCode(() => addSecretPage(secretPage));
-
 	return (
 		<>
 			<Desktop>
