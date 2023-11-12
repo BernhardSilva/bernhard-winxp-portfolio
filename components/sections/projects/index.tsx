@@ -48,7 +48,7 @@ const Projects = () => {
 	);
 
 	return (
-		<div className='flex flex-col items-center h-full'>
+		<div className='flex flex-col items-center h-full mt-5'>
 			{isModalOpen && <div className='z-10' onClick={closeModal} />}
 			<ProejctSearch handleSearch={handleSearch} />
 			<ProjectSkillFilter selectedSkill={selectedSkill} projects={mockProjects} handleSkillClick={handleSkillClick} />

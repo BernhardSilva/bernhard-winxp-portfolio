@@ -8,7 +8,7 @@ type SectionsProps = React.HTMLAttributes<HTMLDivElement> & {
 const Section = ({ id, component, ...props }: SectionsProps) => {
 	return (
 		<section id={id} {...props}>
-			<div className='text-center p-10 h-full w-full'>{component}</div>
+			<div className='text-center p-5 h-full w-full'>{component}</div>
 		</section>
 	);
 };

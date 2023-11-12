@@ -125,7 +125,7 @@ export const mockUser: User = {
 		{
 			name: 'Project management',
 			icon: '📋',
-			description: 'Agile methodology based on Scrum and/or Kanban.'
+			description: 'Agile methodology based on Scrum and/or Kanban, JIRA, Trello, Slack, Teams.'
 		}
 	],
 	workExperience: [

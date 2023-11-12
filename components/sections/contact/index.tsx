@@ -8,7 +8,7 @@ const Contact = () => {
 			style={{
 				backgroundImage: `url(${'/images/animated/contact.gif'})`,
 				backgroundSize: 'cover',
-				backgroundPosition: 'center',
+				backgroundPosition: 'center'
 			}}
 		>
 			<ContactForm user={mockUser} />

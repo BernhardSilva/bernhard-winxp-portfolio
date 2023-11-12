@@ -7,7 +7,7 @@ type SkillsProp = {
 
 const Skills = ({ skills }: SkillsProp) => {
 	return (
-		<div className='mt-5 mb-10'>
+		<div className='my-5'>
 			<h2 className='text-2xl font-bold mb-5'>Skills</h2>
 			<div className='flex flex-wrap justify-center gap-4'>
 				{skills.map((skill) => (

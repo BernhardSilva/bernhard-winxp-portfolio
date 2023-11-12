@@ -24,7 +24,7 @@ const File = ({ file }: DesktopFileProps) => {
 		initialPosition: file.initialPosition,
 		elementRef: fileRef.current
 	};
-	const { position, onMouseDownDrag, dragging, draggingOut } = useDragAndDrop(dragAndDropValues);
+	const { position, onMouseDownDrag } = useDragAndDrop(dragAndDropValues);
 
 	const handleDoubleClick = (e: any) => {
 		e.stopPropagation();

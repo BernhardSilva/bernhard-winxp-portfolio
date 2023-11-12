@@ -41,6 +41,8 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
 		height: isMaximized ? `96vh` : `${dimensions.height}px`
 	};
+	dimensions.height
+	console.log("🚀 ~ file: windows-page.tsx:45 ~ WindowsPage ~ dimensions.height:", dimensions.height)
 
 	const childDimensions = useMemo(
 		() => ({

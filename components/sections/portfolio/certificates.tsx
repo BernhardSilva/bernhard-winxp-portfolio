@@ -6,7 +6,7 @@ type CertificatesProps = {
 
 const Certificates = ({ certificates }: CertificatesProps) => {
 	return (
-		<>
+		<div className='mb-10'>
 			<h2 className='text-2xl font-bold mb-5 mt-10'>Certificates</h2>
 			{certificates.map((cert, index) => (
 				<div
@@ -25,7 +25,7 @@ const Certificates = ({ certificates }: CertificatesProps) => {
 					</a>
 				</div>
 			))}
-		</>
+		</div>
 	);
 };
 
