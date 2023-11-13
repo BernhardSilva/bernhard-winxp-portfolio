@@ -1,6 +1,6 @@
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { Icon, IconifyIcon } from '@iconify/react/dist/iconify.js';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type File = {
 	element: string;
@@ -25,17 +25,24 @@ const File = ({ file }: DesktopFileProps) => {
 		elementRef: fileRef.current
 	};
 	const { position, onMouseDownDrag } = useDragAndDrop(dragAndDropValues);
+	const [hideOnMobile, setHideOnMobile] = useState('');
 
 	const handleDoubleClick = (e: any) => {
 		e.stopPropagation();
 		file.onOpen();
 	};
 
+	useEffect(() => {
+		const hidenIcons = ['portfolio', 'projects', 'contact', 'intro', 'services'];
+		if (hidenIcons.includes(file.element))
+			setHideOnMobile('hidden md:flex pointer-events-none md:pointer-events-auto');
+	}, [file]);
+
 	return (
 		<div onMouseDown={onMouseDownDrag} onDoubleClick={handleDoubleClick}>
 			<div
 				className={`absolute flex flex-col items-center bg-blue-500 bg-opacity-30
-				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element}`}
+				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element} ${hideOnMobile}`}
 				style={{
 					left: position.x,
 					top: position.y

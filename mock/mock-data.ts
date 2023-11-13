@@ -41,49 +41,134 @@ export const mockUser: User = {
 	},
 	skills: [
 		{
+			_id: '199',
+			name: 'JavaScript',
+			icon: 'logos:javascript'
+		},
+		{
+			_id: '200',
+			name: 'Typescript',
+			icon: 'logos:typescript-icon-round'
+		},
+		{
 			_id: '201',
 			name: 'React',
 			icon: 'logos:react'
 		},
 		{
 			_id: '202',
-			name: 'React Query',
-			icon: 'logos:react-query-icon'
+			name: 'NextJS',
+			icon: 'logos:nextjs-icon'
 		},
 		{
 			_id: '203',
-			name: 'TypeScript',
-			icon: 'devicon:typescript'
+			name: 'Redux',
+			icon: 'devicon:redux'
 		},
 		{
 			_id: '204',
-			name: 'React',
-			icon: 'logos:react'
+			name: 'NodeJS',
+			icon: 'logos:nodejs'
 		},
 		{
 			_id: '205',
-			name: 'React Query',
-			icon: 'logos:react-query-icon'
+			name: 'NestJS',
+			icon: 'logos:nestjs'
 		},
 		{
 			_id: '206',
-			name: 'TypeScript',
-			icon: 'devicon:typescript'
+			name: 'Apollo GraphQL',
+			icon: 'skill-icons:apollo'
 		},
 		{
 			_id: '207',
-			name: 'React',
-			icon: 'logos:react'
+			name: 'ExpressJS',
+			icon: 'simple-icons:express'
 		},
 		{
 			_id: '208',
-			name: 'React Query',
-			icon: 'logos:react-query-icon'
+			name: 'TailwindCSS',
+			icon: 'logos:tailwindcss-icon'
 		},
 		{
 			_id: '209',
-			name: 'TypeScript',
-			icon: 'devicon:typescript'
+			name: 'Bootstrap',
+			icon: 'devicon:bootstrap'
+		},
+		{
+			_id: '210',
+			name: 'CSS',
+			icon: 'logos:css-3'
+		},
+		{
+			_id: '211',
+			name: 'Sass',
+			icon: 'skill-icons:sass'
+		},
+		{
+			_id: '212',
+			name: 'MaterialUI',
+			icon: 'devicon:materialui'
+		},
+		{
+			_id: '213',
+			name: 'Ant Design',
+			icon: 'devicon:antdesign'
+		},
+		{
+			_id: '214',
+			name: 'Prisma',
+			icon: 'logos:prisma'
+		},
+		{
+			_id: '215',
+			name: 'MongoDB',
+			icon: 'devicon:mongodb'
+		},
+		{
+			_id: '216',
+			name: 'MySQL',
+			icon: 'devicon:mysql'
+		},
+		{
+			_id: '217',
+			name: 'PostgreSQL',
+			icon: 'devicon:postgresql'
+		},
+		{
+			_id: '218',
+			name: 'SQLServer',
+			icon: 'simple-icons:microsoftsqlserver'
+		},
+		{
+			_id: '219',
+			name: 'Java',
+			icon: 'logos:java'
+		},
+		{
+			_id: '220',
+			name: 'SQLServer',
+			icon: 'simple-icons:microsoftsqlserver'
+		},
+		{
+			_id: '221',
+			name: 'Vercel',
+			icon: 'logos:vercel-icon'
+		},
+		{
+			_id: '222',
+			name: 'SQLServer',
+			icon: 'simple-icons:microsoftsqlserver'
+		},
+		{
+			_id: '223',
+			name: 'Firestore',
+			icon: 'vscode-icons:file-type-firestore'
+		},
+		{
+			_id: '224',
+			name: 'Vite',
+			icon: 'skill-icons:vite-light'
 		}
 	],
 	services: [

@@ -5,7 +5,7 @@ import { useHasMounted } from '@/hooks/useHasMounted';
 import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { PageState, usePageStore } from '@/stores/page-store';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
 import WindowsMinimizeButton from '../buttons/windows-minimize-button';
@@ -33,6 +33,13 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
+
+	const isMobile = useMemo(() => width < 768, [width]);
+	useEffect(() => {
+		if (isMobile) {
+			setIsMaximized(true);
+		}
+	}, [isMobile]);
 
 	const windowStyle = {
 		left: isMaximized ? `0px` : `${dragging || draggingOut ? position.x : position.x + index * 20}px`,
