@@ -52,9 +52,9 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const childDimensions = useMemo(
 		() => ({
 			width: isMaximized ? `100%` : `${dimensions.width - 11}px`,
-			height: isMaximized ? `91vh` : `${dimensions.height - 45}px`
+			height: isMaximized ? `91vh` : isMobile ? '100%' : `${dimensions.height - 45}px`
 		}),
-		[dimensions, isMaximized]
+		[isMobile, dimensions, isMaximized]
 	);
 
 	const childStyle = {
