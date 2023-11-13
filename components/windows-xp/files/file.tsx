@@ -33,7 +33,7 @@ const File = ({ file }: DesktopFileProps) => {
 	};
 
 	useEffect(() => {
-		const hidenIcons = ['portfolio', 'projects', 'contact', 'intro', 'services'];
+		const hidenIcons = ['portfolio', 'projects', 'contact', 'intro', 'services', 'secret-password'];
 		if (hidenIcons.includes(file.element))
 			setHideOnMobile('hidden md:flex pointer-events-none md:pointer-events-auto');
 	}, [file]);
