@@ -48,13 +48,13 @@ export const pagesData: Page[] = [
 		color: 'text-pink-500',
 		icon: 'ph:phone-fill'
 	},
-	{
-		id: 'blogs',
-		name: 'Blogs',
-		component: <Blogs />,
-		color: 'text-blue-700',
-		icon: 'grommet-icons:blog'
-	},
+	// {
+	// 	id: 'blogs',
+	// 	name: 'Blogs',
+	// 	component: <Blogs />,
+	// 	color: 'text-blue-700',
+	// 	icon: 'grommet-icons:blog'
+	// },
 	{
 		id: 'explorer',
 		name: 'Explorer',
@@ -75,13 +75,13 @@ export const pagesData: Page[] = [
 		color: 'bg-gradient-to-r from-green-400 to-blue-500 rounded-full',
 		icon: 'simple-icons:xo'
 	},
-	{
-		id: 'tetris',
-		name: 'Tetris',
-		component: <Tetris />,
-		color: 'bg-gradient-to-r from-red-400 via-slate-500 to-blue-500 rounded-full',
-		icon: 'fluent:tetris-app-16-regular'
-	}
+	// {
+	// 	id: 'tetris',
+	// 	name: 'Tetris',
+	// 	component: <Tetris />,
+	// 	color: 'bg-gradient-to-r from-red-400 via-slate-500 to-blue-500 rounded-full',
+	// 	icon: 'fluent:tetris-app-16-regular'
+	// }
 ];
 
 export const secretPage: PageState = {

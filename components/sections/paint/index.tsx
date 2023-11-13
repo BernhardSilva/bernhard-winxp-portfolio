@@ -1,121 +1,107 @@
-import React, { useEffect, useRef, useState } from 'react';
+import usePaint, { Mode } from '@/hooks/usePaint';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
-type Props = {};
-
-const Paint = (props: Props) => {
-	const canvasRef = useRef<HTMLCanvasElement>(null);
-	const contextRef = useRef<CanvasRenderingContext2D | null>(null);
-	const [isDrawing, setIsDrawing] = useState(false);
-	const [color, setColor] = useState('#000000');
-	const [size, setSize] = useState(2);
-	const [history, setHistory] = useState<ImageData[]>([]);
-	const [step, setStep] = useState(-1);
-	const [eraser, setEraser] = useState(false);
-
-	useEffect(() => {
-		const canvas = canvasRef.current!;
-		console.log(canvas);
-		canvas.width = window.innerWidth * 2;
-		canvas.height = window.innerHeight * 2;
-		canvas.style.width = `${window.innerWidth}px`;
-		canvas.style.height = `${window.innerHeight}px`;
-
-		const context = canvas.getContext('2d')!;
-		context.scale(2, 2);
-		context.lineCap = 'round';
-		context.strokeStyle = color;
-		context.lineWidth = size;
-		contextRef.current = context;
-	}, []);
-
-	const startDrawing = ({ nativeEvent }: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-		const { offsetX, offsetY } = nativeEvent;
-		contextRef.current!.beginPath();
-		contextRef.current!.moveTo(offsetX, offsetY);
-		setIsDrawing(true);
-	};
-
-	const finishDrawing = () => {
-		contextRef.current!.closePath();
-		setIsDrawing(false);
-		setHistory([...history, contextRef.current!.getImageData(0, 0, window.innerWidth * 2, window.innerHeight * 2)]);
-		setStep(step + 1);
-	};
-
-	const draw = ({ nativeEvent }: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-		if (!isDrawing) {
-			return;
-		}
-		const { offsetX, offsetY } = nativeEvent;
-		contextRef.current!.lineTo(offsetX, offsetY);
-		contextRef.current!.stroke();
-	};
-
-	const undo = () => {
-		if (step <= 0) {
-			contextRef.current!.clearRect(0, 0, window.innerWidth * 2, window.innerHeight * 2);
-		} else {
-			setStep(step - 1);
-			contextRef.current!.putImageData(history[step - 1], 0, 0);
-		}
-	};
-
-	const redo = () => {
-		if (step < history.length - 1) {
-			setStep(step + 1);
-			contextRef.current!.putImageData(history[step + 1], 0, 0);
-		}
-	};
-
-	const toggleDrawEraser = () => {
-		setEraser(!eraser);
-		contextRef.current!.globalCompositeOperation = eraser ? 'source-over' : 'destination-out';
-	};
-	const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(e);
-		setColor(e.target.value);
-		contextRef.current!.strokeStyle = e.target.value;
-	};
-
-	const handleSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		setSize(parseInt(e.target.value));
-		contextRef.current!.lineWidth = parseInt(e.target.value);
-	};
+const Paint = () => {
+	const {
+		exportAsWebP,
+		color,
+		handleColorChange,
+		size,
+		handleSizeChange,
+		mode,
+		handleModeChange,
+		canvasRef,
+		startDrawing,
+		finishDrawing,
+		draw,
+		clearCanvas,
+		undo,
+		redo,
+		redoEmpty,
+		undoEmpty
+	} = usePaint();
 
 	return (
-		<div className='h-full bg-white text-white p-5'>
-			<div className='flex justify-between items-center'>
-				<div>
-					<h1 className='text-3xl font-bold text-green-600'>Blackboard</h1>
-				</div>
-				<div className='flex items-center space-x-4'>
-					<input type='color' onChange={handleColorChange} className='rounded-md' />
-					<input
-						type='range'
-						min={1}
-						max={100}
-						value={size}
-						onChange={(e) => setSize(e.target.value as unknown as number)}
-						className='p-2 rounded-md bg-gray-700 text-white'
-					/>
-					<button onClick={toggleDrawEraser} className='px-3 py-2 rounded-md bg-gray-700 text-white'>
-						{eraser ? 'Drawing' : 'Erasing'}
+		<div className=' text-white w-full h-full p-5'>
+			<div className='flex flex-wrap justify-center'>
+				<div className='flex flex-wrap items-center space-x-4 my-4'>
+					<label className='flex flex-col place-items-center text-gray-700 dark:text-white'>
+						Color
+						<input
+							type='color'
+							value={color}
+							onChange={handleColorChange}
+							className='bg-slate-100 dark:bg-slate-900 w-8 h-8 hover:cursor-pointer'
+						/>
+					</label>
+					<label className='flex flex-col place-items-center text-gray-700'>
+						Size
+						<input
+							type='range'
+							min='1'
+							max='50'
+							value={size}
+							onChange={handleSizeChange}
+							className='hover:cursor-pointer'
+						/>
+					</label>
+					<button
+						className={`px-3 py-2 rounded-md ${
+							mode === Mode.Draw ? 'bg-blue-500' : 'bg-gray-700'
+						} transition duration-300 hover:scale-105`}
+						onClick={() => handleModeChange(Mode.Draw)}
+					>
+						<Icon name='pencil' className='w-8 h-8' icon={'ph:pencil-bold'} />
 					</button>
-					<button onClick={undo} className='px-3 py-2 rounded-md bg-gray-700 text-white'>
-						Undo
+					<button
+						className={`px-3 py-2 rounded-md ${
+							mode === Mode.Erase ? 'bg-orange-500' : 'bg-gray-700'
+						} transition duration-300 hover:scale-105`}
+						onClick={() => handleModeChange(Mode.Erase)}
+					>
+						<Icon name='eraser' className='w-8 h-8' icon='solar:eraser-bold-duotone' />
 					</button>
-					<button onClick={redo} className='px-3 py-2 rounded-md bg-gray-700 text-white'>
-						Redo
+					<button
+						className={`px-3 py-2 rounded-md bg-yellow-500 transition duration-300 hover:scale-105 ${
+							undoEmpty && 'brightness-75'
+						}`}
+						disabled={undoEmpty}
+						onClick={undo}
+					>
+						<Icon name='undo' className='w-8 h-8' icon='dashicons:undo' />
+					</button>
+					<button
+						className={`px-3 py-2 rounded-md bg-yellow-500 transition duration-300 hover:scale-105 ${
+							redoEmpty && 'brightness-75'
+						}`}
+						onClick={redo}
+						disabled={redoEmpty}
+					>
+						<Icon name='redo' className='w-8 h-8' icon='dashicons:redo' />
+					</button>
+					<button
+						className='px-3 py-2 rounded-md bg-red-500 transition duration-300 hover:scale-105'
+						onClick={clearCanvas}
+					>
+						<Icon name='clear' className='w-8 h-8' icon='ic:twotone-delete' />
+					</button>
+					<button
+						className={`px-3 py-2 rounded-md bg-green-500 transition duration-300 ${'hover:scale-105'}`}
+						onClick={exportAsWebP}
+					>
+						<Icon name='undo' className='w-8 h-8' icon='fluent:save-image-20-filled' />
 					</button>
 				</div>
 			</div>
-			<canvas
-				onMouseDown={startDrawing}
-				onMouseUp={finishDrawing}
-				onMouseMove={draw}
-				ref={canvasRef}
-				className={`mt-10 ${eraser ? 'cursor-eraser' : 'cursor-pointer'}`}
-			/>
+			<div className='w-full h-[87%] overflow-auto bg-white'>
+				<canvas
+					onMouseDown={startDrawing}
+					onMouseUp={finishDrawing}
+					onMouseMove={draw}
+					ref={canvasRef}
+					className={`${mode === Mode.Draw ? 'cursor-crosshair' : 'cursor-grab'}`}
+				/>
+			</div>
 		</div>
 	);
 };
