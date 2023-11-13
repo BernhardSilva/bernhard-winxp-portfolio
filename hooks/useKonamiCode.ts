@@ -30,7 +30,6 @@ export const useKonamiCode = (callback: () => void) => {
 				if (!isKonamiCodeActivated && sequenceIndex + 1 === konamiCodeSequence.length) {
 					setSequenceIndex(0);
 					callback();
-					console.log('konami code activated');
 					setIsKonamiCodeActivated(true);
 				}
 			} else {

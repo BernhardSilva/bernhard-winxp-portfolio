@@ -15,7 +15,7 @@ const Menu = ({ pages }: MenuProps) => {
 	return (
 		<div
 			className='w-full max-w-md bg-white dark:bg-slate-900 rounded-xl shadow-md absolute bottom-11 left-0
-			border-2 border-blue-600 rounded-b-none text-shadow'
+			border-2 border-blue-600 rounded-b-none text-shadow transition duration-500'
 		>
 			<div
 				className='pl-2 py-5 text-white rounded-t-md

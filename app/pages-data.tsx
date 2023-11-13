@@ -1,13 +1,12 @@
-import Blogs from '@/components/sections/blogs';
 import Contact from '@/components/sections/contact';
 import Explorer from '@/components/sections/explorer';
 import Intro from '@/components/sections/intro';
+import Notepad from '@/components/sections/notepad';
 import Paint from '@/components/sections/paint';
 import Portfolio from '@/components/sections/portfolio';
 import Projects from '@/components/sections/projects';
 import SecretPage from '@/components/sections/secret';
 import Servicies from '@/components/sections/services';
-import Tetris from '@/components/sections/tetris';
 import TicTacToe from '@/components/sections/tictactoe';
 import { PageState } from '@/stores/page-store';
 import { Page } from '@/types';
@@ -18,14 +17,14 @@ export const pagesData: Page[] = [
 		name: 'Intro',
 		component: <Intro />,
 		icon: 'fa6-brands:dev',
-		color: 'text-blue-500'
+		color: 'text-blue-600'
 	},
 	{
 		id: 'portfolio',
 		name: 'Portfolio',
 		component: <Portfolio />,
 		icon: 'game-icons:skills',
-		color: 'text-green-500'
+		color: 'text-slate-800 dark:text-slate-300'
 	},
 	{
 		id: 'projects',
@@ -45,16 +44,16 @@ export const pagesData: Page[] = [
 		id: 'contact',
 		name: 'Contact',
 		component: <Contact />,
-		color: 'text-pink-500',
-		icon: 'ph:phone-fill'
+		color: 'text-red-400',
+		icon: 'fa:mobile'
 	},
-	// {
-	// 	id: 'blogs',
-	// 	name: 'Blogs',
-	// 	component: <Blogs />,
-	// 	color: 'text-blue-700',
-	// 	icon: 'grommet-icons:blog'
-	// },
+	{
+		id: 'notepad',
+		name: 'Notepad',
+		component: <Notepad />,
+		color: 'text-slate-800 dark:text-slate-200',
+		icon: 'ph:notepad-bold'
+	},
 	{
 		id: 'explorer',
 		name: 'Explorer',
@@ -74,7 +73,7 @@ export const pagesData: Page[] = [
 		component: <TicTacToe />,
 		color: 'bg-gradient-to-r from-green-400 to-blue-500 rounded-full',
 		icon: 'simple-icons:xo'
-	},
+	}
 	// {
 	// 	id: 'tetris',
 	// 	name: 'Tetris',
@@ -91,6 +90,18 @@ export const secretPage: PageState = {
 	icon: 'game-icons:skills',
 	color: 'text-green-500',
 	isOpen: true,
-    isMaximized: false,
-    isMinimized: false,
+	isMaximized: false,
+	isMinimized: false
+};
+
+export const passwordPage: PageState = {
+	id: 'secret-password',
+	name: 'Top Secret',
+	component: <Notepad textMessage='Press ⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️🅱️🅰️ to activate my secret password 🤫.' />,
+	color: 'text-slate-800 dark:text-slate-200',
+	icon: 'ph:notepad-bold',
+	isOpen: true,
+	isMaximized: false,
+	isMinimized: false,
+	isNewPage: true
 };

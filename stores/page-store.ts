@@ -6,6 +6,7 @@ export type PageState = Page & {
 	isOpen: boolean;
 	isMaximized: boolean;
 	isMinimized: boolean;
+	isNewPage?: boolean;
 };
 
 type Store = {
@@ -17,12 +18,11 @@ type Store = {
 type Actions = {
 	setPages: (pages: PageState[]) => void;
 	setActivePageId: (id: string) => void;
+	setActivePreviousPage: (id: string) => void;
 	openPage: (id: string) => void;
 	closePage: (id: string) => void;
-	maximizePage: (id: string) => void;
 	toggleMinimizePage: (id: string) => void;
-	addSecretPage: (page: PageState) => void;
-	setActivePreviousPage: (id: string) => void;
+	addNewPage: (page: PageState) => void;
 };
 
 export const usePageStore = create<Store & Actions>((set) => ({
@@ -39,24 +39,18 @@ export const usePageStore = create<Store & Actions>((set) => ({
 		set((state) => ({
 			...state,
 			openedPages: [...state.openedPages, id],
+			activePageId: id,
 			pages: state.pages.map((page) => (page.id === id ? { ...page, isOpen: true } : page))
 		})),
 	closePage: (id: string) =>
-		set((state) => {
-			return {
-				...state,
-				pages: state.pages.map((page) => (page.id === id ? { ...page, isOpen: false } : page))
-			};
-		}),
+		set((state) => ({
+			...state,
+			pages: state.pages.map((page) => (page.id === id ? { ...page, isOpen: false } : page))
+		})),
 	setActivePageId: (id: string) =>
 		set((state) => ({
 			...state,
 			activePageId: id
-		})),
-	maximizePage: (id: string) =>
-		set((state) => ({
-			...state,
-			pages: state.pages.map((page) => (page.id === id ? { ...page, isMaximized: true } : page))
 		})),
 	toggleMinimizePage: (id: string) =>
 		set((state) => ({
@@ -75,8 +69,7 @@ export const usePageStore = create<Store & Actions>((set) => ({
 				activePageId: newActivePageId || null
 			};
 		}),
-
-	addSecretPage: (page: PageState) =>
+	addNewPage: (page: PageState) =>
 		set((state) => {
 			return {
 				...state,

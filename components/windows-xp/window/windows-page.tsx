@@ -41,8 +41,6 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		width: isMaximized ? `100vw` : `${dimensions.width}px`,
 		height: isMaximized ? `96vh` : `${dimensions.height}px`
 	};
-	dimensions.height
-	console.log("🚀 ~ file: windows-page.tsx:45 ~ WindowsPage ~ dimensions.height:", dimensions.height)
 
 	const childDimensions = useMemo(
 		() => ({
@@ -70,7 +68,6 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	}, [page.id, toggleMinimizePage, setActivePreviousPage]);
 
 	const handleClick = (id: string) => {
-		setActivePageId(id);
 		openPage(id);
 	};
 
@@ -100,7 +97,6 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 						<h2 className='ml-2 font-bold'>{page.name}</h2>
 					</div>
 					<div className='flex gap-1'>
-						{/* TODO WHEN MINIMIZE it lose previous opened pages active focus */}
 						<WindowsMinimizeButton minimizeHandler={handleMinimize} />
 						<WindowsMaximizeButton maximizeHandler={handleMaximize} />
 						<WindowsCloseButton closeHandler={handleClose} />

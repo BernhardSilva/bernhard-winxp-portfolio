@@ -1,16 +1,16 @@
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
-import { Icon } from '@iconify/react/dist/iconify.js';
+import { Icon, IconifyIcon } from '@iconify/react/dist/iconify.js';
 import { useRef } from 'react';
 
 type File = {
 	element: string;
-	text: string;
-	icon: string;
-	color?: string;
+	text: any;
+	icon: any;
+	color?: any;
 	className?: string;
 	size?: number;
 	initialPosition: { x: number; y: number };
-	onOpen: () => void;
+	onOpen: () => void | undefined;
 };
 
 type DesktopFileProps = {
@@ -45,8 +45,7 @@ const File = ({ file }: DesktopFileProps) => {
 					icon={file.icon}
 					height={file.size}
 					width={file.size}
-					color={file.color}
-					className={`transition ease-linear duration-500 ${file.className}`}
+					className={`transition ease-linear duration-500 ${file.className} ${file.color}`}
 				/>
 
 				<span>{file.text}</span>

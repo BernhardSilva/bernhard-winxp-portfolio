@@ -108,7 +108,6 @@ const usePaint = () => {
 
 	const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newSize = e.target.value;
-		console.log(newSize);
 		setSize(Number(newSize));
 	};
 

@@ -22,7 +22,7 @@ const Paint = () => {
 	} = usePaint();
 
 	return (
-		<div className=' text-white w-full h-full p-5'>
+		<div className=' text-white w-full h-full'>
 			<div className='flex flex-wrap justify-center'>
 				<div className='flex flex-wrap items-center space-x-4 my-4'>
 					<label className='flex flex-col place-items-center text-gray-700 dark:text-white'>

@@ -7,10 +7,9 @@ type MenuItemProps = {
 };
 
 const MenuItem = ({ page }: MenuItemProps) => {
-	const { setActivePageId, openPage } = usePageStore((state) => state);
+	const { openPage } = usePageStore((state) => state);
 	const handleClick = (id: string) => {
 		openPage(id);
-		setActivePageId(id);
 	};
 	return (
 		<div className='rounded-t-xl p-2'>

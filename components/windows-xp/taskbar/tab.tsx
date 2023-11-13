@@ -6,11 +6,10 @@ type TabProps = {
 };
 
 const Tab = ({ page }: TabProps) => {
-	const { openPage, setActivePageId, closePage, toggleMinimizePage, activePageId } = usePageStore((state) => state);
+	const { openPage, closePage, toggleMinimizePage, activePageId } = usePageStore((state) => state);
 
 	const handleClick = (id: string) => {
 		openPage(id);
-		setActivePageId(id);
 		if (page.isMinimized) toggleMinimizePage(id);
 	};
 

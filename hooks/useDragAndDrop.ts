@@ -71,11 +71,9 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 		const elementHeight = elementRef?.current?.offsetHeight;
 
 		if (elementWidth && elementHeight) {
-			console.log('drag ref here');
 			newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - elementWidth));
 			newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - elementHeight - 40));
 		} else {
-			console.log('drag element here');
 			newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - 100));
 			newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - 82 - 40));
 		}
