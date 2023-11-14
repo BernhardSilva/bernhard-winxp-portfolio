@@ -34,7 +34,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
 
-	const isMobile = useMemo(() => width < 768, [width]);
+	const isMobile = useMemo(() => width < 380, [width]);
 	useEffect(() => {
 		if (isMobile) {
 			setIsMaximized(true);
