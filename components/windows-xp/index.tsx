@@ -1,25 +1,36 @@
 'use client';
 import { secretPage } from '@/app/pages-data';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
-import { usePageStore } from '@/stores/page-store';
+import { PageState, usePageStore } from '@/stores/page-store';
 import Desktop from './desktop';
 import Files from './files';
 import SecretWallpaper from './secret';
 import TaskBar from './taskbar';
 import WindowsPages from './window';
+import { useWindowsStore } from '@/stores/windows-store';
+import { useEffect, useState } from 'react';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
 	const { pages, addNewPage } = usePageStore((state) => state);
+	const [filteredPages, setFilteredPages] = useState<PageState[]>();
+	const { isMobile } = useWindowsStore((state) => state);
+
+	useEffect(() => {
+		const mobilePages = ['tictactoe', 'paint', 'secret', 'secret-password'];
+		const filteredMobilePages = pages.filter((page) => !mobilePages.includes(page.id));
+
+		isMobile ? setFilteredPages(filteredMobilePages) : setFilteredPages(pages);
+	}, [isMobile, pages]);
 	useKonamiCode(() => addNewPage(secretPage));
 	return (
 		<>
 			<Desktop>
-				{pages.some((page) => page.id === 'secret') && <SecretWallpaper />}
+				{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}
 				<Files />
-				<WindowsPages pages={pages} />
+				<WindowsPages pages={filteredPages} />
 			</Desktop>
-			<TaskBar pages={pages} />
+			<TaskBar pages={filteredPages} />
 		</>
 	);
 };

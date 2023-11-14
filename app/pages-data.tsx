@@ -90,7 +90,6 @@ export const secretPage: PageState = {
 	icon: 'game-icons:skills',
 	color: 'text-green-500',
 	isOpen: true,
-	isMaximized: false,
 	isMinimized: false
 };
 
@@ -101,7 +100,6 @@ export const passwordPage: PageState = {
 	color: 'text-slate-800 dark:text-slate-200',
 	icon: 'ph:notepad-bold',
 	isOpen: true,
-	isMaximized: false,
 	isMinimized: false,
 	isNewPage: true
 };

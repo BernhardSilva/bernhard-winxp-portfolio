@@ -1,5 +1,5 @@
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
-import { Icon, IconifyIcon } from '@iconify/react/dist/iconify.js';
+import { Icon } from '@iconify/react/dist/iconify.js';
 import { useEffect, useRef, useState } from 'react';
 
 type File = {

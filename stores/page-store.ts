@@ -4,7 +4,6 @@ import { create } from 'zustand';
 
 export type PageState = Page & {
 	isOpen: boolean;
-	isMaximized: boolean;
 	isMinimized: boolean;
 	isNewPage?: boolean;
 };
@@ -24,13 +23,13 @@ type Actions = {
 	toggleMinimizePage: (id: string) => void;
 	addNewPage: (page: PageState) => void;
 };
-
 export const usePageStore = create<Store & Actions>((set) => ({
 	pages: pagesData.map((page) => ({
 		...page,
 		isOpen: false,
 		isMaximized: false,
-		isMinimized: false
+		isMinimized: false,
+		isMobile: false
 	})),
 	openedPages: [],
 	setPages: (pages: PageState[]) => set({ pages }),

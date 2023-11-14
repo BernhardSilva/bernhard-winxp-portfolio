@@ -9,6 +9,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
 import WindowsMinimizeButton from '../buttons/windows-minimize-button';
+import { useWindowsStore } from '@/stores/windows-store';
 
 type WindowsPageProps = {
 	page: PageState;
@@ -18,6 +19,7 @@ type WindowsPageProps = {
 const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const { openPage, closePage } = usePageStore();
 	const { setActivePageId, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore((state) => state);
+	const { isMobile } = useWindowsStore((state) => state);
 	const { width, height } = useWindowDimensions();
 	const hasMounted = useHasMounted();
 
@@ -34,7 +36,6 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
 
-	const isMobile = useMemo(() => width < 380, [width]);
 	useEffect(() => {
 		if (isMobile) {
 			setIsMaximized(true);

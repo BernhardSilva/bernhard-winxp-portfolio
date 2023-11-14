@@ -7,7 +7,7 @@ import Tab from './tab';
 import WindowsStartButton from './windows-start-button';
 
 type TaskBarProps = {
-	pages: PageState[];
+	pages: PageState[] | undefined;
 };
 
 const TaskBar = ({ pages }: TaskBarProps) => {
@@ -27,7 +27,7 @@ const TaskBar = ({ pages }: TaskBarProps) => {
 
 				<div className='flex items-center space-x-1 ml-2'>
 					{pages
-						.filter((page) => page.isOpen)
+						?.filter((page) => page.isOpen)
 						.map((page) => (
 							<Tab key={page.id} page={page} />
 						))}

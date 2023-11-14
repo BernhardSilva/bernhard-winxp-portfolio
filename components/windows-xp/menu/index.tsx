@@ -6,7 +6,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { PageState } from '@/stores/page-store';
 
 type MenuProps = {
-	pages: PageState[];
+	pages: PageState[] | undefined;
 };
 
 const Menu = ({ pages }: MenuProps) => {
@@ -33,7 +33,7 @@ const Menu = ({ pages }: MenuProps) => {
 				<h1 className='text-2xl font-bold'>{mockUser.name}</h1>
 			</div>
 			<ul className='p-4 rounded-md grid grid-cols-2'>
-				{pages.map((page) => (
+				{pages?.map((page) => (
 					<MenuItem key={page.id} page={page} />
 				))}
 			</ul>
