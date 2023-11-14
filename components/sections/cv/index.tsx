@@ -19,7 +19,7 @@ const Cv = () => {
                 bg-red-600 hover:scale-105
                 transition duration-300 ease-in-out'
 				>
-					Export PDF
+					<span className='font-bold'>Export PDF</span>
 				</button>
 				<iframe src={pdfUrl} width={'100%'} height='100%' style={{ border: 'none' }} className='h-full w-full'></iframe>
 			</div>
