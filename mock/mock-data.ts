@@ -9,8 +9,8 @@ export const mockUser: User = {
 	languages: ['English', 'Spanish'],
 	typingAnimationText: ['Fullstack Developer.', 'Programmer Analyst.'],
 	about: `I'm a software engineer with +6 years of experience in web development.
-	I'm passionate about building software that solves real-world problems.
-	I worked end to end projects for start-ups and big companies.`,
+	I'm passionate about building software that helps people and makes their lives easier.
+	If you want to build your dream project, I'm the right person for you.`,
 	contact: {
 		email: 'bernhard.silva@gmail.com',
 		phone: '56946143198',
@@ -142,28 +142,23 @@ export const mockUser: User = {
 		},
 		{
 			_id: '219',
+			name: 'Firestore',
+			icon: 'vscode-icons:file-type-firestore'
+		},
+		{
+			_id: '220',
 			name: 'Java',
 			icon: 'logos:java'
 		},
 		{
-			_id: '220',
-			name: 'SQLServer',
-			icon: 'simple-icons:microsoftsqlserver'
-		},
-		{
 			_id: '221',
-			name: 'Vercel',
-			icon: 'logos:vercel-icon'
+			name: 'SpringBoot',
+			icon: 'devicon:spring'
 		},
 		{
 			_id: '222',
-			name: 'SQLServer',
-			icon: 'simple-icons:microsoftsqlserver'
-		},
-		{
-			_id: '223',
-			name: 'Firestore',
-			icon: 'vscode-icons:file-type-firestore'
+			name: 'Vercel',
+			icon: 'logos:vercel-icon'
 		},
 		{
 			_id: '224',

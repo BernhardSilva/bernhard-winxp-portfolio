@@ -8,7 +8,7 @@ const Intro = () => {
 	return (
 		<div className='grid place-items-center h-full'>
 			<SocialMediaButton social={mockUser.contact.socialMedia} />
-			<div className='mt-5'>
+			<div className='mt-5 pb-5'>
 				<Presentation user={mockUser} />
 				<Profile profile={mockUser} />
 				<Skills skills={mockUser.skills} />
