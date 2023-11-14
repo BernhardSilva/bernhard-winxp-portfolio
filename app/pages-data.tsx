@@ -24,7 +24,7 @@ export const pagesData: Page[] = [
 		name: 'Portfolio',
 		component: <Portfolio />,
 		icon: 'game-icons:skills',
-		color: 'text-slate-800 dark:text-slate-300'
+		color: 'text-green-600'
 	},
 	{
 		id: 'projects',

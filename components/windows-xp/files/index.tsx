@@ -77,7 +77,7 @@ const Files = () => {
 			element: 'secret-password',
 			text: 'Top Secret',
 			icon: 'ph:notepad-bold',
-			color: 'text-slate-800 dark:text-slate-200',
+			color: 'text-yellow-600',
 			size: 50,
 			initialPosition: { x: 20, y: 120 },
 			onOpen: () => openFile()

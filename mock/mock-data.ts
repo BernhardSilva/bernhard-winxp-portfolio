@@ -257,7 +257,7 @@ export const mockProjects: Project[] = [
 		_id: '101',
 		title: 'Portfolio Website',
 		description:
-			'Developed my personal portfolio website to showcase my projects and skills. Developed my personal portfolio website to showcase my projects and skills. Developed my personal portfolio website to showcase my projects and skills.',
+			'Developed my personal portfolio website to showcase my projects and skills.Developed my personal portfolio website to showcase my projects and skills. Developed my personal portfolio website to showcase my projects and skills.',
 		image: {
 			thumbnail: '/images/portfolio/e-cms.webp',
 			modalImage: '/images/portfolio/e-cms-modal.webp'
