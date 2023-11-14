@@ -1,3 +1,5 @@
+import LinkButton from '@/components/buttons/link-button';
+import Tooltip from '@/components/ui/tooltip';
 import WindowsCloseButton from '@/components/windows-xp/buttons/windows-close-button';
 import { Project } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
@@ -7,7 +9,7 @@ import React from 'react';
 type ProjectModalProps = {
 	isModalOpen: boolean;
 	closeModal: () => void;
-	selectedProject: Project | undefined;
+	selectedProject: Project | null;
 };
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, selectedProject }) => {
@@ -19,7 +21,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 					onClick={closeModal} // Close modal when clicking outside
 				>
 					<div
-						className='relative rounded-md max-w-2xl min-w-md min-h-[400px] max-h-[80%]'
+						className='relative rounded-md max-w-2xl min-w-md min-h-[400px]'
 						onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from bubbling up
 					>
 						<WindowsCloseButton closeHandler={closeModal} className='absolute top-3 right-3' />
@@ -31,22 +33,36 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 								width={500}
 								height={300}
 							/>
-							<div className='bg-slate-100 dark:bg-slate-900 p-2 rounded-md mt-3'>
+							<div className='bg-slate-100 dark:bg-slate-800 p-2 rounded-md mt-3'>
 								<h3 className='text-lg mt-2'>{selectedProject?.title}</h3>
-								<p className='text-sm'>{selectedProject?.description}</p>
+								<p className='text-sm py-3'>{selectedProject?.description}</p>
 								<div className='flex flex-wrap justify-center gap-2 my-2'>
 									{selectedProject?.skills.map((item) => (
-										<Icon key={item._id} icon={item.icon} width={30} height={30} className='hover:scale-105' />
+										<Tooltip text={item.name} key={item._id}>
+											<Icon icon={item.icon} width={30} height={30} className='hover:scale-105' />
+										</Tooltip>
 									))}
 								</div>
 							</div>
-							<div className='flex space-x-2 mt-3 justify-center'>
-								<button className='px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition duration-300 hover:scale-105 text-white'>
-									Live Code
-								</button>
-								<button className='px-3 py-2 rounded-md bg-gray-800 hover:bg-gray-500 transition duration-300 hover:scale-105 text-white'>
-									Github Code
-								</button>
+							<div className='flex flex-wrap gap-2 mt-3 justify-center'>
+								{selectedProject.liveLinks?.map((link, index) => (
+									<LinkButton
+										key={index}
+										text={`${index === 0 ? 'Client' : selectedProject._id === '101' ? 'CMS' : 'Server'}`}
+										color='bg-blue-600 hover:bg-blue-500'
+										link={selectedProject.liveLinks ? link : ''}
+										icon='zondicons:play-outline'
+									/>
+								))}
+								{selectedProject.repoLinks?.map((link, index) => (
+									<LinkButton
+									key={index}
+									text={`${index === 0 ? 'Client' : selectedProject._id === '101' ? 'CMS' : 'Server'}`}
+									color='bg-gray-800 hover:bg-gray-500'
+									link={selectedProject.liveLinks ? link : ''}
+									icon='mdi:github'
+								/>
+								))}
 							</div>
 						</div>
 					</div>

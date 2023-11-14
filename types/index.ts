@@ -73,7 +73,8 @@ export type Education = {
 	degree?: string;
 	gpa?: string;
 	major?: string;
-	endDate: string;
+	startDate?: string;
+	endDate?: string;
 	description: string;
 };
 
@@ -82,14 +83,15 @@ export type WorkExperience = {
 	date: string;
 	company: string;
 	description: string;
+	skills: string[];
 };
 
 export type Project = {
 	_id: string;
 	title: string;
 	description: string;
-	liveUrl?: string;
-	repoUrl?: string;
+	liveLinks?: string[];
+	repoLinks?: string[];
 	image: Image;
 	skills: Skill[];
 	tags: string[];

@@ -17,8 +17,8 @@ const Windows = () => {
 	const { isMobile } = useWindowsStore((state) => state);
 
 	useEffect(() => {
-		const mobilePages = ['tictactoe', 'paint', 'secret', 'secret-password'];
-		const filteredMobilePages = pages.filter((page) => !mobilePages.includes(page.id));
+		const desktopPages = ['tictactoe', 'paint', 'secret', 'secret-password'];
+		const filteredMobilePages = pages.filter((page) => !desktopPages.includes(page.id));
 
 		isMobile ? setFilteredPages(filteredMobilePages) : setFilteredPages(pages);
 	}, [isMobile, pages]);

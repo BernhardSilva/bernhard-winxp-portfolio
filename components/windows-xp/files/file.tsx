@@ -10,7 +10,7 @@ type File = {
 	className?: string;
 	size?: number;
 	initialPosition: { x: number; y: number };
-	onOpen: () => void | undefined;
+	onOpen: any
 };
 
 type DesktopFileProps = {

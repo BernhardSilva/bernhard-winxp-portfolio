@@ -1,3 +1,4 @@
+import Tooltip from '@/components/ui/tooltip';
 import { Project } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React from 'react';
@@ -25,9 +26,10 @@ const ProjectSkillFilter = ({ projects, selectedSkill, handleSkillClick }: Props
 							}`}
 						>
 							{matchingSkill && (
-								<div className='flex place-items-center'>
-									<Icon icon={matchingSkill.icon} className='mr-1' width={30} height={30} />
-									<span className='hidden md:inline'>{skillName}</span>
+								<div className='flex flex-wrap place-items-center'>
+									<Tooltip text={skillName}>
+										<Icon icon={matchingSkill.icon} className='mr-1' width={30} height={30} />
+									</Tooltip>
 								</div>
 							)}
 						</button>

@@ -1,10 +1,12 @@
 import { WorkExperience } from '@/types';
+import WorkExperienceSkills from './skills';
 
 type WorkExperienceProps = {
 	workExperience: WorkExperience[];
 };
 
 const WorkExperience = ({ workExperience }: WorkExperienceProps) => {
+
 	return (
 		<>
 			{workExperience.map((work, index) => (
@@ -16,6 +18,7 @@ const WorkExperience = ({ workExperience }: WorkExperienceProps) => {
 					<p className='text-gray-400'>{work.date}</p>
 					<p>{work.company}</p>
 					<p className='text-sm mt-2'>{work.description}</p>
+					<WorkExperienceSkills skills={work.skills} />
 				</div>
 			))}
 		</>

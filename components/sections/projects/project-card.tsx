@@ -22,7 +22,7 @@ const ProjectCard = ({ handleProjectClick, project }: ProjectProps) => {
 				height={300}
 			/>
 			<h3 className='text-lg font-bold'>{project.title}</h3>
-			<p className='text-sm text-gray-400'>{project.description}</p>
+			<p className='text-sm text-gray-400'>{project.tags.join(" - ")}</p>
 		</div>
 	);
 };

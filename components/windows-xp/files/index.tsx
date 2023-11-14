@@ -3,15 +3,6 @@ import { useTheme } from '@/hooks/useTheme';
 import { usePageStore } from '@/stores/page-store';
 import File from './file';
 
-type CustomFunctionMap = {
-	[key: string]: (() => void) | undefined;
-	portfolio: () => void;
-	projects: () => void;
-	contact: () => void;
-	intro: () => void;
-	services: () => void;
-};
-
 const Files = () => {
 	const { openPage, addNewPage, pages } = usePageStore();
 	const { theme, toggleTheme } = useTheme();
@@ -21,34 +12,13 @@ const Files = () => {
 		}
 		openPage('secret-password');
 	};
-	const ids = ['portfolio', 'projects', 'contact', 'intro', 'services'];
-
-	const openPorfolio = () => {
-		openPage('portfolio');
-	};
-	const openContact = () => {
-		openPage('contact');
-	};
-	const openIntro = () => {
-		openPage('intro');
-	};
-	const openServices = () => {
-		openPage('services');
-	};
-	const openProjects = () => {
-		openPage('projects');
-	};
+	const ids = ['portfolio', 'projects', 'contact', 'intro', 'services', 'explorer', 'cv'];
 
 	const themeToggle = () => {
 		toggleTheme();
 	};
-
-	const customFunctions: CustomFunctionMap = {
-		portfolio: () => openPorfolio(),
-		projects: () => openProjects(),
-		contact: () => openContact(),
-		intro: () => openIntro(),
-		services: () => openServices()
+	const openById = (id: string) => {
+		openPage(id);
 	};
 
 	const newPagesData = pages
@@ -59,8 +29,8 @@ const Files = () => {
 			icon: page.icon,
 			color: page.color,
 			size: 50,
-			initialPosition: { x: 20, y: (index + 2) * 100 + 22 },
-			onOpen: customFunctions[page.id] || (() => {})
+			initialPosition: { x: 20, y: index * 100 + 20 },
+			onOpen: () => openById(page.id)
 		}));
 
 	const fileList = [
@@ -68,18 +38,18 @@ const Files = () => {
 			element: 'themeToggle',
 			text: 'Light/Dark',
 			icon: theme === 'dark' ? 'fa-solid:moon' : 'fa-solid:sun',
-			className: theme === 'dark' ? 'text-blue-200' : 'text-yellow-500',
+			className: theme === 'dark' ? 'text-blue-300' : 'text-yellow-500',
 			size: 50,
-			initialPosition: { x: 20, y: 20 },
+			initialPosition: { x: 150, y: 20 },
 			onOpen: () => themeToggle()
 		},
 		{
 			element: 'secret-password',
 			text: 'Top Secret',
 			icon: 'ph:notepad-bold',
-			color: 'text-yellow-600',
+			color: pages.find((page) => page.id === 'secret-password')?.color,
 			size: 50,
-			initialPosition: { x: 20, y: 120 },
+			initialPosition: { x: 150, y: 120 },
 			onOpen: () => openFile()
 		},
 		...newPagesData

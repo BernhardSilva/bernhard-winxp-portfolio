@@ -1,4 +1,5 @@
 import Contact from '@/components/sections/contact';
+import Cv from '@/components/sections/cv';
 import Explorer from '@/components/sections/explorer';
 import Intro from '@/components/sections/intro';
 import Notepad from '@/components/sections/notepad';
@@ -24,7 +25,7 @@ export const pagesData: Page[] = [
 		name: 'Portfolio',
 		component: <Portfolio />,
 		icon: 'game-icons:skills',
-		color: 'text-green-600'
+		color: 'text-pink-800'
 	},
 	{
 		id: 'projects',
@@ -44,8 +45,15 @@ export const pagesData: Page[] = [
 		id: 'contact',
 		name: 'Contact',
 		component: <Contact />,
-		color: 'text-red-400',
+		color: 'text-green-500',
 		icon: 'fa:mobile'
+	},
+	{
+		id: 'cv',
+		name: 'CV',
+		component: <Cv />,
+		color: 'text-red-600',
+		icon: 'teenyicons:pdf-solid'
 	},
 	{
 		id: 'notepad',
@@ -87,8 +95,8 @@ export const secretPage: PageState = {
 	id: 'secret',
 	name: 'Secret Page',
 	component: <SecretPage />,
-	icon: 'game-icons:skills',
-	color: 'text-green-500',
+	icon: 'eos-icons:secret',
+	color: 'text-black dark:text-white',
 	isOpen: true,
 	isMinimized: false
 };
@@ -97,7 +105,7 @@ export const passwordPage: PageState = {
 	id: 'secret-password',
 	name: 'Top Secret',
 	component: <Notepad textMessage='Press ⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️🅱️🅰️ to activate my secret password 🤫.' />,
-	color: 'text-slate-800 dark:text-slate-200',
+	color: 'text-white',
 	icon: 'ph:notepad-bold',
 	isOpen: true,
 	isMinimized: false,

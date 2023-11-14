@@ -34,6 +34,7 @@ const Menu = ({ pages }: MenuProps) => {
 			</div>
 			<ul className='p-4 rounded-md grid grid-cols-2'>
 				{pages?.map((page) => (
+					!page.isNewPage &&
 					<MenuItem key={page.id} page={page} />
 				))}
 			</ul>
