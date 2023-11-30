@@ -7,10 +7,15 @@ import { useEffect, useMemo } from 'react';
 const Home = () => {
 	const { width } = useWindowDimensions();
 	const { setIsMobile } = useWindowsStore((state) => state);
-	const isMobile = useMemo(() => width <= 380, [width]);
 	useEffect(() => {
-		setIsMobile(isMobile);
-	}, [isMobile, setIsMobile]);
+		if (width <= 380) {
+			console.log('ismob');
+			setIsMobile(true);
+		} else {
+			console.log('is not mob');
+			setIsMobile(false);
+		}
+	}, [width, setIsMobile]);
 
 	return <Windows />;
 };

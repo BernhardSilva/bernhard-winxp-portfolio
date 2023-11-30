@@ -5,12 +5,15 @@ import ProjectGallery from './project-gallery';
 import ProjectModal from './project-modal';
 import ProejctSearch from './project-search';
 import ProjectSkillFilter from './project-skill-filter';
+import { useWindowsStore } from '@/stores/windows-store';
 
 const Projects = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [selectedProject, setSelectedProject] = useState<Project>(mockProjects[0]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedSkill, setSelectedSkill] = useState('');
+
+	const { isMobile } = useWindowsStore((state) => state);
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value);
@@ -51,7 +54,10 @@ const Projects = () => {
 		<div className='flex flex-col items-center h-full mt-5'>
 			{isModalOpen && <div className='z-10' onClick={closeModal} />}
 			<ProejctSearch handleSearch={handleSearch} />
-			<ProjectSkillFilter selectedSkill={selectedSkill} projects={mockProjects} handleSkillClick={handleSkillClick} />
+			{!isMobile && (
+				<ProjectSkillFilter selectedSkill={selectedSkill} projects={mockProjects} handleSkillClick={handleSkillClick} />
+			)}
+
 			<ProjectGallery projects={filteredProjects} handleProjectClick={handleProjectClick} />
 			<ProjectModal isModalOpen={isModalOpen} selectedProject={selectedProject} closeModal={closeModal} />
 		</div>
