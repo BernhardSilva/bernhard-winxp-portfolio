@@ -101,10 +101,6 @@ body {
 	width: 17px;
 }
 
-::-webkit-scrollbar-corner {
-	background: var(--button-face);
-}
-
 ::-webkit-scrollbar-track {
 	background-image: url('./svg/scroll-background.svg');
 }

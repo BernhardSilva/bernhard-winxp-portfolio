@@ -27,7 +27,7 @@ const Tooltip = ({ children, text }: Props) => {
 
 				<div
 					className={`absolute bottom-full mb-2 w-32 px-2 text-center py-2 
-					text-gray-800 bg-slate-200 dark:bg-slate-900  dark:text-white rounded-md
+				  bg-slate-950 text-white rounded-md
 					transform transition-all duration-300 ease-in-out pointer-events-none
     				${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'}`}
 				>

@@ -12,9 +12,13 @@ import { useEffect, useState } from 'react';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
-	const { pages, addNewPage } = usePageStore((state) => state);
-	const [filteredPages, setFilteredPages] = useState<PageState[]>();
+	const { pages, addNewPage, setActivePageId, openPage } = usePageStore((state) => state);
+	const [filteredPages, setFilteredPages] = useState<PageState[]>([]);
 	const { isMobile } = useWindowsStore((state) => state);
+
+	useEffect(() => {
+		openPage('intro');
+	}, [setActivePageId, openPage]);
 
 	useEffect(() => {
 		const desktopPages = ['tictactoe', 'paint', 'secret', 'secret-password'];
@@ -27,7 +31,7 @@ const Windows = () => {
 		<>
 			<Desktop>
 				{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}
-				<Files />
+				{!isMobile && <Files />}
 				<WindowsPages pages={filteredPages} />
 			</Desktop>
 			<TaskBar pages={filteredPages} />

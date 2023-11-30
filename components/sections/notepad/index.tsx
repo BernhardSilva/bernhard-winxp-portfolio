@@ -36,7 +36,7 @@ const Notepad = ({ textMessage }: NodePadProps) => {
 
 	return (
 		<div className='h-full'>
-			<div className='flex justify-between flex-wrap gap-2 place-items-center mb-1'>
+			<div className='flex justify-between flex-wrap gap-2 place-items-center mb-2'>
 				<div className='flex gap-2 flex-wrap'>
 					<div>
 						<label className='mr-3'>Font Style:</label>

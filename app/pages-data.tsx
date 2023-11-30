@@ -1,10 +1,10 @@
 import Contact from '@/components/sections/contact';
 import Cv from '@/components/sections/cv';
+import Experience from '@/components/sections/experience';
 import Explorer from '@/components/sections/explorer';
 import Intro from '@/components/sections/intro';
 import Notepad from '@/components/sections/notepad';
 import Paint from '@/components/sections/paint';
-import Portfolio from '@/components/sections/portfolio';
 import Projects from '@/components/sections/projects';
 import SecretPage from '@/components/sections/secret';
 import Servicies from '@/components/sections/services';
@@ -21,11 +21,11 @@ export const pagesData: Page[] = [
 		color: 'text-blue-600'
 	},
 	{
-		id: 'portfolio',
-		name: 'Portfolio',
-		component: <Portfolio />,
+		id: 'experience',
+		name: 'Experience',
+		component: <Experience />,
 		icon: 'game-icons:skills',
-		color: 'text-pink-800'
+		color: 'text-pink-600'
 	},
 	{
 		id: 'projects',
@@ -46,7 +46,7 @@ export const pagesData: Page[] = [
 		name: 'Contact',
 		component: <Contact />,
 		color: 'text-green-500',
-		icon: 'fa:mobile'
+		icon: 'entypo:email'
 	},
 	{
 		id: 'cv',

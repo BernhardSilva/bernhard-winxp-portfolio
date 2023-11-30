@@ -11,7 +11,7 @@ type Props = {
 
 const ProjectSkillFilter = ({ projects, selectedSkill, handleSkillClick }: Props) => {
 	return (
-		<div className='mt-5 flex flex-wrap gap-2 space-x-2 justify-center'>
+		<div className='mt-5 flex flex-wrap gap-2 justify-center w-[80%]'>
 			{Array.from(new Set(projects.flatMap((project) => project.skills.map((skill) => skill.name)))).map(
 				(skillName, index) => {
 					// Find the first matching skill object for the current skill name

@@ -12,7 +12,7 @@ const Files = () => {
 		}
 		openPage('secret-password');
 	};
-	const ids = ['portfolio', 'projects', 'contact', 'intro', 'services', 'explorer', 'cv'];
+	const ids = ['experience', 'projects', 'contact', 'intro', 'services', 'explorer', 'cv'];
 
 	const themeToggle = () => {
 		toggleTheme();
@@ -38,7 +38,7 @@ const Files = () => {
 			element: 'themeToggle',
 			text: 'Light/Dark',
 			icon: theme === 'dark' ? 'fa-solid:moon' : 'fa-solid:sun',
-			className: theme === 'dark' ? 'text-blue-300' : 'text-yellow-500',
+			className: theme === 'dark' ? 'text-blue-100' : 'text-yellow-500',
 			size: 50,
 			initialPosition: { x: 150, y: 20 },
 			onOpen: () => themeToggle()

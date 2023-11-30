@@ -20,7 +20,7 @@ const SecretPage = () => {
 			</div>
 
 			<h1 className='my-10'>
-				<span className='p-2 bg-[#5050de] rounded-lg shadow-xl text-white'>Take a Look at my previous Portfolio 🫣</span>
+				<span className='p-2 bg-[#5050de] rounded-lg shadow-xl text-white'>Take a Look at my previous Portfolio 🤫</span>
 			</h1>
 			<div className='flex justify-center place-items-center'>
 				<WebView className='rounded-xl' src='https://bernhard.vercel.app/' width='90%' height='700px' />

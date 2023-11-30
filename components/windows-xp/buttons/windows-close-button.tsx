@@ -20,7 +20,7 @@ const WindowsCloseButton = ({ closeHandler, className, ...props }: WindowsCloseB
 			className={`w-5 h-5 bg-red-500 hover:bg-red-600 active:bg-red-700 border-[1px] border-white rounded text-white text-sm font-bold ${className}`}
 			{...props}
 		>
-			<Icon className='ml-[1.37px]' icon='ic:round-close' width={15} height={15} />
+			<Icon className='ml-[1.45px]' icon='ic:round-close' width={15} height={15} />
 		</button>
 	);
 };

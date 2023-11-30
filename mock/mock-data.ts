@@ -271,7 +271,7 @@ export const mockUser: User = {
 			company: 'Jaguartu · Self-employed',
 			description:
 				'Overseeing the basic management of the start-up well as contributing to IT solutions for the internal processes of each client.',
-			skills: ['1', '32', '19', '11', '29', '33', '27', '12', '11']
+			skills: ['1', '32', '19', '29', '33', '27', '12', '11']
 		},
 		{
 			title: 'Full Stack Developer',
@@ -279,7 +279,7 @@ export const mockUser: User = {
 			company: 'CATV Enterprises · Full-time',
 			description:
 				'I was responsible of the creation of the new IT department and providing solutions and improvements to the internal processes of the company. I worked as a Frontend and Backend developer in the Orion CATV project.',
-			skills: ['1', '32', '19', '11', '33', '27', '12', '11']
+			skills: ['1', '32', '19', '33', '27', '12', '11']
 		}
 	],
 	education: [
