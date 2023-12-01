@@ -8,7 +8,7 @@ const Desktop = ({ children }: DesktopProps) => {
 	return (
 		<div
 			id='desktop'
-			className='bg-gray-900 text-white relative h-full overflow-hidden'
+			className='bg-gray-900 text-white relative h-full flex-grow overflow-hidden'
 			style={{ backgroundImage: `url(${'/images/windows-xp/wallpaper-xp.jpg'})`, backgroundSize: 'cover',  }}
 		>
 			{children}

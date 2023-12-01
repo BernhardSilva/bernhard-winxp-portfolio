@@ -29,7 +29,7 @@ const MenuItem = ({ page }: MenuItemProps) => {
 			>
 				<div className={`flex justify-start place-items-center`}>
 					<Icon icon={page.icon} className={`mr-2 ${page?.color}`} />
-					<span className='text-lg'>{page?.name}</span>
+					<span className='text-lg font-semibold'>{page?.name}</span>
 				</div>
 			</li>
 		</div>
