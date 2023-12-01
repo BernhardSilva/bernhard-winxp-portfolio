@@ -9,7 +9,9 @@ const MenuItem = ({ page }: MenuItemProps) => {
 	const { openPage } = usePageStore((state) => state);
 
 	const handleClick = (id: string) => {
-		openPage(id);
+		if (!page.id) {
+			openPage(id);
+		}
 	};
 
 	return (
