@@ -172,7 +172,7 @@ export const mockUser: User = {
 			name: 'Vite',
 			icon: 'skill-icons:vite-light'
 		},
-		{ _id: '27', name: 'Git', icon: 'devicon:git' },
+		{ _id: '12315', name: 'Git', icon: 'devicon:git' },
 		{ _id: '28', name: 'Jira', icon: 'logos:jira' }
 	],
 	services: [

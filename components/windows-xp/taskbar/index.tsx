@@ -23,7 +23,7 @@ const TaskBar = ({ pages }: TaskBarProps) => {
 			<div className='flex items-center' ref={elementRef}>
 				<WindowsStartButton handleStartClick={handleStartClick} />
 
-				{isOpenClickOutside && <Menu pages={pages} />}
+				{isOpenClickOutside && <Menu pages={pages} setIsOpenClickOutside={setIsOpenClickOutside} />}
 
 				<div className='flex items-center space-x-1 ml-2'>
 					{pages

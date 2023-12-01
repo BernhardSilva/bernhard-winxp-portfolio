@@ -55,18 +55,15 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const handleMaximize = useCallback(() => setIsMaximized((prev) => !prev), []);
 
 	const handleClose = useCallback(() => {
-		if (!isMobile) {
-			setActivePreviousPage(page.id);
-		}
+		setActivePreviousPage(page.id);
+
 		closePage(page.id);
-	}, [page.id, closePage, setActivePreviousPage, isMobile]);
+	}, [page.id, closePage, setActivePreviousPage]);
 
 	const handleMinimize = useCallback(() => {
-		if (!isMobile) {
-			setActivePreviousPage(page.id);
-			toggleMinimizePage(page.id);
-		}
-	}, [page.id, toggleMinimizePage, setActivePreviousPage, isMobile]);
+		setActivePreviousPage(page.id);
+		toggleMinimizePage(page.id);
+	}, [page.id, toggleMinimizePage, setActivePreviousPage]);
 
 	const handleClick = (id: string) => {
 		openPage(id);

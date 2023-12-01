@@ -2,25 +2,23 @@
 import { secretPage } from '@/app/pages-data';
 import { useKonamiCode } from '@/hooks/useKonamiCode';
 import { PageState, usePageStore } from '@/stores/page-store';
+import { useWindowsStore } from '@/stores/windows-store';
+import { useEffect, useState } from 'react';
 import Desktop from './desktop';
 import Files from './files';
 import SecretWallpaper from './secret';
 import TaskBar from './taskbar';
 import WindowsPages from './window';
-import { useWindowsStore } from '@/stores/windows-store';
-import { useEffect, useState } from 'react';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
-	const { pages, addNewPage, setActivePageId, openPage, openedPages } = usePageStore((state) => state);
+	const { pages, addNewPage, openPage } = usePageStore((state) => state);
 	const [filteredPages, setFilteredPages] = useState<PageState[]>([]);
 	const { isMobile } = useWindowsStore((state) => state);
 
 	useEffect(() => {
-		if (openedPages.length === 0) {
-			openPage('intro');
-		}
-	}, [setActivePageId, openPage, openedPages]);
+		openPage('intro');
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		const desktopPages = ['tictactoe', 'paint', 'secret', 'secret-password'];

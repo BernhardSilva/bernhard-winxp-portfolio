@@ -4,15 +4,17 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 
 type MenuItemProps = {
 	page: PageState;
+	setIsOpenClickOutside: (isOpen: boolean) => void;
 };
 
-const MenuItem = ({ page }: MenuItemProps) => {
+const MenuItem = ({ page, setIsOpenClickOutside }: MenuItemProps) => {
 	const { openPage, closePage, openedPages } = usePageStore((state) => state);
 	const { isMobile } = useWindowsStore((state) => state);
 
 	const handleClick = (id: string) => {
 		openPage(id);
 		if (isMobile) {
+			setIsOpenClickOutside(false);
 			openedPages.forEach((pageId) => {
 				if (pageId !== id) {
 					closePage(pageId);
