@@ -1,9 +1,9 @@
-import MenuItem from './menu-item';
-import Image from 'next/image';
-import { mockUser } from '@/mock/mock-data';
-import { Icon } from '@iconify/react/dist/iconify.js';
 import { useTheme } from '@/hooks/useTheme';
+import { mockUser } from '@/mock/mock-data';
 import { PageState } from '@/stores/page-store';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import Image from 'next/image';
+import MenuItem from './menu-item';
 
 type MenuProps = {
 	pages: PageState[] | undefined;

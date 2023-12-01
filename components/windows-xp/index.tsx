@@ -12,13 +12,15 @@ import { useEffect, useState } from 'react';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
-	const { pages, addNewPage, setActivePageId, openPage } = usePageStore((state) => state);
+	const { pages, addNewPage, setActivePageId, openPage, openedPages } = usePageStore((state) => state);
 	const [filteredPages, setFilteredPages] = useState<PageState[]>([]);
 	const { isMobile } = useWindowsStore((state) => state);
 
 	useEffect(() => {
-		openPage('intro');
-	}, [setActivePageId, openPage]);
+		if (openedPages.length === 0) {
+			openPage('intro');
+		}
+	}, [setActivePageId, openPage, openedPages]);
 
 	useEffect(() => {
 		const desktopPages = ['tictactoe', 'paint', 'secret', 'secret-password'];
@@ -30,25 +32,25 @@ const Windows = () => {
 
 	const [windowHeight, setWindowHeight] = useState(0);
 
-  useEffect(() => {
-    // Function to update the height
-    const updateHeight = () => {
-      setWindowHeight(window.innerHeight);
-    }
+	useEffect(() => {
+		// Function to update the height
+		const updateHeight = () => {
+			setWindowHeight(window.innerHeight);
+		};
 
-    // Update the height when the component mounts
-    updateHeight();
+		// Update the height when the component mounts
+		updateHeight();
 
-    // Update the height whenever the window resizes
-    window.addEventListener('resize', updateHeight);
+		// Update the height whenever the window resizes
+		window.addEventListener('resize', updateHeight);
 
-    // Clean up event listener when the component unmounts
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, []);
+		// Clean up event listener when the component unmounts
+		return () => {
+			window.removeEventListener('resize', updateHeight);
+		};
+	}, []);
 	return (
-		<div className='relative flex flex-col' style={{ height: windowHeight }}>
+		<div className='relative flex flex-col' style={{ height: !windowHeight ? 'h-screen' : windowHeight }}>
 			<main className='flex-grow'>
 				<Desktop>
 					{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}

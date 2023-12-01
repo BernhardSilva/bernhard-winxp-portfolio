@@ -89,8 +89,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 			ref={resizableDiv}
 			className={`absolute flex flex-col bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${
 				activePageId !== page.id && 'brightness-50'
-			} ${page.isMinimized && 'hidden'}
-			transition ease-in-out duration-300`}
+			} ${page.isMinimized && 'hidden'}`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>
