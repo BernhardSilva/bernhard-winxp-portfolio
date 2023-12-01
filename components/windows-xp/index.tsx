@@ -29,14 +29,14 @@ const Windows = () => {
 	useKonamiCode(() => addNewPage(secretPage));
 	return (
 		<div className='flex flex-col h-screen'>
-			<main className='flex-grow overflow-auto'>
+			<main className='flex-grow'>
 				<Desktop>
 					{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}
 					{!isMobile && <Files />}
 					<WindowsPages pages={filteredPages} />
 				</Desktop>
 			</main>
-			<footer className='z-50'>
+			<footer>
 				<TaskBar pages={filteredPages} />
 			</footer>
 		</div>
