@@ -51,11 +51,14 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	};
 
 	const hanldeDoubleClick = useCallback(() => setIsMaximized((prev) => !prev), []);
+
 	const handleMaximize = useCallback(() => setIsMaximized((prev) => !prev), []);
+
 	const handleClose = useCallback(() => {
 		setActivePreviousPage(page.id);
 		closePage(page.id);
 	}, [page.id, closePage, setActivePreviousPage]);
+
 	const handleMinimize = useCallback(() => {
 		if (!isMobile) {
 			setActivePreviousPage(page.id);
