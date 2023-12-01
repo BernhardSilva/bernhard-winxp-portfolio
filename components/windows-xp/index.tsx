@@ -36,7 +36,7 @@ const Windows = () => {
 					<WindowsPages pages={filteredPages} />
 				</Desktop>
 			</main>
-			<footer className='h-[44px]'>
+			<footer className='h-[45px]'>
 				<TaskBar pages={filteredPages} />
 			</footer>
 		</div>

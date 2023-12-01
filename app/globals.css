@@ -80,9 +80,8 @@ body {
 		#003dd7
 	);
 	padding: 0px;
-	border-top: 1px solid #0831d9;
-	text-shadow: 1px 1px #0f1089;
-	height: 44px;
+	border-top: 1px solid #3051d4;
+	height: 45px;
 	display: flex;
 	place-items: 'center';
 	align-items: center;

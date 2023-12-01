@@ -19,7 +19,7 @@ const TaskBar = ({ pages }: TaskBarProps) => {
 	};
 
 	return (
-		<div className='fixed bottom-0 w-full p-1 flex items-center justify-between z-50 task-bar' ref={elementRef}>
+		<div className='absolute bottom-0 w-full p-1 flex items-center justify-between z-50 task-bar' ref={elementRef}>
 			<div className='flex items-center' ref={elementRef}>
 				<WindowsStartButton handleStartClick={handleStartClick} />
 

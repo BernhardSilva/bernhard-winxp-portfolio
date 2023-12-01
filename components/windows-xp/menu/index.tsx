@@ -33,10 +33,7 @@ const Menu = ({ pages }: MenuProps) => {
 				<h1 className='text-2xl font-bold'>{mockUser.name}</h1>
 			</div>
 			<ul className='p-4 rounded-md grid grid-cols-2'>
-				{pages?.map((page) => (
-					!page.isNewPage &&
-					<MenuItem key={page.id} page={page} />
-				))}
+				{pages?.map((page) => !page.isNewPage && <MenuItem key={page.id} page={page} />)}
 			</ul>
 			<div
 				className='px-10 py-5 text-white rounded-b-none border-t-2 border-blue-400
