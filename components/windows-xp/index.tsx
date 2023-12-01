@@ -30,23 +30,24 @@ const Windows = () => {
 
 	const [windowHeight, setWindowHeight] = useState(0);
 
-  useEffect(() => {
-    // Function to update the height
-    function updateHeight() {
-      setWindowHeight(window.innerHeight);
-    }
+	useEffect(() => {
+		// Function to update the height
+		const updateHeight = () => {
+			setWindowHeight(window.innerHeight);
+		};
 
-    // Update the height when the component mounts
-    updateHeight();
+		// Update the height when the component mounts
+		updateHeight();
 
-    // Update the height whenever the window resizes
-    window.addEventListener('resize', updateHeight);
+		// Update the height whenever the window resizes
+		window.addEventListener('resize', updateHeight);
 
-    // Clean up event listener when the component unmounts
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, []);
+		// Clean up event listener when the component unmounts
+		return () => {
+			window.removeEventListener('resize', updateHeight);
+		};
+	}, []);
+
 	return (
 		<div className='relative flex flex-col' style={{ height: windowHeight }}>
 			<main className='flex-grow'>
