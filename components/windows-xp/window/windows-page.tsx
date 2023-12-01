@@ -53,14 +53,14 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const childDimensions = useMemo(
 		() => ({
 			width: isMaximized ? `100%` : `${dimensions.width - 11}px`,
-			height: isMobile && isMaximized ? '87vh' : isMaximized ? `91vh` : `${dimensions.height - 45}px`
+			height: isMaximized ? `91vh` : `${dimensions.height - 45}px`
 		}),
-		[dimensions, isMaximized, isMobile]
+		[dimensions, isMaximized]
 	);
 
 	const childStyle = {
 		width: childDimensions.width,
-		height: childDimensions.height,
+		height: childDimensions.height
 	};
 
 	const hanldeDoubleClick = useCallback(() => setIsMaximized((prev) => !prev), []);
@@ -104,8 +104,12 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 						<h2 className='ml-2 font-bold'>{page.name}</h2>
 					</div>
 					<div className='flex gap-1'>
-						<WindowsMinimizeButton minimizeHandler={handleMinimize} />
-						<WindowsMaximizeButton maximizeHandler={handleMaximize} />
+						{!isMobile && (
+							<>
+								<WindowsMinimizeButton minimizeHandler={handleMinimize} />
+								<WindowsMaximizeButton maximizeHandler={handleMaximize} />
+							</>
+						)}
 						<WindowsCloseButton closeHandler={handleClose} />
 					</div>
 				</div>
