@@ -36,7 +36,7 @@ const Windows = () => {
 					<WindowsPages pages={filteredPages} />
 				</Desktop>
 			</main>
-			<footer className='flex-shrink-0'>
+			<footer className='z-50'>
 				<TaskBar pages={filteredPages} />
 			</footer>
 		</div>
