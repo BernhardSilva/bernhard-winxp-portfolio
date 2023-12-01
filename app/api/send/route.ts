@@ -4,13 +4,12 @@ import * as React from 'react';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const toEmail = process.env.RESEND_TO_EMAIL;
 const fromEmail = process.env.RESEND_FROM_EMAIL;
 
 export async function POST(request: Request) {
 	try {
 		const body = await request.json();
-		const { email, name, subject, message } = body;
+		const { email, name, subject, message, toEmail } = body;
 		if (!email || !name || !subject || !message || !toEmail || !fromEmail) {
 			return NextResponse.json({ error: 'Missing fields' });
 		}

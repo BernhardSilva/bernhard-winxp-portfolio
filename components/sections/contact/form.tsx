@@ -82,7 +82,7 @@ const ContactForm = ({ user }: Props) => {
 			toast.success('Email sent successfully!', {
 				style: { ...toastSuccessStyle }
 			});
-			setFormData(initialFormData);
+			setFormData({ ...initialFormData, toEmail: user.contact.email });
 			setErrors(initialFormData);
 			return;
 		}
