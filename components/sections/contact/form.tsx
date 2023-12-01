@@ -96,7 +96,7 @@ const ContactForm = ({ user }: Props) => {
 
 	return (
 		<div className='flex-inline opacity-95'>
-			<h2 className='text-4xl text-gray-800 dark:text-white bg-[#C8C8C8] dark:bg-slate-800 rounded-lg p-2 transition duration-500'>
+			<h2 className='text-3xl text-gray-800 dark:text-white bg-[#C8C8C8] dark:bg-slate-800 rounded-lg p-2 transition duration-500'>
 				Contact Me
 			</h2>
 			<div className='flex border-2 border-[#C8C8C8] dark:border-slate-700 items-center justify-center p-10 bg-[#dfdfdf] dark:bg-slate-800 rounded-md mt-5 transition duration-500'>

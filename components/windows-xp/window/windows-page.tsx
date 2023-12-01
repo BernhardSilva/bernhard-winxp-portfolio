@@ -40,7 +40,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		if (isMobile) {
 			setIsMaximized(true);
 		}
-	}, [isMobile, isMaximized]);
+	}, [isMobile]);
 
 	const windowStyle = {
 		left: isMaximized ? `0px` : `${dragging || draggingOut ? position.x : position.x + index * 20}px`,
@@ -57,8 +57,8 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const handleClose = useCallback(() => {
 		if (!isMobile) {
 			setActivePreviousPage(page.id);
-			closePage(page.id);
 		}
+		closePage(page.id);
 	}, [page.id, closePage, setActivePreviousPage, isMobile]);
 
 	const handleMinimize = useCallback(() => {
@@ -89,7 +89,8 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 			ref={resizableDiv}
 			className={`absolute flex flex-col bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${
 				activePageId !== page.id && 'brightness-50'
-			} ${page.isMinimized && 'hidden'}`}
+			} ${page.isMinimized && 'hidden'}
+			transition ease-in-out duration-300`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>
