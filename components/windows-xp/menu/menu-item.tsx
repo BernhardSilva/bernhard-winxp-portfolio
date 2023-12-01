@@ -1,4 +1,5 @@
 import { PageState, usePageStore } from '@/stores/page-store';
+import { useWindowsStore } from '@/stores/windows-store';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 type MenuItemProps = {
@@ -6,10 +7,18 @@ type MenuItemProps = {
 };
 
 const MenuItem = ({ page }: MenuItemProps) => {
-	const { openPage } = usePageStore((state) => state);
+	const { openPage, closePage, openedPages } = usePageStore((state) => state);
+	const { isMobile } = useWindowsStore((state) => state);
 
 	const handleClick = (id: string) => {
 		openPage(id);
+		if (isMobile) {
+			openedPages.forEach((pageId) => {
+				if (pageId !== id) {
+					closePage(pageId);
+				}
+			});
+		}
 	};
 
 	return (

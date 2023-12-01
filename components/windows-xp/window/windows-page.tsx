@@ -18,7 +18,7 @@ type WindowsPageProps = {
 
 const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const { openPage, closePage } = usePageStore();
-	const { toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore((state) => state);
+	const { setActivePageId, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore((state) => state);
 	const { isMobile } = useWindowsStore((state) => state);
 	const { width, height } = useWindowDimensions();
 	const hasMounted = useHasMounted();
@@ -73,6 +73,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const handleDrag = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (!isMaximized) {
 			onMouseDownDrag(e);
+			setActivePageId(page.id);
 		}
 	};
 
