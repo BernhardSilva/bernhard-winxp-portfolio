@@ -28,7 +28,7 @@ const Windows = () => {
 	}, [isMobile, pages]);
 	useKonamiCode(() => addNewPage(secretPage));
 	return (
-		<div className='flex flex-col h-screen'>
+		<div className='relative flex flex-col h-screen'>
 			<main className='flex-grow'>
 				<Desktop>
 					{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}

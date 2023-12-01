@@ -63,6 +63,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 
 	const handleClick = (id: string) => {
 		openPage(id);
+		setActivePageId(id);
 	};
 
 	const handleDrag = (e: React.MouseEvent<HTMLDivElement>) => {
