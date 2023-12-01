@@ -53,9 +53,9 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const childDimensions = useMemo(
 		() => ({
 			width: isMaximized ? `100%` : `${dimensions.width - 11}px`,
-			height: isMaximized ? `91vh` : `${dimensions.height - 45}px`
+			height: isMobile && isMaximized ? '87vh' : isMaximized ? `91vh` : `${dimensions.height - 45}px`
 		}),
-		[dimensions, isMaximized]
+		[dimensions, isMaximized, isMobile]
 	);
 
 	const childStyle = {
@@ -93,8 +93,9 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		<div
 			onClick={() => handleClick(page.id)}
 			ref={resizableDiv}
-			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window
-			${activePageId !== page.id && 'brightness-50'} ${page.isMinimized && 'hidden'}`}
+			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${activePageId !== page.id && 'brightness-50'} ${
+				page.isMinimized && 'hidden'
+			}`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>

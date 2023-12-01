@@ -2,20 +2,20 @@
 import Windows from '@/components/windows-xp';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { useWindowsStore } from '@/stores/windows-store';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 
 const Home = () => {
-	const { width } = useWindowDimensions();
+	const { width, height } = useWindowDimensions();
 	const { setIsMobile } = useWindowsStore((state) => state);
 	useEffect(() => {
-		if (width <= 380) {
+		if (width <= 380 && height < 930) {
 			console.log('ismob');
 			setIsMobile(true);
 		} else {
 			console.log('is not mob');
 			setIsMobile(false);
 		}
-	}, [width, setIsMobile]);
+	}, [width, height, setIsMobile]);
 
 	return <Windows />;
 };

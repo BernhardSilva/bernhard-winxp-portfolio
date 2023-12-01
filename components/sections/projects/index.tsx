@@ -3,7 +3,7 @@ import { Project } from '@/types';
 import { ChangeEvent, useMemo, useState } from 'react';
 import ProjectGallery from './project-gallery';
 import ProjectModal from './project-modal';
-import ProejctSearch from './project-search';
+import ProjectSearch from './project-search';
 import ProjectSkillFilter from './project-skill-filter';
 import { useWindowsStore } from '@/stores/windows-store';
 
@@ -53,7 +53,7 @@ const Projects = () => {
 	return (
 		<div className='flex flex-col items-center h-full mt-5'>
 			{isModalOpen && <div className='z-10' onClick={closeModal} />}
-			<ProejctSearch handleSearch={handleSearch} />
+			<ProjectSearch handleSearch={handleSearch} />
 			{!isMobile && (
 				<ProjectSkillFilter selectedSkill={selectedSkill} projects={mockProjects} handleSkillClick={handleSkillClick} />
 			)}

@@ -5,7 +5,7 @@ type Props = {
 	handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const ProejctSearch = ({ handleSearch }: Props) => {
+const ProjectSearch = ({ handleSearch }: Props) => {
 	return (
 		<div className='relative'>
 			<input
@@ -21,4 +21,4 @@ const ProejctSearch = ({ handleSearch }: Props) => {
 	);
 };
 
-export default ProejctSearch;
+export default ProjectSearch;

@@ -27,7 +27,6 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 	const onMouseDownDrag = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.button !== 0) return;
 		const target = e.target as HTMLElement;
-
 		// Check if the target has the 'element' class
 		const draggableElement = target.closest(`.${element}`);
 		if (!draggableElement) return;
@@ -37,7 +36,6 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 			x: e.clientX - box.left,
 			y: e.clientY - box.top
 		});
-
 		// Handle single/double click and dragging
 		setClickCount((prev) => prev + 1);
 		if (clickCount === 1) {
@@ -86,10 +84,12 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 	useEffect(() => {
 		document.addEventListener('mousemove', onMouseMove);
 		document.addEventListener('mouseup', onMouseUp);
+
 		return () => {
 			document.removeEventListener('mousemove', onMouseMove);
 			document.removeEventListener('mouseup', onMouseUp);
 		};
 	});
+
 	return { onMouseDownDrag, position, dragging, draggingOut };
 };
