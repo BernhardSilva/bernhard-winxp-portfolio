@@ -5,11 +5,11 @@ import { useHasMounted } from '@/hooks/useHasMounted';
 import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { PageState, usePageStore } from '@/stores/page-store';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useWindowsStore } from '@/stores/windows-store';
+import { useCallback, useEffect, useState } from 'react';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
 import WindowsMinimizeButton from '../buttons/windows-minimize-button';
-import { useWindowsStore } from '@/stores/windows-store';
 
 type WindowsPageProps = {
 	page: PageState;
@@ -46,21 +46,8 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		left: isMaximized ? `0px` : `${dragging || draggingOut ? position.x : position.x + index * 20}px`,
 		top: isMaximized ? `0px` : `${dragging || draggingOut ? position.y : position.y + index * 20}px`,
 		zIndex: activePageId === page.id ? 1 : 0,
-		width: isMaximized ? `100vw` : `${dimensions.width}px`,
-		height: isMaximized ? `96vh` : `${dimensions.height}px`
-	};
-
-	const childDimensions = useMemo(
-		() => ({
-			width: isMaximized ? `100%` : `${dimensions.width - 11}px`,
-			height: isMaximized ? `91vh` : `${dimensions.height - 45}px`
-		}),
-		[dimensions, isMaximized]
-	);
-
-	const childStyle = {
-		width: childDimensions.width,
-		height: childDimensions.height
+		width: isMaximized ? `100%` : `${dimensions.width}px`,
+		height: isMaximized ? `100%` : `${dimensions.height}px`
 	};
 
 	const hanldeDoubleClick = useCallback(() => setIsMaximized((prev) => !prev), []);
@@ -93,9 +80,9 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		<div
 			onClick={() => handleClick(page.id)}
 			ref={resizableDiv}
-			className={`absolute bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${activePageId !== page.id && 'brightness-50'} ${
-				page.isMinimized && 'hidden'
-			}`}
+			className={`absolute flex flex-col bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${
+				activePageId !== page.id && 'brightness-50'
+			} ${page.isMinimized && 'hidden'}`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>
@@ -114,8 +101,8 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 					</div>
 				</div>
 			</div>
-			<div className='m-2 bg-slate-100 dark:bg-slate-900 text-black dark:text-gray-100'>
-				<Section component={page.component} id={page.id} style={childStyle} />
+			<div className='relative bg-slate-100 m-2 dark:bg-slate-900 text-black dark:text-gray-100 flex-grow overflow-auto'>
+				<Section component={page.component} id={page.id} />
 			</div>
 			<DivSectionHandler
 				className='absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right'

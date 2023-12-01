@@ -7,12 +7,11 @@ import { useEffect } from 'react';
 const Home = () => {
 	const { width, height } = useWindowDimensions();
 	const { setIsMobile } = useWindowsStore((state) => state);
+
 	useEffect(() => {
 		if (width <= 380 && height < 930) {
-			console.log('ismob');
 			setIsMobile(true);
 		} else {
-			console.log('is not mob');
 			setIsMobile(false);
 		}
 	}, [width, height, setIsMobile]);

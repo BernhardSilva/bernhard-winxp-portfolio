@@ -6,15 +6,16 @@ type Props = {
 };
 
 const ProjectSearch = ({ handleSearch }: Props) => {
+	
 	return (
 		<div className='relative'>
 			<input
 				type='text'
-				placeholder='Search Projects'
-				className='px-3 py-2 rounded-md bg-white dark:bg-slate-700 text-black dark:text-white'
+				placeholder='Search...'
+				className='px-3 py-2 rounded-md bg-white dark:bg-slate-700 text-black dark:text-white w-[90%]'
 				onChange={handleSearch}
 			/>
-			<button className='absolute right-2 top-2.5'>
+			<button className='absolute right-6 top-2.5'>
 				<Icon icon='akar-icons:search' className='text-slate-500 dark:text-gray-200' />
 			</button>
 		</div>

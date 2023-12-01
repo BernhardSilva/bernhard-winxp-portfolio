@@ -28,14 +28,18 @@ const Windows = () => {
 	}, [isMobile, pages]);
 	useKonamiCode(() => addNewPage(secretPage));
 	return (
-		<>
-			<Desktop>
-				{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}
-				{!isMobile && <Files />}
-				<WindowsPages pages={filteredPages} />
-			</Desktop>
-			<TaskBar pages={filteredPages} />
-		</>
+		<div className='flex flex-col h-screen'>
+			<main className='flex-grow overflow-auto'>
+				<Desktop>
+					{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}
+					{!isMobile && <Files />}
+					<WindowsPages pages={filteredPages} />
+				</Desktop>
+			</main>
+			<footer>
+				<TaskBar pages={filteredPages} />
+			</footer>
+		</div>
 	);
 };
 
