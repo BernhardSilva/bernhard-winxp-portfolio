@@ -57,9 +57,11 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		closePage(page.id);
 	}, [page.id, closePage, setActivePreviousPage]);
 	const handleMinimize = useCallback(() => {
-		setActivePreviousPage(page.id);
-		toggleMinimizePage(page.id);
-	}, [page.id, toggleMinimizePage, setActivePreviousPage]);
+		if (!isMobile) {
+			setActivePreviousPage(page.id);
+			toggleMinimizePage(page.id);
+		}
+	}, [page.id, toggleMinimizePage, setActivePreviousPage, isMobile]);
 
 	const handleClick = (id: string) => {
 		openPage(id);
