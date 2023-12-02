@@ -1,16 +1,17 @@
 import { passwordPage } from '@/app/pages-data';
 import { useTheme } from '@/hooks/useTheme';
-import { usePageStore } from '@/stores/page-store';
+import { PageState, usePageStore } from '@/stores/page-store';
 import File from './file';
 
 const Files = () => {
-	const { openPage, addNewPage, pages } = usePageStore();
+	const { openPage, addNewPage, pages, toggleMinimizePage } = usePageStore();
 	const { theme, toggleTheme } = useTheme();
-	const openFile = () => {
+	const openFile = (page: PageState) => {
 		if (!pages.some((page) => page.id === 'secret-password')) {
 			addNewPage(passwordPage);
 		}
 		openPage('secret-password');
+		if (page.isMinimized) toggleMinimizePage(page.id);
 	};
 	const ids = ['experience', 'projects', 'contact', 'intro', 'services', 'explorer', 'cv'];
 
@@ -19,6 +20,11 @@ const Files = () => {
 	};
 	const openById = (id: string) => {
 		openPage(id);
+	};
+
+	const handleOpen = (page: PageState) => {
+		openById(page.id);
+		if (page.isMinimized) toggleMinimizePage(page.id);
 	};
 
 	const newPagesData = pages
@@ -30,7 +36,7 @@ const Files = () => {
 			color: page.color,
 			size: 50,
 			initialPosition: { x: 20, y: index * 100 + 20 },
-			onOpen: () => openById(page.id)
+			onOpen: () => handleOpen(page)
 		}));
 
 	const fileList = [
@@ -50,7 +56,7 @@ const Files = () => {
 			color: pages.find((page) => page.id === 'secret-password')?.color,
 			size: 50,
 			initialPosition: { x: 150, y: 120 },
-			onOpen: () => openFile()
+			onOpen: () => openFile(pages.find((page) => page.id === 'secret-password')!)
 		},
 		...newPagesData
 	];
