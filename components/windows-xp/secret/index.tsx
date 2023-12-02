@@ -36,7 +36,7 @@ const SecretWallpaper = () => {
 	}, [stars, comets]);
 
 	return (
-		<div className='min-h-screen bg-black text-white p-10 relative overflow-hidden'>
+		<div className='h-full bg-black text-white p-10 relative overflow-hidden'>
 			<div className='absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-900 to-transparent'></div>
 			{stars.map((star, index) => (
 				<div
