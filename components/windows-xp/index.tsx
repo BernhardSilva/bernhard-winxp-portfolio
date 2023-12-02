@@ -48,7 +48,7 @@ const Windows = () => {
 		};
 	}, []);
 	return (
-		<div className='relative flex flex-col' style={{ height: !windowHeight ? 'h-screen' : windowHeight }}>
+		<div className='relative flex flex-col h-screen' style={{ height: !windowHeight ? 'h-screen' : windowHeight }}>
 			<main className='flex-grow'>
 				<Desktop>
 					{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}

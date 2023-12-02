@@ -7,12 +7,12 @@ export function useWindowDimensions() {
 	});
 
 	useEffect(() => {
-		function handleResize() {
+		const handleResize = () => {
 			setDimensions({
 				width: window.innerWidth > 468 ? window.innerWidth / 2 : window.innerWidth / 1.5,
 				height: window.innerHeight / 2
 			});
-		}
+		};
 
 		window.addEventListener('resize', handleResize);
 		return () => {
