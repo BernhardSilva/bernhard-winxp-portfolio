@@ -1,12 +1,11 @@
-import { WorkExperience } from '@/types';
+import { WorkExperience as WorkExperienceType } from '@/types';
 import WorkExperienceSkills from './skills';
 
 type WorkExperienceProps = {
-	workExperience: WorkExperience[];
+	workExperience: WorkExperienceType[];
 };
 
 const WorkExperience = ({ workExperience }: WorkExperienceProps) => {
-
 	return (
 		<>
 			{workExperience.map((work, index) => (
