@@ -1,3 +1,4 @@
+import { useWindowsStore } from '@/stores/windows-store';
 import { useEffect, useState } from 'react';
 
 const speed = 200;
@@ -11,6 +12,8 @@ const TypingAnimation = ({ userText }: TypingAnimationProps) => {
 	const [index, setIndex] = useState(0);
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [loopNum, setLoopNum] = useState(0);
+
+	const { isMobile } = useWindowsStore();
 
 	useEffect(() => {
 		const typingSpeed = speed - Math.random() * 100;
@@ -38,7 +41,7 @@ const TypingAnimation = ({ userText }: TypingAnimationProps) => {
 
 	return (
 		<div className='flex items-center justify-center text-blue-500'>
-			<h1 className='text-5xl font-bold'>
+			<h1 className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold`}>
 				{text}
 				<span className='text-blue-500 blink'>|</span>
 			</h1>

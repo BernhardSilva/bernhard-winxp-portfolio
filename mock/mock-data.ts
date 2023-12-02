@@ -355,7 +355,7 @@ export const mockProjects: Project[] = [
 			modalImage: '/images/portfolio/va-modal.webp'
 		},
 		skills: [
-			{ _id: '1', name: 'JavaScript', icon: 'logos:javascript' },
+			{ _id: '1', name: 'Javascript', icon: 'logos:javascript' },
 			{ _id: '23', name: 'Java', icon: 'logos:java' },
 			{ _id: '21', name: 'SQLServer', icon: 'simple-icons:microsoftsqlserver' },
 			{ _id: '29', name: 'Git', icon: 'devicon:git' },
