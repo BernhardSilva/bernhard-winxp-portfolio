@@ -16,7 +16,7 @@ export const mockUser: User = {
 		phone: '56946143198',
 		location: 'Santiago, Chile',
 		website: 'https://portfolio.berspai.com',
-		cv: 'https://drive.google.com/file/d/1cIJzQWedKW6JJ6bnGM1xY-6AyOVjZ1Ew/view',
+		cv: 'https://drive.google.com/file/d/1aFPPkUDm0SmVpJfImn_081sc6Ee0Hpcu/view?usp=sharing',
 		socialMedia: [
 			{
 				name: 'LinkedIn',
