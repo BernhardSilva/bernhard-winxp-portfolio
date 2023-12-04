@@ -3,14 +3,16 @@ import { useCurrentTime } from '@/hooks/useCurrentTime';
 import { PageState } from '@/stores/page-store';
 import Menu from '../menu';
 import Clock from './clock';
-import Tab from './tab';
+import DropDownTabs from './dowpdown-tabs';
+import Tabs from './tabs';
 import WindowsStartButton from './windows-start-button';
 
 type TaskBarProps = {
 	pages: PageState[] | undefined;
 };
 
-const TaskBar = ({ pages }: TaskBarProps) => {
+const TaskBar = ({ pages = [] }: TaskBarProps) => {
+	const openedPages = pages.filter((page) => page.isOpen);
 	const currentTime = useCurrentTime();
 
 	const { elementRef, isOpenClickOutside, setIsOpenClickOutside } = useClickOutside(false);
@@ -26,11 +28,11 @@ const TaskBar = ({ pages }: TaskBarProps) => {
 				{isOpenClickOutside && <Menu pages={pages} setIsOpenClickOutside={setIsOpenClickOutside} />}
 
 				<div className='flex items-center space-x-1 ml-2'>
-					{pages
-						?.filter((page) => page.isOpen)
-						.map((page) => (
-							<Tab key={page.id} page={page} />
-						))}
+					{openedPages?.map((item) => item.isOpen).length > 3 ? (
+						<DropDownTabs pages={openedPages} />
+					) : (
+						<Tabs pages={openedPages} />
+					)}
 				</div>
 				<Clock className='absolute right-0 bottom-3' currentTime={currentTime} />
 			</div>
