@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const SecretWallpaper = () => {
+type Props = {
+	children: React.ReactNode;
+};
+
+const SecretWallpaper = ({ children }: Props) => {
 	const [stars, setStars] = useState(
 		Array.from({ length: 100 }, () => ({
 			top: Math.random() * 100,
@@ -36,7 +40,7 @@ const SecretWallpaper = () => {
 	}, [stars, comets]);
 
 	return (
-		<div className='h-full bg-black text-white p-10 relative overflow-hidden'>
+		<div className='bg-black text-white relative h-full flex-grow overflow-hidden'>
 			<div className='absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-900 to-transparent'></div>
 			{stars.map((star, index) => (
 				<div
@@ -64,6 +68,7 @@ const SecretWallpaper = () => {
 					}}
 				></div>
 			))}
+			{children}
 		</div>
 	);
 };

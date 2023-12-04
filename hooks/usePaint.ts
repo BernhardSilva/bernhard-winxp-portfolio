@@ -122,6 +122,8 @@ const usePaint = () => {
 
 	const clearCanvas = () => {
 		contextRef.current!.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
+		setPaths([]);
+
 	};
 
 	const undo = () => {

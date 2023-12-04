@@ -57,26 +57,34 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 		stopPropagationHandler(e);
 	};
 
-	const onMouseMove = (e: MouseEvent) => {
-		if (!dragging) return;
-
-		let newPosition = {
+	const calculateNewPosition = (e: MouseEvent, rel: { x: number; y: number }) => {
+		return {
 			x: e.clientX - rel.x,
 			y: e.clientY - rel.y
 		};
+	};
+
+	const validateWindowBounds = (pos: { x: number; y: number }, elementWidth?: number, elementHeight?: number) => {
+		const width = elementWidth || 100;
+		const height = elementHeight || 82;
+
+		return {
+			x: Math.max(0, Math.min(pos.x, window.innerWidth - width)),
+			y: Math.max(0, Math.min(pos.y, window.innerHeight - height - 40))
+		};
+	};
+
+	const onMouseMove = (e: MouseEvent) => {
+		if (!dragging) return;
+
+		const newPosition = calculateNewPosition(e, rel);
 
 		const elementWidth = elementRef?.current?.offsetWidth;
 		const elementHeight = elementRef?.current?.offsetHeight;
 
-		if (elementWidth && elementHeight) {
-			newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - elementWidth));
-			newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - elementHeight - 40));
-		} else {
-			newPosition.x = Math.max(0, Math.min(newPosition.x, window.innerWidth - 100));
-			newPosition.y = Math.max(0, Math.min(newPosition.y, window.innerHeight - 82 - 40));
-		}
+		const validPosition = validateWindowBounds(newPosition, elementWidth, elementHeight);
 
-		setPosition(newPosition);
+		setPosition(validPosition);
 		setDraggingOut(true);
 		stopPropagationHandler(e);
 	};

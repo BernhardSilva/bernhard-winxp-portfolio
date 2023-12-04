@@ -30,6 +30,13 @@ const Windows = () => {
 
 	const [windowHeight, setWindowHeight] = useState(0);
 
+	const contentComponents = (
+		<>
+			{!isMobile && <Files />}
+			<WindowsPages pages={filteredPages} />
+		</>
+	);
+
 	useEffect(() => {
 		// Function to update the height
 		const updateHeight = () => {
@@ -50,11 +57,11 @@ const Windows = () => {
 	return (
 		<div className='relative flex flex-col h-screen' style={{ height: !windowHeight ? 'h-screen' : windowHeight }}>
 			<main className='flex-grow'>
-				<Desktop>
-					{filteredPages?.some((page) => page.id === 'secret') && <SecretWallpaper />}
-					{!isMobile && <Files />}
-					<WindowsPages pages={filteredPages} />
-				</Desktop>
+				{pages?.some((page) => page.id === 'secret') ? (
+					<SecretWallpaper>{contentComponents}</SecretWallpaper>
+				) : (
+					<Desktop>{contentComponents}</Desktop>
+				)}
 			</main>
 			<footer className='h-[45px]'>
 				<TaskBar pages={filteredPages} />

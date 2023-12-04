@@ -9,8 +9,7 @@ type File = {
 	color?: any;
 	className?: string;
 	size?: number;
-	initialPosition: { x: number; y: number };
-	onOpen: any
+	onOpen: any;
 };
 
 type DesktopFileProps = {
@@ -18,10 +17,11 @@ type DesktopFileProps = {
 };
 
 const File = ({ file }: DesktopFileProps) => {
-	const fileRef = useRef<React.RefObject<HTMLDivElement> | null>(null);
+	const fileRef = useRef<any | null>(null);
+
 	const dragAndDropValues = {
 		element: file.element,
-		initialPosition: file.initialPosition,
+		initialPosition: { x: fileRef.current?.offsetLeft, y: fileRef.current?.offsetTop },
 		elementRef: fileRef.current
 	};
 	const { position, onMouseDownDrag } = useDragAndDrop(dragAndDropValues);
