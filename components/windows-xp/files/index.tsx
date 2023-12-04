@@ -11,7 +11,7 @@ const Files = () => {
 			addNewPage(passwordPage);
 		}
 		openPage('secret-password');
-		if (page.isMinimized) toggleMinimizePage(page.id);
+		if (page?.isMinimized) toggleMinimizePage(page.id);
 	};
 	const ids = ['experience', 'projects', 'contact', 'intro', 'services', 'explorer', 'cv'];
 

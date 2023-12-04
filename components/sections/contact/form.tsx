@@ -96,7 +96,7 @@ const ContactForm = ({ user }: Props) => {
 
 	return (
 		<div className='flex-inline opacity-95'>
-			<h2 className='text-3xl text-gray-800 dark:text-white bg-[#C8C8C8] dark:bg-slate-800 rounded-lg p-2 transition duration-500'>
+			<h2 className='text-3xl mt-10 text-gray-800 dark:text-white bg-[#C8C8C8] dark:bg-slate-800 rounded-lg p-2 transition duration-500'>
 				Contact Me
 			</h2>
 			<div className='flex border-2 border-[#C8C8C8] dark:border-slate-700 items-center justify-center p-10 bg-[#dfdfdf] dark:bg-slate-800 rounded-md mt-5 transition duration-500'>
@@ -139,7 +139,12 @@ const ContactForm = ({ user }: Props) => {
 							type='submit'
 							className='bg-slate-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:scale-105'
 						>
-							Send
+							<Icon
+								className='cursor-pointer transition duration-300 ease-in-out hover:scale-110'
+								icon='bi:send-fill'
+								width={25}
+								height={25}
+							/>
 						</button>
 						<a className='flex items-center gap-10' href={`https://wa.link/m7zcha`} target='_blank'>
 							<Icon
