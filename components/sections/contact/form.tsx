@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { FormEvent, useState } from 'react';
 import { Toaster, toast } from 'sonner';
 import { toastErrorStyle } from '@/helpers/toasts-style';
+import SocialMedia from '@/components/ui/social-media-buttons';
 
 type Props = {
 	user: User;
@@ -96,10 +97,11 @@ const ContactForm = ({ user }: Props) => {
 
 	return (
 		<div className='flex-inline opacity-95'>
-			<h2 className='text-3xl mt-10 text-gray-800 dark:text-white bg-[#C8C8C8] dark:bg-slate-800 rounded-lg p-2 transition duration-500'>
+			<SocialMedia social={user.contact.socialMedia} backgroundColor='bg-slate-100' />
+			<h2 className='text-3xl mt-5 text-gray-800 dark:text-white bg-[#C8C8C8] dark:bg-slate-800 rounded-lg p-2 transition duration-500'>
 				Contact Me
 			</h2>
-			<div className='flex border-2 border-[#C8C8C8] dark:border-slate-700 items-center justify-center p-10 bg-[#dfdfdf] dark:bg-slate-800 rounded-md mt-5 transition duration-500'>
+			<div className='flex border-2 border-[#C8C8C8] dark:border-slate-700 items-center justify-center p-8 bg-[#dfdfdf] dark:bg-slate-800 rounded-md mt-5 transition duration-500'>
 				<form onSubmit={handleSubmit} className='w-full max-w-md'>
 					{formFields.map((field, index) => (
 						<div key={index} className='mb-4'>

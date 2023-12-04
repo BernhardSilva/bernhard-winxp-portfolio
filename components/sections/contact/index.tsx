@@ -1,18 +1,16 @@
 import { mockUser } from '@/mock/mock-data';
 import ContactForm from './form';
-import SocialMedia from '@/components/ui/social-media-buttons';
 
 const Contact = () => {
 	return (
 		<div
-			className='h-full w-full text-white flex justify-center items-center place-items-center rounded-md dark:opacity-90'
+			className='relative h-full w-full text-white flex justify-center items-center place-items-center rounded-md dark:opacity-90'
 			style={{
 				backgroundImage: `url(${'/images/contact/contact-background.png'})`,
 				backgroundSize: 'cover',
 				backgroundPosition: 'center'
 			}}
 		>
-			<SocialMedia social={mockUser.contact.socialMedia} className='absolute top-2 left-2  rounded-lg p-1' backgroundColor='bg-slate-100'/>
 			<ContactForm user={mockUser} />
 		</div>
 	);
