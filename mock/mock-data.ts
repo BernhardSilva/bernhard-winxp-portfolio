@@ -1,6 +1,9 @@
 import { Certificate, Image, Project, Skill, Tag, User } from '@/types';
 
 // Mock data for User
+const email = process.env.NEXT_PUBLIC_EMAIL_ADDRESS!;
+const phone = process.env.NEXT_PUBLIC_EMAIL_ADDRESS!;
+
 export const mockUser: User = {
 	_id: '1',
 	name: 'Bernhard Silva',
@@ -12,11 +15,11 @@ export const mockUser: User = {
 	I'm passionate about building software that helps people and makes their lives easier.
 	If you want to build your dream project, I'm the right person for you.`,
 	contact: {
-		email: 'bernhard.silva@gmail.com',
-		phone: '56946143198',
+		email,
+		phone,
 		location: 'Santiago, Chile',
-		website: 'https://portfolio.berspai.com',
-		cv: 'https://drive.google.com/file/d/1aFPPkUDm0SmVpJfImn_081sc6Ee0Hpcu/view?usp=sharing',
+		website: 'https://bernhard-winxp.vercel.app',
+		cv: '/pdf/bernhard-silva-cv.pdf',
 		socialMedia: [
 			{
 				name: 'LinkedIn',
