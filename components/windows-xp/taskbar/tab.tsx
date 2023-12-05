@@ -31,13 +31,13 @@ const Tab = ({ page, className, nameClassName, iconClassName, ...props }: TabPro
 			onClick={() => handleClick(page.id)}
 			className={`bg-blue-500 hover:bg-blue-400
 			p-2 rounded-md shadow-lg hover:cursor-pointer
-			flex place-items-center gap-2 xl:min-w-[100px]
+			flex place-items-center gap-3
 			${page.id !== activePageId && 'bg-blue-600 hover:bg-blue-500'}
 			${className}`}
 			{...props}
 		>
 			<Icon icon={page.icon} height={20} width={20} className={iconClassName} />
-			<span className={nameClassName}>{page.name}</span>
+			<label className={nameClassName}>{page.name}</label>
 			<WindowsCloseButton closeHandler={closeHandler} />
 		</div>
 	);
