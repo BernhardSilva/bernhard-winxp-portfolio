@@ -38,8 +38,8 @@ const DropDownTabs = ({ pages }: Props) => {
 							aria-expanded='true'
 							onClick={() => setIsOpenClickOutside(!isOpenClickOutside)}
 						>
-							<Icon icon={selectedPage?.icon!} height={20} width={20} />
-							<span>{selectedPage?.name} ...</span>
+							<Icon icon={selectedPage?.icon ? selectedPage.icon : 'iconoir:select-window'} height={20} width={20} />
+							<label>{selectedPage?.name ? selectedPage.name : 'Select page'} ...</label>
 						</button>
 					</div>
 				)}

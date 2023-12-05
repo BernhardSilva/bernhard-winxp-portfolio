@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 export const useResize = (initialWidth: number, initialHeight: number) => {
 	// State to hold current dimensions
 	const [dimensions, setDimensions] = useState({ width: initialWidth, height: initialHeight });
+
 	// Ref to the resizable div
 	const resizableDiv = useRef<HTMLDivElement>(null);
 	// Ref to track which sides are being resized
@@ -76,6 +77,6 @@ export const useResize = (initialWidth: number, initialHeight: number) => {
 		};
 	}, [initialHeight, initialWidth]);
 
-	// Return necessary values for the component
+
 	return { handleMouseDown, resizableDiv, dimensions };
 };

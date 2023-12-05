@@ -8,7 +8,7 @@ type MenuItemProps = {
 };
 
 const MenuItem = ({ page, setIsOpenClickOutside }: MenuItemProps) => {
-	const { openPage, closePage, openedPages } = usePageStore((state) => state);
+	const { openPage, closePage, openedPages, toggleMinimizePage } = usePageStore((state) => state);
 	const { isMobile } = useWindowsStore((state) => state);
 
 	const handleClick = (id: string) => {
@@ -21,6 +21,7 @@ const MenuItem = ({ page, setIsOpenClickOutside }: MenuItemProps) => {
 				}
 			});
 		}
+		if (page.isMinimized) toggleMinimizePage(id);
 	};
 
 	return (

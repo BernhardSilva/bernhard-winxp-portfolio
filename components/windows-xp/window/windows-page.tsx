@@ -23,6 +23,7 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 	const { isMobile } = useWindowsStore((state) => state);
 	const { width, height } = useWindowDimensions();
 	const hasMounted = useHasMounted();
+	const [animation, setAnimation] = useState(false);
 
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
 
@@ -48,11 +49,14 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 		height: isMaximized ? `100%` : `${dimensions.height}px`
 	};
 
-	const hanldeDoubleClick = useCallback(() => setIsMaximized((prev) => !prev), []);
-
-	const handleMaximize = useCallback(() => setIsMaximized((prev) => !prev), []);
+	const handleMaximize = () => {
+		setAnimation(true);
+		setActivePageId(page.id);
+		setIsMaximized((prev) => !prev);
+	};
 
 	const handleClose = useCallback(() => {
+		setAnimation(false);
 		setActivePreviousPage(page.id);
 
 		if (isMobile) {
@@ -67,6 +71,7 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 	}, [page.id, closePage, setActivePreviousPage, isMobile, openedPages]);
 
 	const handleMinimize = useCallback(() => {
+		setAnimation(true);
 		setActivePreviousPage(page.id);
 		toggleMinimizePage(page.id);
 	}, [page.id, toggleMinimizePage, setActivePreviousPage]);
@@ -76,24 +81,31 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 	};
 
 	const handleDrag = (e: React.MouseEvent<HTMLDivElement>) => {
+		setAnimation(false);
 		if (!isMaximized) {
 			onMouseDownDrag(e);
 			setActivePageId(page.id);
 		}
 	};
 
+	const handleResize = (e: React.MouseEvent<HTMLDivElement>) => {
+		setAnimation(false);
+		handleMouseDown(e);
+	};
+
 	return hasMounted ? (
 		<div
 			onClick={() => handleClick(page.id)}
 			ref={resizableDiv}
-			className={`absolute flex flex-col bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${
-				activePageId !== page.id && 'brightness-50'
-			} ${page.isMinimized && 'hidden'} ${className}`}
+			className={`absolute flex flex-col bg-[#dfdfdf] rounded-t-xl shadow-2xl 
+			${animation && 'transition-all duration-500 ease-in-out'}
+			${page.isMinimized && animation ? 'transform scale-0 origin-bottom' : 'transform scale-100 origin-top'}
+			window ${activePageId !== page.id && 'brightness-50'} ${className}`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>
 				<div className='flex items-center justify-between'>
-					<div className='w-full cursor-grab drag-window' onMouseDown={handleDrag} onDoubleClick={hanldeDoubleClick}>
+					<div className='w-full cursor-grab drag-window' onMouseDown={handleDrag} onDoubleClick={handleMaximize}>
 						<h2 className='ml-2 font-bold'>{page.name}</h2>
 					</div>
 					<div className='flex gap-1'>
@@ -112,15 +124,15 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 			</div>
 			<DivSectionHandler
 				className='absolute right-0 top-0 bottom-0 w-2 cursor-ew-resize resize-right'
-				onMouseDown={handleMouseDown}
+				onMouseDown={handleResize}
 			/>
 			<DivSectionHandler
 				className='absolute left-0 bottom-0 right-0 h-2 cursor-ns-resize resize-bottom'
-				onMouseDown={handleMouseDown}
+				onMouseDown={handleResize}
 			/>
 			<DivSectionHandler
 				className='absolute bottom-0 right-0 h-2 w-2 cursor-nwse-resize resize-corner-right'
-				onMouseDown={handleMouseDown}
+				onMouseDown={handleResize}
 			/>
 		</div>
 	) : null;
