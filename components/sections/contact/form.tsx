@@ -1,7 +1,7 @@
 import { toastErrorStyle, toastSuccessStyle } from '@/helpers/toasts-style';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { FormEvent, useState } from 'react';
-import { Toaster, toast } from 'sonner';
+import { toast } from 'sonner';
 
 const ContactForm = () => {
 	const formFields = [
@@ -150,7 +150,6 @@ const ContactForm = () => {
 						</a>
 					</div>
 				</form>
-				<Toaster />
 			</div>
 		</div>
 	);

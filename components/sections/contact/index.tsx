@@ -1,4 +1,3 @@
-import { mockUser } from '@/mock/mock-data';
 import ContactForm from './form';
 
 const Contact = () => {
