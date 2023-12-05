@@ -20,8 +20,6 @@ export async function POST(request: Request) {
 			react: EmailTemplate({ firstName: name, email, subject, message }) as React.ReactElement
 		});
 
-		console.log(email, name, subject, message, data, error, toEmail, fromEmail);
-
 		if (error) {
 			return NextResponse.json({ error });
 		}

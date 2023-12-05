@@ -10,7 +10,6 @@ const Home = () => {
 
 	useEffect(() => {
 		if (width <= 375 && height <= 930) {
-			console.log(width, height);
 			setIsMobile(true);
 		} else {
 			setIsMobile(false);
