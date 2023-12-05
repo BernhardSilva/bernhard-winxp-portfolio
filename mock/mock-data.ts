@@ -1,8 +1,8 @@
 import { Certificate, Image, Project, Skill, Tag, User } from '@/types';
 
 // Mock data for User
-const email = process.env.NEXT_PUBLIC_EMAIL_ADDRESS!;
-const phone = process.env.NEXT_PUBLIC_EMAIL_ADDRESS!;
+const email = process.env.NEXT_TO_EMAIL_ADDRESS!;
+const phone = process.env.NEXT_PERSONAL_PHONE!;
 
 export const mockUser: User = {
 	_id: '1',
