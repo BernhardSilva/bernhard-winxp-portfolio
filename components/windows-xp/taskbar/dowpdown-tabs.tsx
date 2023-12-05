@@ -39,7 +39,7 @@ const DropDownTabs = ({ pages }: Props) => {
 							onClick={() => setIsOpenClickOutside(!isOpenClickOutside)}
 						>
 							<Icon icon={selectedPage?.icon ? selectedPage.icon : 'iconoir:select-window'} height={20} width={20} />
-							<label>{selectedPage?.name ? selectedPage.name : 'Select page'} ...</label>
+							<span>{selectedPage?.name ? selectedPage.name : 'Select page'} ...</span>
 						</button>
 					</div>
 				)}

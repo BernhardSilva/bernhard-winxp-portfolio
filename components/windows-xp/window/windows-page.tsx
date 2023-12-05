@@ -98,7 +98,7 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 			onClick={() => handleClick(page.id)}
 			ref={resizableDiv}
 			className={`absolute flex flex-col bg-[#dfdfdf] rounded-t-xl shadow-2xl 
-			${animation && 'transition-all duration-500 ease-in-out'}
+			${animation && 'transition-all duration-300 ease-in-out'}
 			${page.isMinimized && animation ? 'transform scale-0 origin-bottom' : 'transform scale-100 origin-top'}
 			window ${activePageId !== page.id && 'brightness-50'} ${className}`}
 			style={windowStyle}

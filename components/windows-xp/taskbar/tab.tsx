@@ -37,7 +37,7 @@ const Tab = ({ page, className, nameClassName, iconClassName, ...props }: TabPro
 			{...props}
 		>
 			<Icon icon={page.icon} height={20} width={20} className={iconClassName} />
-			<label className={nameClassName}>{page.name}</label>
+			<span className={nameClassName}>{page.name}</span>
 			<WindowsCloseButton closeHandler={closeHandler} />
 		</div>
 	);
