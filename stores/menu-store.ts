@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { useRef } from 'react';
 
 type MenuState = {
 	isOpenClickOutside: boolean;
