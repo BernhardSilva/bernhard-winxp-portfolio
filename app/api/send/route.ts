@@ -10,6 +10,9 @@ export async function POST(request: Request) {
 	try {
 		const body = await request.json();
 		const { email, name, subject, message, toEmail } = body;
+		
+		console.log(email, name, subject, message, toEmail);
+
 		if (!email || !name || !subject || !message || !toEmail || !fromEmail) {
 			return NextResponse.json({ error: 'Missing fields' });
 		}

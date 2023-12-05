@@ -1,10 +1,8 @@
-import { toastSuccessStyle } from '@/helpers/toasts-style';
+import { toastErrorStyle, toastSuccessStyle } from '@/helpers/toasts-style';
 import { User } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { FormEvent, useState } from 'react';
 import { Toaster, toast } from 'sonner';
-import { toastErrorStyle } from '@/helpers/toasts-style';
-import SocialMedia from '@/components/ui/social-media-buttons';
 
 type Props = {
 	user: User;
