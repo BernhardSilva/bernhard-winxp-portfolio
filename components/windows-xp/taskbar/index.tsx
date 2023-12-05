@@ -30,7 +30,8 @@ const TaskBar = ({ pages = [] }: TaskBarProps) => {
 				{isOpenClickOutside && <Menu pages={pages} setIsOpenClickOutside={setIsOpenClickOutside} />}
 
 				<div className='flex items-center space-x-1 ml-2'>
-					{openedPages?.map((item) => item.isOpen).length > 10 || isMobile ? (
+					{openedPages?.filter((page) => page.isOpen).length > 10 ||
+					(isMobile && openedPages?.filter((page) => page.isOpen).length > 1) ? (
 						<DropDownTabs pages={openedPages} />
 					) : (
 						<Tabs pages={openedPages} />

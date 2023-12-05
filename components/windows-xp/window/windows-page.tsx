@@ -37,9 +37,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const [isMaximized, setIsMaximized] = useState(false);
 
 	useEffect(() => {
-		if (isMobile) {
-			setIsMaximized(true);
-		}
+		setIsMaximized(isMobile);
 	}, [isMobile]);
 
 	const windowStyle = {
@@ -76,11 +74,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		}
 	};
 
-	if (!hasMounted) {
-		return null;
-	}
-
-	return (
+	return hasMounted ? (
 		<div
 			onClick={() => handleClick(page.id)}
 			ref={resizableDiv}
@@ -121,7 +115,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 				onMouseDown={handleMouseDown}
 			/>
 		</div>
-	);
+	) : null;
 };
 
 export default WindowsPage;

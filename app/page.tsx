@@ -9,7 +9,7 @@ const Home = () => {
 	const { setIsMobile } = useWindowsStore((state) => state);
 
 	useEffect(() => {
-		if (width <= 380 && height < 930) {
+		if (width <= 375 && height <= 930) {
 			setIsMobile(true);
 		} else {
 			setIsMobile(false);
