@@ -17,7 +17,8 @@ const Windows = () => {
 	const { isMobile } = useWindowsStore((state) => state);
 
 	useEffect(() => {
-		openPage('intro');
+		const pagesToOpen = ['contact', 'services', 'projects', 'experience', 'intro'];
+		pagesToOpen.forEach((page) => openPage(page));
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {

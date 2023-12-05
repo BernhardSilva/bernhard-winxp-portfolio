@@ -27,7 +27,6 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
 
 	const dragDropValues = {
-		pageIndex: index,
 		initialPosition: { x: 20 + index * 20, y: 20 + index * 20 },
 		elementRef: resizableDiv
 	};
