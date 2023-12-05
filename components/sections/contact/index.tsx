@@ -11,7 +11,7 @@ const Contact = () => {
 				backgroundPosition: 'center'
 			}}
 		>
-			<ContactForm user={mockUser} />
+			<ContactForm />
 		</div>
 	);
 };

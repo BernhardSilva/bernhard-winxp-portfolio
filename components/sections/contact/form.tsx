@@ -1,14 +1,9 @@
 import { toastErrorStyle, toastSuccessStyle } from '@/helpers/toasts-style';
-import { User } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { FormEvent, useState } from 'react';
 import { Toaster, toast } from 'sonner';
 
-type Props = {
-	user: User;
-};
-
-const ContactForm = ({ user }: Props) => {
+const ContactForm = () => {
 	const formFields = [
 		{
 			name: 'email',
@@ -81,7 +76,7 @@ const ContactForm = ({ user }: Props) => {
 			toast.success('Email sent successfully!', {
 				style: { ...toastSuccessStyle }
 			});
-			setFormData({ ...initialFormData, toEmail: user.contact.email });
+			setFormData({ ...initialFormData });
 			setErrors(initialFormData);
 			return;
 		}

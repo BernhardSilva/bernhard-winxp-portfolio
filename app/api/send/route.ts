@@ -5,12 +5,13 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromEmail = process.env.RESEND_FROM_EMAIL;
+const toEmail = process.env.NEXT_PUBLIC_TO_EMAIL_ADDRESS;
 
 export async function POST(request: Request) {
 	try {
 		const body = await request.json();
-		const { email, name, subject, message, toEmail } = body;
-		
+		const { email, name, subject, message } = body;
+
 		console.log(email, name, subject, message, toEmail);
 
 		if (!email || !name || !subject || !message || !toEmail || !fromEmail) {
