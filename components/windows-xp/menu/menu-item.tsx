@@ -8,14 +8,18 @@ type MenuItemProps = {
 };
 
 const MenuItem = ({ page, setIsOpenClickOutside }: MenuItemProps) => {
-	const { openPage, setActivePageId } = usePageStore((state) => state);
+	const { openPage, closePage, openedPages } = usePageStore((state) => state);
 	const { isMobile } = useWindowsStore((state) => state);
 
 	const handleClick = (id: string) => {
 		openPage(id);
-		setActivePageId(id);
 		if (isMobile) {
 			setIsOpenClickOutside(false);
+			openedPages.forEach((pageId) => {
+				if (pageId !== id) {
+					closePage(pageId);
+				}
+			});
 		}
 	};
 

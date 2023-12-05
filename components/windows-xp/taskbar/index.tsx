@@ -1,21 +1,25 @@
 import { useClickOutside } from '@/hooks/useClickOuside';
 import { useCurrentTime } from '@/hooks/useCurrentTime';
+import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { PageState } from '@/stores/page-store';
+import { useWindowsStore } from '@/stores/windows-store';
+import { useMemo } from 'react';
 import Menu from '../menu';
 import Clock from './clock';
 import DropDownTabs from './dowpdown-tabs';
 import Tabs from './tabs';
 import WindowsStartButton from './windows-start-button';
-import { useWindowsStore } from '@/stores/windows-store';
 
 type TaskBarProps = {
 	pages: PageState[] | undefined;
 };
 
 const TaskBar = ({ pages = [] }: TaskBarProps) => {
-	const openedPages = pages.filter((page) => page.isOpen);
+	const openedPages = useMemo(() => pages.filter((page) => page.isOpen), [pages]);
+
 	const currentTime = useCurrentTime();
 	const { isMobile } = useWindowsStore((state) => state);
+	const { width } = useWindowDimensions();
 
 	const { elementRef, isOpenClickOutside, setIsOpenClickOutside } = useClickOutside(false);
 	const handleStartClick = () => {
@@ -30,11 +34,10 @@ const TaskBar = ({ pages = [] }: TaskBarProps) => {
 				{isOpenClickOutside && <Menu pages={pages} setIsOpenClickOutside={setIsOpenClickOutside} />}
 
 				<div className='flex items-center space-x-1 ml-2'>
-					{(!isMobile && openedPages?.filter((page) => page.isOpen).length > 1) ||
-					(!isMobile && openedPages?.filter((page) => page.isOpen).length > 10) ? (
+					{width < 1700 && openedPages?.filter((page) => page.isOpen).length >= 11 ? (
 						<DropDownTabs pages={openedPages} />
 					) : (
-						!isMobile && <Tabs pages={openedPages} />
+						<Tabs pages={openedPages} className='md:flex hidden'/>
 					)}
 				</div>
 				<Clock className='absolute right-0 bottom-3' currentTime={currentTime} />

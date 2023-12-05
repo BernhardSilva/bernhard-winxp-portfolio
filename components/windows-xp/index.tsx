@@ -26,7 +26,7 @@ const Windows = () => {
 
 		isMobile ? setFilteredPages(filteredMobilePages) : setFilteredPages(pages);
 	}, [isMobile, pages]);
-	
+
 	useKonamiCode(() => addNewPage(secretPage));
 
 	const [windowHeight, setWindowHeight] = useState(0);

@@ -17,7 +17,7 @@ type WindowsPageProps = {
 };
 
 const WindowsPage = ({ page, index }: WindowsPageProps) => {
-	const { openPage, closePage } = usePageStore();
+	const { openPage, closePage, openedPages } = usePageStore();
 	const { setActivePageId, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore((state) => state);
 	const { isMobile } = useWindowsStore((state) => state);
 	const { width, height } = useWindowDimensions();
@@ -55,8 +55,16 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const handleClose = useCallback(() => {
 		setActivePreviousPage(page.id);
 
+		if (isMobile) {
+			openedPages.forEach((pageId) => {
+				if (pageId !== page.id) {
+					closePage(pageId);
+				}
+			});
+		}
+
 		closePage(page.id);
-	}, [page.id, closePage, setActivePreviousPage]);
+	}, [page.id, closePage, setActivePreviousPage, isMobile, openedPages]);
 
 	const handleMinimize = useCallback(() => {
 		setActivePreviousPage(page.id);
