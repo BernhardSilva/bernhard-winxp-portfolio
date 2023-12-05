@@ -6,12 +6,11 @@ type Pos = {
 };
 
 type UseDragAndDropProps = {
-	element: string | undefined;
-	initialPosition: Pos;
+	initialPosition: any;
 	elementRef: React.RefObject<HTMLDivElement> | null;
 };
 
-export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDragAndDropProps) => {
+export const useDragAndDrop = ({ initialPosition, elementRef }: UseDragAndDropProps) => {
 	const [dragging, setDragging] = useState(false);
 	const [draggingOut, setDraggingOut] = useState(false);
 	const [position, setPosition] = useState<Pos>(initialPosition);
@@ -29,7 +28,6 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 		const target = e.target as HTMLElement;
 		const box = target.getBoundingClientRect();
 		setDragging(true);
-		console.log('here');
 		setRel({
 			x: e.clientX - box.left,
 			y: e.clientY - box.top

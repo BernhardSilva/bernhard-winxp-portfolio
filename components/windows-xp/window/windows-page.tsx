@@ -6,17 +6,18 @@ import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { PageState, usePageStore } from '@/stores/page-store';
 import { useWindowsStore } from '@/stores/windows-store';
-import { useCallback, useEffect, useState } from 'react';
+import { HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
 import WindowsMinimizeButton from '../buttons/windows-minimize-button';
 
-type WindowsPageProps = {
+type WindowsPageProps = HTMLAttributes<HTMLDivElement> & {
 	page: PageState;
 	index: number;
+	className?: string;
 };
 
-const WindowsPage = ({ page, index }: WindowsPageProps) => {
+const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 	const { openPage, closePage, openedPages } = usePageStore();
 	const { setActivePageId, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore((state) => state);
 	const { isMobile } = useWindowsStore((state) => state);
@@ -24,14 +25,13 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 	const hasMounted = useHasMounted();
 
 	const { handleMouseDown, dimensions, resizableDiv } = useResize(width, height);
+
 	const dragDropValues = {
-		element: 'drag-window',
 		pageIndex: index,
-		initialPosition: { x: 30, y: 30 },
-		index: index,
+		initialPosition: { x: 20 + index * 20, y: 20 + index * 20 },
 		elementRef: resizableDiv
 	};
-	const { position, onMouseDownDrag, dragging, draggingOut } = useDragAndDrop(dragDropValues);
+	const { position, onMouseDownDrag } = useDragAndDrop(dragDropValues);
 
 	// Add a new state variable for tracking if the window is maximized
 	const [isMaximized, setIsMaximized] = useState(false);
@@ -40,9 +40,10 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 		setIsMaximized(isMobile);
 	}, [isMobile]);
 
+	const positionStyle = isMaximized ? { left: '0px', top: '0px' } : { left: `${position.x}px`, top: `${position.y}px` };
+
 	const windowStyle = {
-		left: isMaximized ? `0px` : `${dragging || draggingOut ? position.x : position.x + index * 20}px`,
-		top: isMaximized ? `0px` : `${dragging || draggingOut ? position.y : position.y + index * 20}px`,
+		...positionStyle,
 		zIndex: activePageId === page.id ? 1 : 0,
 		width: isMaximized ? `100%` : `${dimensions.width}px`,
 		height: isMaximized ? `100%` : `${dimensions.height}px`
@@ -88,7 +89,7 @@ const WindowsPage = ({ page, index }: WindowsPageProps) => {
 			ref={resizableDiv}
 			className={`absolute flex flex-col bg-[#dfdfdf] rounded-t-xl shadow-2xl window ${
 				activePageId !== page.id && 'brightness-50'
-			} ${page.isMinimized && 'hidden'}`}
+			} ${page.isMinimized && 'hidden'} ${className}`}
 			style={windowStyle}
 		>
 			<div className='title-bar'>

@@ -11,7 +11,7 @@ const WindowsPages = ({ pages }: Props) => {
 			{pages
 				?.filter((page) => page.isOpen)
 				.map((page, index) => (
-					<WindowsPage key={page.id} page={page} index={index} />
+					<WindowsPage key={page.id} page={page} index={index} className='absolute left-8 top-8' />
 				))}
 		</>
 	);

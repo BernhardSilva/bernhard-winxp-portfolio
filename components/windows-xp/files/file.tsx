@@ -20,7 +20,6 @@ const File = ({ file }: DesktopFileProps) => {
 	const fileRef = useRef<any | null>(null);
 
 	const dragAndDropValues = {
-		element: file.element,
 		initialPosition: { x: fileRef.current?.offsetLeft, y: fileRef.current?.offsetTop },
 		elementRef: fileRef.current
 	};
