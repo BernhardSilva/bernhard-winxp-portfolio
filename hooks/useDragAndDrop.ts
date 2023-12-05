@@ -27,11 +27,9 @@ export const useDragAndDrop = ({ element, initialPosition, elementRef }: UseDrag
 	const onMouseDownDrag = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (e.button !== 0) return;
 		const target = e.target as HTMLElement;
-		// Check if the target has the 'element' class
-		const draggableElement = target.closest(`.${element}`);
-		if (!draggableElement) return;
 		const box = target.getBoundingClientRect();
 		setDragging(true);
+		console.log('here');
 		setRel({
 			x: e.clientX - box.left,
 			y: e.clientY - box.top

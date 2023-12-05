@@ -2,7 +2,6 @@ import { useClickOutside } from '@/hooks/useClickOuside';
 import { useCurrentTime } from '@/hooks/useCurrentTime';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { PageState } from '@/stores/page-store';
-import { useWindowsStore } from '@/stores/windows-store';
 import { useMemo } from 'react';
 import Menu from '../menu';
 import Clock from './clock';
@@ -18,7 +17,6 @@ const TaskBar = ({ pages = [] }: TaskBarProps) => {
 	const openedPages = useMemo(() => pages.filter((page) => page.isOpen), [pages]);
 
 	const currentTime = useCurrentTime();
-	const { isMobile } = useWindowsStore((state) => state);
 	const { width } = useWindowDimensions();
 
 	const { elementRef, isOpenClickOutside, setIsOpenClickOutside } = useClickOutside(false);
@@ -34,7 +32,7 @@ const TaskBar = ({ pages = [] }: TaskBarProps) => {
 				{isOpenClickOutside && <Menu pages={pages} setIsOpenClickOutside={setIsOpenClickOutside} />}
 
 				<div className='flex items-center space-x-1 ml-2'>
-					{width < 1700 && openedPages?.filter((page) => page.isOpen).length >= 11 ? (
+					{width < 1700 && openedPages?.filter((page) => page.isOpen).length >= 9 ? (
 						<DropDownTabs pages={openedPages} />
 					) : (
 						<Tabs pages={openedPages} className='md:flex hidden'/>
