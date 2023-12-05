@@ -6,7 +6,7 @@ import { useResize } from '@/hooks/useResize';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 import { PageState, usePageStore } from '@/stores/page-store';
 import { useWindowsStore } from '@/stores/windows-store';
-import { HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
+import { HTMLAttributes, useCallback, useEffect, useState } from 'react';
 import WindowsCloseButton from '../buttons/windows-close-button';
 import WindowsMaximizeButton from '../buttons/windows-maximize-button';
 import WindowsMinimizeButton from '../buttons/windows-minimize-button';

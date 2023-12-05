@@ -6,7 +6,7 @@ type Pos = {
 };
 
 type UseDragAndDropProps = {
-	initialPosition: any;
+	initialPosition: Pos;
 	elementRef: React.RefObject<HTMLDivElement> | null;
 };
 
