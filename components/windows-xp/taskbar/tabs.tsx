@@ -10,7 +10,7 @@ const Tabs = ({ pages }: Props) => {
 	return (
 		<>
 			{pages?.map((page) => (
-				<Tab key={page.id} page={page} className='justify-evenly' />
+				<Tab key={page.id} page={page} className='justify-evenly' nameClassName='sm:block md:hidden'/>
 			))}
 		</>
 	);

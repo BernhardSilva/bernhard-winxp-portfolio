@@ -6,6 +6,7 @@ import Clock from './clock';
 import DropDownTabs from './dowpdown-tabs';
 import Tabs from './tabs';
 import WindowsStartButton from './windows-start-button';
+import { useWindowsStore } from '@/stores/windows-store';
 
 type TaskBarProps = {
 	pages: PageState[] | undefined;
@@ -14,6 +15,7 @@ type TaskBarProps = {
 const TaskBar = ({ pages = [] }: TaskBarProps) => {
 	const openedPages = pages.filter((page) => page.isOpen);
 	const currentTime = useCurrentTime();
+	const { isMobile } = useWindowsStore((state) => state);
 
 	const { elementRef, isOpenClickOutside, setIsOpenClickOutside } = useClickOutside(false);
 	const handleStartClick = () => {
@@ -28,7 +30,7 @@ const TaskBar = ({ pages = [] }: TaskBarProps) => {
 				{isOpenClickOutside && <Menu pages={pages} setIsOpenClickOutside={setIsOpenClickOutside} />}
 
 				<div className='flex items-center space-x-1 ml-2'>
-					{openedPages?.map((item) => item.isOpen).length > 3 ? (
+					{openedPages?.map((item) => item.isOpen).length > 10 || isMobile ? (
 						<DropDownTabs pages={openedPages} />
 					) : (
 						<Tabs pages={openedPages} />

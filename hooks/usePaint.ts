@@ -25,14 +25,17 @@ const usePaint = () => {
 	const redoEmpty = redoPaths.length === 0;
 
 	useEffect(() => {
-		const canvas = canvasRef.current!;
-		const context = canvas.getContext('2d')!;
+		const canvas = canvasRef?.current!;
+		const context = canvas?.getContext('2d')!;
 
 		const setCanvasSize = () => {
 			const parentElement = canvas.parentElement;
 			if (parentElement) {
 				// Save current canvas content
-				const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+				let imageData;
+				if (canvas.width > 0 && canvas.height > 0) {
+					imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+				}
 
 				// Resize the canvas
 				canvas.width = parentElement.offsetWidth * 2;
@@ -41,14 +44,15 @@ const usePaint = () => {
 				canvas.style.height = `${parentElement.offsetHeight}px`;
 
 				// Restore canvas content
-				context.putImageData(imageData, 0, 0);
+				if (imageData) {
+					context.putImageData(imageData, 0, 0);
 
-				// Clearing the part of canvas that is outside of imageData
-				context.clearRect(imageData.width, 0, canvas.width - imageData.width, canvas.height);
-				context.clearRect(0, imageData.height, canvas.width, canvas.height - imageData.height);
+					// Clearing the part of canvas that is outside of imageData
+					context.clearRect(imageData.width, 0, canvas.width - imageData.width, canvas.height);
+					context.clearRect(0, imageData.height, canvas.width, canvas.height - imageData.height);
+				}
 			}
 		};
-
 		// Initial set of canvas size
 
 		const resizeObserver = new ResizeObserver(() => {
@@ -123,7 +127,6 @@ const usePaint = () => {
 	const clearCanvas = () => {
 		contextRef.current!.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
 		setPaths([]);
-
 	};
 
 	const undo = () => {

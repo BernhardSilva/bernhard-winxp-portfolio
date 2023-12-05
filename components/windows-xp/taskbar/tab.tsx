@@ -6,9 +6,11 @@ import { HTMLAttributes } from 'react';
 type TabProps = HTMLAttributes<HTMLElement> & {
 	page: PageState;
 	className: string;
+	nameClassName?: string;
+	iconClassName?: string;
 };
 
-const Tab = ({ page, className, ...props }: TabProps) => {
+const Tab = ({ page, className, nameClassName, iconClassName, ...props }: TabProps) => {
 	const { openPage, closePage, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore(
 		(state) => state
 	);
@@ -34,8 +36,8 @@ const Tab = ({ page, className, ...props }: TabProps) => {
 			${className}`}
 			{...props}
 		>
-			<Icon icon={page.icon} height={20} width={20} className={`${'lg:flex sm:hidden'}`} />
-			<span>{page.name}</span>
+			<Icon icon={page.icon} height={20} width={20} className={iconClassName} />
+			<span className={nameClassName}>{page.name}</span>
 			<WindowsCloseButton closeHandler={closeHandler} />
 		</div>
 	);
