@@ -28,7 +28,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 					>
 						<WindowsCloseButton closeHandler={closeModal} className='absolute top-3 right-3' />
 						<div className='bg-white dark:bg-slate-950 rounded-lg p-10'>
-							{!isLoaded ? (
+							{isLoaded ? (
 								<div
 									className={`animate-pulse bg-gradient-to-r from-gray-500 to-gray-700 rounded-md w-[${500}px] h-[${200}px]`}
 								></div>
