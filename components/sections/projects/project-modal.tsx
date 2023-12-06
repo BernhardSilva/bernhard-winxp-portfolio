@@ -5,7 +5,7 @@ import WindowsCloseButton from '@/components/windows-xp/buttons/windows-close-bu
 import { Project } from '@/types';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React from 'react';
 
 type ProjectModalProps = {
 	isModalOpen: boolean;
@@ -14,7 +14,6 @@ type ProjectModalProps = {
 };
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, selectedProject }) => {
-	const [isLoaded, setIsLoaded] = useState(false);
 	return (
 		<div className='w-full h-full'>
 			{isModalOpen && selectedProject && (
@@ -28,20 +27,20 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 					>
 						<WindowsCloseButton closeHandler={closeModal} className='absolute top-3 right-3' />
 						<div className='bg-white dark:bg-slate-950 rounded-lg p-10'>
-							{isLoaded ? (
-								<div
-									className={`animate-pulse bg-gradient-to-r from-gray-500 to-gray-700 rounded-md w-[${500}px] h-[${200}px]`}
-								></div>
-							) : (
-								<Image
-									className='w-full object-cover rounded-md h-[200px]'
-									src={selectedProject?.image.modalImage}
-									alt={selectedProject?.title}
-									width={500}
-									height={200}
-									onLoad={() => setIsLoaded(true)}
-								/>
-							)}
+							<ImageSkeleton
+								image={
+									<Image
+										className='w-full object-cover rounded-md h-[200px]'
+										src={selectedProject?.image.modalImage}
+										alt={selectedProject?.title}
+										width={500}
+										height={200}
+									/>
+								}
+								imageLoaded={!!selectedProject?.image.modalImage}
+								width={500}
+								height={200}
+							/>
 
 							<div className='bg-slate-100 dark:bg-slate-800 p-2 rounded-md mt-3'>
 								<h3 className='text-lg mt-2'>{selectedProject?.title}</h3>
