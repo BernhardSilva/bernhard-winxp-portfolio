@@ -38,7 +38,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 										height={200}
 									/>
 								}
-								imageLoaded={!selectedProject?.image.modalImage}
+								imageLoaded={!!selectedProject?.image.modalImage}
 								width={500}
 								height={200}
 							/>
