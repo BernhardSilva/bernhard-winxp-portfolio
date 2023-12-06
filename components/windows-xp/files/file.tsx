@@ -1,3 +1,4 @@
+import IconSkeleton from '@/components/ui/icon-skeleton';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useRef } from 'react';
@@ -40,13 +41,17 @@ const File = ({ file }: DesktopFileProps) => {
 					top: position.y
 				}}
 			>
-				<Icon
-					icon={file.icon}
-					height={file.size}
-					width={file.size}
-					className={`transition ease-linear duration-500 ${file.className} ${file.color}`}
+				<IconSkeleton
+					icon={
+						<Icon
+							icon={file.icon}
+							height={file.size}
+							width={file.size}
+							className={`transition ease-linear duration-500 ${file.className} ${file.color}`}
+						/>
+					}
+					iconLoaded={!!file.icon}
 				/>
-
 				<span>{file.text}</span>
 			</div>
 		</div>
