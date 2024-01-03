@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	title: 'Bernhard Silva Porfolio',
 	description: "Bernhard Silva's porfolio, Fullstack Developer",
 	icons: {
-		icon: "/favicon.ico",
+		icon: "/icon.png",
 		},
 };
 
