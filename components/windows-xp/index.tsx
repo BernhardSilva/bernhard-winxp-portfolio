@@ -15,11 +15,15 @@ const Windows = () => {
 	const { pages, addNewPage, openPage } = usePageStore((state) => state);
 	const [filteredPages, setFilteredPages] = useState<PageState[]>([]);
 	const { isMobile } = useWindowsStore((state) => state);
+	const [pagesToOpen, setPagesToOpen] = useState(['intro']);
 
 	useEffect(() => {
-		const pagesToOpen = ['contact', 'cv', 'services', 'projects', 'experience', 'intro'];
+		setPagesToOpen(isMobile ? ['intro'] : ['contact', 'cv', 'services', 'projects', 'experience', 'intro']);
+	}, [isMobile]); // eslint-disable-line react-hooks/exhaustive-deps
+
+	useEffect(() => {
 		pagesToOpen.forEach((page) => openPage(page));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [pagesToOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		const desktopPages = ['tictactoe', 'paint', 'secret', 'secret-password'];
@@ -27,6 +31,8 @@ const Windows = () => {
 
 		isMobile ? setFilteredPages(filteredMobilePages) : setFilteredPages(pages);
 	}, [isMobile, pages]);
+
+	console.log(pagesToOpen);
 
 	useKonamiCode(() => addNewPage(secretPage));
 
@@ -56,6 +62,7 @@ const Windows = () => {
 			window.removeEventListener('resize', updateHeight);
 		};
 	}, []);
+
 	return (
 		<div className='relative flex flex-col h-screen' style={{ height: !windowHeight ? 'h-screen' : windowHeight }}>
 			<main className='flex-grow'>

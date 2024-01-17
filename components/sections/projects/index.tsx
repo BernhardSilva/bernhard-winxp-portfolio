@@ -1,12 +1,11 @@
 import { mockProjects } from '@/mock/mock-data';
+import { useWindowsStore } from '@/stores/windows-store';
 import { Project } from '@/types';
 import { ChangeEvent, useMemo, useState } from 'react';
 import ProjectGallery from './project-gallery';
 import ProjectModal from './project-modal';
 import ProjectSearch from './project-search';
 import ProjectSkillFilter from './project-skill-filter';
-import { useWindowsStore } from '@/stores/windows-store';
-import { useWindowDimensions } from '@/hooks/useWindowDimentions';
 
 const Projects = () => {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -15,7 +14,6 @@ const Projects = () => {
 	const [selectedSkill, setSelectedSkill] = useState('');
 
 	const { isMobile } = useWindowsStore((state) => state);
-	const {width} = useWindowDimensions();
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value);
