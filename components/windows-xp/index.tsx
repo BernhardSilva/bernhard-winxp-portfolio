@@ -19,7 +19,7 @@ const Windows = () => {
 
 	useEffect(() => {
 		setPagesToOpen(isMobile ? ['intro'] : ['contact', 'cv', 'services', 'projects', 'experience', 'intro']);
-	}, [isMobile]); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [isMobile]);
 
 	useEffect(() => {
 		pagesToOpen.forEach((page) => openPage(page));
@@ -31,20 +31,7 @@ const Windows = () => {
 
 		isMobile ? setFilteredPages(filteredMobilePages) : setFilteredPages(pages);
 	}, [isMobile, pages]);
-
-	console.log(pagesToOpen);
-
-	useKonamiCode(() => addNewPage(secretPage));
-
-	const [windowHeight, setWindowHeight] = useState(0);
-
-	const contentComponents = (
-		<>
-			{!isMobile && <Files />}
-			<WindowsPages pages={filteredPages} />
-		</>
-	);
-
+	
 	useEffect(() => {
 		// Function to update the height
 		const updateHeight = () => {
@@ -62,6 +49,17 @@ const Windows = () => {
 			window.removeEventListener('resize', updateHeight);
 		};
 	}, []);
+
+	useKonamiCode(() => addNewPage(secretPage));
+
+	const [windowHeight, setWindowHeight] = useState(0);
+
+	const contentComponents = (
+		<>
+			{!isMobile && <Files />}
+			<WindowsPages pages={filteredPages} />
+		</>
+	);
 
 	return (
 		<div className='relative flex flex-col h-screen' style={{ height: !windowHeight ? 'h-screen' : windowHeight }}>
