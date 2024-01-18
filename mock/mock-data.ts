@@ -11,7 +11,7 @@ export const mockUser: User = {
 	profileImage: '/images/profile/profile.webp',
 	languages: ['English', 'Spanish'],
 	typingAnimationText: ['Fullstack Developer.', 'Programmer Analyst.'],
-	about: `I'm a software engineer with +6 years of experience in web development.
+	about: `I'm a software engineer with +7 years of experience in web development.
 	I'm passionate about building software that helps people and makes their lives easier.
 	If you want to build your dream project, I'm the right person for you.`,
 	contact: {
