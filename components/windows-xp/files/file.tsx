@@ -27,6 +27,7 @@ const File = ({ file }: DesktopFileProps) => {
 	const { position, onMouseDownDrag } = useDragAndDrop(dragAndDropValues);
 
 	const handleDoubleClick = (e: any) => {
+		console.log('click')
 		e.stopPropagation();
 		file.onOpen();
 	};
@@ -42,12 +43,14 @@ const File = ({ file }: DesktopFileProps) => {
 				}}
 			>
 				<IconSkeleton
+					onDoubleClick={handleDoubleClick}
 					icon={
 						<Icon
 							icon={file.icon}
 							height={file.size}
 							width={file.size}
 							className={`transition ease-linear duration-500 ${file.className} ${file.color}`}
+							onDoubleClick={handleDoubleClick}
 						/>
 					}
 					iconLoaded={!!file.icon}

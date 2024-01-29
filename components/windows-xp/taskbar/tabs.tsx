@@ -1,7 +1,7 @@
-import React, { HTMLAttributes, use } from 'react';
-import Tab from './tab';
-import { PageState } from '@/stores/page-store';
 import { useWindowDimensions } from '@/hooks/useWindowDimentions';
+import { PageState } from '@/stores/page-store';
+import { HTMLAttributes } from 'react';
+import Tab from './tab';
 
 type Props = HTMLAttributes<HTMLDivElement> & {
 	pages: PageState[] | undefined;

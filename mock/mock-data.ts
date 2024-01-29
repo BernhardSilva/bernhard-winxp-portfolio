@@ -226,7 +226,11 @@ export const mockUser: User = {
 			date: 'Apr 2022 - Present',
 			company: 'Freelancer, Digital Nomad',
 			description:
-				'I traveled and expanded my skill set in software development, including expertise in Nextjs 12 and 13, Apollo GraphQL, Nestjs, TailwindCSS. Additionally, I developed Nextjs e-commerce platforms for start-ups.',
+				`I've collaborated on multiple projects, such as
+				the creation of Ecommerce+CMS using Nextjs
+				12 and 13 along with TailwindCSS, creation of
+				microservices with NestJS, migration from
+				REST to GraphQL.`,
 			skills: ['4', '7', '8', '17', '10', '3', '19', '12', '14', '16', '27', '29']
 		},
 		{
