@@ -17,7 +17,6 @@ export const useDragAndDrop = ({ initialPosition, elementRef, handleDoubleClick 
 	const [position, setPosition] = useState<Pos>(initialPosition);
 	const [rel, setRel] = useState<any>(); // position relative to the cursor
 	const [clickCount, setClickCount] = useState(0);
-	let singleClickTimer: ReturnType<typeof setTimeout>;
 
 	const stopPropagationHandler = (e: React.MouseEvent<HTMLDivElement> | MouseEvent) => {
 		e.stopPropagation();
@@ -28,11 +27,6 @@ export const useDragAndDrop = ({ initialPosition, elementRef, handleDoubleClick 
 		if (e.button !== 0) return;
 		const target = e.target as HTMLElement;
 		const box = target.getBoundingClientRect();
-		setDragging(true);
-		setRel({
-			x: e.clientX - box.left,
-			y: e.clientY - box.top
-		});
 
 		// Handle single/double click and dragging
 		setClickCount((prev) => prev + 1);
@@ -42,10 +36,14 @@ export const useDragAndDrop = ({ initialPosition, elementRef, handleDoubleClick 
 			if (handleDoubleClick) {
 				handleDoubleClick();
 			}
-			clearTimeout(singleClickTimer);
 		} else {
 			// Single click
-			singleClickTimer = setTimeout(() => {
+			setDragging(true);
+			setRel({
+				x: e.clientX - box.left,
+				y: e.clientY - box.top
+			});
+			setTimeout(() => {
 				setClickCount(0);
 			}, 200);
 		}
