@@ -8,7 +8,7 @@ type Pos = {
 type UseDragAndDropProps = {
 	initialPosition: Pos;
 	elementRef: React.RefObject<HTMLDivElement> | null;
-	handleDoubleClick: () => void;
+	handleDoubleClick?: () => void;
 };
 
 export const useDragAndDrop = ({ initialPosition, elementRef, handleDoubleClick }: UseDragAndDropProps) => {
@@ -39,7 +39,9 @@ export const useDragAndDrop = ({ initialPosition, elementRef, handleDoubleClick 
 		if (clickCount >= 1) {
 			// Double click
 			setClickCount(0);
-			handleDoubleClick();
+			if (handleDoubleClick) {
+				handleDoubleClick();
+			}
 			clearTimeout(singleClickTimer);
 		} else {
 			// Single click
