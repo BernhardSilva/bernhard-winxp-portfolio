@@ -8,9 +8,10 @@ type Pos = {
 type UseDragAndDropProps = {
 	initialPosition: Pos;
 	elementRef: React.RefObject<HTMLDivElement> | null;
+	handleDoubleClick: () => void;
 };
 
-export const useDragAndDrop = ({ initialPosition, elementRef }: UseDragAndDropProps) => {
+export const useDragAndDrop = ({ initialPosition, elementRef, handleDoubleClick }: UseDragAndDropProps) => {
 	const [dragging, setDragging] = useState(false);
 	const [draggingOut, setDraggingOut] = useState(false);
 	const [position, setPosition] = useState<Pos>(initialPosition);
@@ -32,17 +33,19 @@ export const useDragAndDrop = ({ initialPosition, elementRef }: UseDragAndDropPr
 			x: e.clientX - box.left,
 			y: e.clientY - box.top
 		});
+
 		// Handle single/double click and dragging
 		setClickCount((prev) => prev + 1);
-		if (clickCount === 1) {
+		if (clickCount >= 1) {
+			// Double click
+			setClickCount(0);
+			handleDoubleClick();
+			clearTimeout(singleClickTimer);
+		} else {
 			// Single click
 			singleClickTimer = setTimeout(() => {
 				setClickCount(0);
-			}, 50);
-		} else if (clickCount >= 2) {
-			// Double click
-			clearTimeout(singleClickTimer);
-			setClickCount(0);
+			}, 200);
 		}
 
 		stopPropagationHandler(e);

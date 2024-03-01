@@ -1,4 +1,3 @@
-import IconSkeleton from '@/components/ui/icon-skeleton';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useRef } from 'react';
@@ -22,18 +21,16 @@ const File = ({ file }: DesktopFileProps) => {
 
 	const dragAndDropValues = {
 		initialPosition: { x: fileRef.current?.offsetLeft, y: fileRef.current?.offsetTop },
-		elementRef: fileRef.current
+		elementRef: fileRef.current,
+		handleDoubleClick: () => {
+			file.onOpen();
+		}
 	};
 	const { position, onMouseDownDrag } = useDragAndDrop(dragAndDropValues);
 
-	const handleDoubleClick = (e: any) => {
-		console.log('click')
-		e.stopPropagation();
-		file.onOpen();
-	};
-
 	return (
-		<div onMouseDown={onMouseDownDrag} onDoubleClick={handleDoubleClick}>
+		//when I double click it should trigger handleDoubleClick
+		<div onMouseDown={onMouseDownDrag}>
 			<div
 				className={`absolute flex flex-col items-center bg-blue-500 bg-opacity-30
 				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element}`}
@@ -42,18 +39,11 @@ const File = ({ file }: DesktopFileProps) => {
 					top: position.y
 				}}
 			>
-				<IconSkeleton
-					onDoubleClick={handleDoubleClick}
-					icon={
-						<Icon
-							icon={file.icon}
-							height={file.size}
-							width={file.size}
-							className={`transition ease-linear duration-500 ${file.className} ${file.color}`}
-							onDoubleClick={handleDoubleClick}
-						/>
-					}
-					iconLoaded={!!file.icon}
+				<Icon
+					icon={file.icon}
+					height={file.size}
+					width={file.size}
+					className={`transition ease-linear duration-500 ${file.className} ${file.color}`}
 				/>
 				<span>{file.text}</span>
 			</div>
