@@ -20,7 +20,7 @@ const Desktop = ({ children }: DesktopProps) => {
 	return (
 		<div
 			id='desktop'
-			className='bg-gray-900 text-white relative h-full flex-grow overflow-hidden bg-cover'
+			className={`bg-gray-900 text-white relative h-full flex-grow overflow-hidden bg-cover`}
 			style={{ backgroundImage: `url(${wallpaper})` }}
 		>
 			{children}
