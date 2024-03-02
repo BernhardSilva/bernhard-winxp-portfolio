@@ -151,11 +151,6 @@ export const mockUser: User = {
 		},
 		{ _id: '31', name: 'Oracle', icon: 'simple-icons:oracle' },
 		{
-			_id: '219',
-			name: 'Firestore',
-			icon: 'vscode-icons:file-type-firestore'
-		},
-		{
 			_id: '220',
 			name: 'Java',
 			icon: 'logos:java'
@@ -225,8 +220,7 @@ export const mockUser: User = {
 			title: 'Full-stack Engineer',
 			date: 'Apr 2022 - Present',
 			company: 'Freelancer, Digital Nomad',
-			description:
-				`I've collaborated on multiple projects, such as
+			description: `I've collaborated on multiple projects, such as
 				the creation of Ecommerce+CMS using Nextjs
 				12 and 13 along with TailwindCSS, creation of
 				microservices with NestJS, migration from
@@ -453,7 +447,6 @@ export const mockSkills: Skill[] = [
 	{ _id: '19', name: 'MySQL', icon: 'devicon:mysql' },
 	{ _id: '20', name: 'PostgreSQL', icon: 'devicon:postgresql' },
 	{ _id: '21', name: 'SQLServer', icon: 'simple-icons:microsoftsqlserver' },
-	{ _id: '22', name: 'Firestore', icon: 'vscode-icons:file-type-firestore' },
 	{ _id: '23', name: 'Java', icon: 'logos:java' },
 	{ _id: '24', name: 'SpringBoot', icon: 'devicon:spring' },
 	{ _id: '25', name: 'Vercel', icon: 'logos:vercel-icon' },
