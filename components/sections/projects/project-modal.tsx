@@ -29,16 +29,18 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 						<div className='bg-white dark:bg-slate-950 rounded-lg p-10'>
 							<ImageSkeleton
 								image={
-									<Image
-										className='w-full object-cover rounded-md h-[200px]'
-										src={selectedProject?.image.modalImage}
-										alt={selectedProject?.title}
-										width={500}
-										height={200}
-									/>
+									<div className='relative w-[585px] h-[200px]'>
+										<Image
+											className=' object-cover rounded-md'
+											src={selectedProject?.image.modalImage}
+											alt={selectedProject?.title}
+											sizes='(max-width: 585px, max-height: 200px)'
+											fill
+										/>
+									</div>
 								}
 								imageLoaded={!!selectedProject?.image.modalImage}
-								width={500}
+								width={585}
 								height={200}
 							/>
 

@@ -6,6 +6,8 @@ type WindowsStartButton = {
 };
 
 const WindowsStartButton = ({ handleStartClick }: WindowsStartButton) => {
+	const logo = '/images/windows-xp/windows-logo.webp';
+	
 	return (
 		<button
 			onClick={handleStartClick}
@@ -13,13 +15,9 @@ const WindowsStartButton = ({ handleStartClick }: WindowsStartButton) => {
 			border-r-1 border-t-1 border-b-2 border-green-900
 			bg-gradient-to-br from-green-700 to-green-900 transition duration-500 ease-in-out hover:from-green-500 hover:to-green-700'
 		>
-			<Image
-				className='w-auto h-auto'
-				src='/images/windows-xp/windows-logo.png'
-				width={30}
-				height={30}
-				alt='windows-start'
-			/>
+			<div className='relative w-[30px] h-[25px]'>
+				<Image src={logo} fill sizes='30px, 25px' alt='windows-start' />
+			</div>
 			<div>Start</div>
 		</button>
 	);

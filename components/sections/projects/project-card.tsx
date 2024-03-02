@@ -18,13 +18,15 @@ const ProjectCard = ({ handleProjectClick, project }: ProjectProps) => {
 		>
 			<ImageSkeleton
 				image={
-					<Image
-						className='max-h-[300px] w-[300px] rounded-md object-cover mb-2'
-						src={project.image.thumbnail}
-						alt={project.title}
-						width={300}
-						height={300}
-					/>
+					<div className='relative w-[300px] h-[200px]'>
+						<Image
+							className='rounded-md object-cover mb-2'
+							src={project.image.thumbnail}
+							alt={project.title}
+							sizes='300px, 200px'
+							fill
+						/>
+					</div>
 				}
 				imageLoaded={!!project.image.thumbnail}
 				width={300}

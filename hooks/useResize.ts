@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export const useResize = (initialWidth: number, initialHeight: number) => {
 	// State to hold current dimensions
@@ -8,6 +8,8 @@ export const useResize = (initialWidth: number, initialHeight: number) => {
 	const resizableDiv = useRef<HTMLDivElement>(null);
 	// Ref to track which sides are being resized
 	const isResizing = useRef({ right: false, bottom: false, corner: false });
+
+	// Handle mouseup event
 
 	// Handle mousedown event
 	const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
@@ -31,7 +33,16 @@ export const useResize = (initialWidth: number, initialHeight: number) => {
 			e.stopPropagation();
 			e.preventDefault();
 		}
+		window.addEventListener('mouseup', handleMouseUp);
 	};
+
+	const handleMouseUp = useCallback((): void => {
+		// Reset resizing state
+		isResizing.current = { right: false, bottom: false, corner: false };
+
+		// Remove mouseup event listener from window
+		window.removeEventListener('mouseup', handleMouseUp);
+	}, []);
 
 	useEffect(() => {
 		// Handle mousemove event
@@ -59,13 +70,6 @@ export const useResize = (initialWidth: number, initialHeight: number) => {
 			e.preventDefault();
 		};
 
-		// Reset isResizing on mouseup
-		const handleMouseUp = () => {
-			isResizing.current.right = false;
-			isResizing.current.bottom = false;
-			isResizing.current.corner = false;
-		};
-
 		// Add event listeners
 		document.addEventListener('mousemove', handleMouseMove);
 		document.addEventListener('mouseup', handleMouseUp);
@@ -75,8 +79,7 @@ export const useResize = (initialWidth: number, initialHeight: number) => {
 			document.removeEventListener('mousemove', handleMouseMove);
 			document.removeEventListener('mouseup', handleMouseUp);
 		};
-	}, [initialHeight, initialWidth]);
-
+	}, [handleMouseUp, initialHeight, initialWidth, isResizing]);
 
 	return { handleMouseDown, resizableDiv, dimensions };
 };
