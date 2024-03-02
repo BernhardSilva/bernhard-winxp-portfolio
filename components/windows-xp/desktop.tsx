@@ -1,5 +1,4 @@
 import { useTheme } from '@/hooks/useTheme';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 type DesktopProps = {
@@ -19,8 +18,11 @@ const Desktop = ({ children }: DesktopProps) => {
 	}, [theme]);
 
 	return (
-		<div id='desktop' className='bg-gray-900 text-white relative h-full flex-grow overflow-hidden'>
-			<Image src={wallpaper} alt='Wallpaper' fill className='bg-cover' priority />
+		<div
+			id='desktop'
+			className='bg-gray-900 text-white relative h-full flex-grow overflow-hidden bg-cover'
+			style={{ backgroundImage: `url(${wallpaper})` }}
+		>
 			{children}
 		</div>
 	);
