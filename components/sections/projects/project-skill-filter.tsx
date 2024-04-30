@@ -13,17 +13,16 @@ const ProjectSkillFilter = ({ projects, selectedSkill, handleSkillClick }: Props
 	return (
 		<div className='mt-5 flex flex-wrap gap-2 justify-center w-[80%]'>
 			{Array.from(new Set(projects.flatMap((project) => project.skills.map((skill) => skill.name)))).map(
-				(skillName, index) => {
+				(skillName) => {
 					// Find the first matching skill object for the current skill name
 					const matchingSkill = projects.flatMap((project) => project.skills).find((skill) => skill.name === skillName);
 
 					return (
 						<button
-							key={index}
+							key={skillName}
 							onClick={() => handleSkillClick(skillName)}
-							className={`px-3 py-2 rounded-md text-sm font-semibold shadow-md transition duration-500 ease-in-out transform hover:scale-105 ${
-								selectedSkill === skillName ? 'bg-blue-600 text-white' : 'bg-white dark:bg-slate-700'
-							}`}
+							className={`px-3 py-2 rounded-md text-sm font-semibold shadow-md transition duration-500 ease-in-out transform hover:scale-105 ${selectedSkill === skillName ? 'bg-blue-600 text-white' : 'bg-white dark:bg-slate-700'
+								}`}
 						>
 							{matchingSkill && (
 								<div className='flex flex-wrap place-items-center'>

@@ -314,7 +314,7 @@ export const mockProjects: Project[] = [
 		_id: '101',
 		title: 'E-commerce + CMS',
 		description:
-			'An E-commerce app + CMS created with Nexjs13 routing version, with third-party authentication using the Clerk library.',
+			'An E-commerce app + CMS created with Nexjs13 routing version, with third-party authentication using the Clerk library. (Ecommerce under maintenance due planetscale migration.)',
 		image: {
 			thumbnail: '/images/portfolio/e-cms.webp',
 			modalImage: '/images/portfolio/e-cms-modal.webp'
@@ -336,11 +336,11 @@ export const mockProjects: Project[] = [
 			{ _id: '25', name: 'Vercel', icon: 'logos:vercel-icon' }
 		],
 		liveLinks: [
-			'https://e-commerce-cms-client.vercel.app/',
+			// 'https://e-commerce-cms-client.vercel.app/',
 			'https://e-commerce-cms-admin.vercel.app/sign-in?redirect_url=https%3A%2F%2Fe-commerce-cms-admin.vercel.app%2F'
 		],
 		repoLinks: [
-			'https://github.com/BernhardSilva/e-commerce-fullstack-nextjs-client',
+			// 'https://github.com/BernhardSilva/e-commerce-fullstack-nextjs-client',
 			'https://github.com/BernhardSilva/e-commerce-fullstack-nextjs'
 		],
 		tags: ['Web Development', 'Portfolio'],
