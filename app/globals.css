@@ -116,26 +116,31 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
+	cursor: pointer;
 	background-size: 8px;
 	background-image: url('./svg/scroll-thumb-horizontal.svg');
 }
 
 ::-webkit-scrollbar-button:vertical:start {
+	cursor: pointer;
 	height: 17px;
 	background-image: url('./svg//scroll-arrow-up.svg');
 }
 
 ::-webkit-scrollbar-button:vertical:end {
+	cursor: pointer;
 	height: 17px;
 	background-image: url('./svg/scroll-arrow-down.svg');
 }
 
 ::-webkit-scrollbar-button:horizontal:start {
+	cursor: pointer;
 	width: 17px;
 	background-image: url('./svg/scroll-arrow-left.svg');
 }
 
 ::-webkit-scrollbar-button:horizontal:end {
+	cursor: pointer;
 	width: 17px;
 	background-image: url('./svg/scroll-arrow-right.svg');
 }

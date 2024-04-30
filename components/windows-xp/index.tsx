@@ -12,13 +12,15 @@ import WindowsPages from './window';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
-	const { pages, addNewPage, openPage } = usePageStore((state) => state);
+	const { pages, addNewPage, openPage, openedPages } = usePageStore((state) => state);
 	const [filteredPages, setFilteredPages] = useState<PageState[]>([]);
 	const { isMobile } = useWindowsStore((state) => state);
 	const [pagesToOpen, setPagesToOpen] = useState(['intro']);
-
+ 
 	useEffect(() => {
-		setPagesToOpen(isMobile ? ['intro'] : ['contact', 'cv', 'services', 'projects', 'experience', 'intro']);
+		// setPagesToOpen(isMobile ? ['intro'] : ['experience', 'contact', 'services', 'projects', 'intro']);
+		setPagesToOpen(isMobile ? ['intro'] : openedPages);
+		console.log(openedPages)
 	}, [isMobile]);
 
 	useEffect(() => {
