@@ -310,42 +310,42 @@ export const mockUser: User = {
 
 // Mock data for Project
 export const mockProjects: Project[] = [
-	{
-		_id: '101',
-		title: 'E-commerce + CMS',
-		description:
-			'An E-commerce app + CMS created with Nexjs13 routing version, with third-party authentication using the Clerk library. (Ecommerce under maintenance due planetscale migration.)',
-		image: {
-			thumbnail: '/images/portfolio/e-cms.webp',
-			modalImage: '/images/portfolio/e-cms-modal.webp'
-		},
-		skills: [
-			{ _id: '4', name: 'NextJS', icon: 'logos:nextjs-icon' },
-			{ _id: '2', name: 'Typescript', icon: 'logos:typescript-icon-round' },
-			{ _id: '10', name: 'TailwindCSS', icon: 'logos:tailwindcss-icon' },
-			{ _id: '34', name: 'Clerk', icon: 'arcticons:otp-authenticator' },
-			{ _id: '35', name: 'React Hook Forms', icon: 'simple-icons:googleforms' },
-			{ _id: '36', name: 'Axios', icon: 'simple-icons:axios' },
-			{ _id: '37', name: 'SWR', icon: 'logos:swr' },
-			{ _id: '38', name: 'Zustand', icon: 'mingcute:bear-line' },
-			{ _id: '19', name: 'MySQL', icon: 'devicon:mysql' },
-			{ _id: '17', name: 'Prisma', icon: 'logos:prisma' },
-			{ _id: '39', name: 'Zod', icon: 'logos:zod' },
-			{ _id: '40', name: 'Eslint', icon: 'logos:eslint' },
-			{ _id: '29', name: 'Git', icon: 'devicon:git' },
-			{ _id: '25', name: 'Vercel', icon: 'logos:vercel-icon' }
-		],
-		liveLinks: [
-			// 'https://e-commerce-cms-client.vercel.app/',
-			'https://e-commerce-cms-admin.vercel.app/sign-in?redirect_url=https%3A%2F%2Fe-commerce-cms-admin.vercel.app%2F'
-		],
-		repoLinks: [
-			// 'https://github.com/BernhardSilva/e-commerce-fullstack-nextjs-client',
-			'https://github.com/BernhardSilva/e-commerce-fullstack-nextjs'
-		],
-		tags: ['Web Development', 'Portfolio'],
-		userId: '1'
-	},
+	// {
+	// 	_id: '101',
+	// 	title: 'E-commerce + CMS',
+	// 	description:
+	// 		'An E-commerce app + CMS created with Nexjs13 routing version, with third-party authentication using the Clerk library.',
+	// 	image: {
+	// 		thumbnail: '/images/portfolio/e-cms.webp',
+	// 		modalImage: '/images/portfolio/e-cms-modal.webp'
+	// 	},
+	// 	skills: [
+	// 		{ _id: '4', name: 'NextJS', icon: 'logos:nextjs-icon' },
+	// 		{ _id: '2', name: 'Typescript', icon: 'logos:typescript-icon-round' },
+	// 		{ _id: '10', name: 'TailwindCSS', icon: 'logos:tailwindcss-icon' },
+	// 		{ _id: '34', name: 'Clerk', icon: 'arcticons:otp-authenticator' },
+	// 		{ _id: '35', name: 'React Hook Forms', icon: 'simple-icons:googleforms' },
+	// 		{ _id: '36', name: 'Axios', icon: 'simple-icons:axios' },
+	// 		{ _id: '37', name: 'SWR', icon: 'logos:swr' },
+	// 		{ _id: '38', name: 'Zustand', icon: 'mingcute:bear-line' },
+	// 		{ _id: '19', name: 'MySQL', icon: 'devicon:mysql' },
+	// 		{ _id: '17', name: 'Prisma', icon: 'logos:prisma' },
+	// 		{ _id: '39', name: 'Zod', icon: 'logos:zod' },
+	// 		{ _id: '40', name: 'Eslint', icon: 'logos:eslint' },
+	// 		{ _id: '29', name: 'Git', icon: 'devicon:git' },
+	// 		{ _id: '25', name: 'Vercel', icon: 'logos:vercel-icon' }
+	// 	],
+	// 	liveLinks: [
+	// 		'https://e-commerce-cms-client.vercel.app/',
+	// 		'https://e-commerce-cms-admin.vercel.app/sign-in?redirect_url=https%3A%2F%2Fe-commerce-cms-admin.vercel.app%2F'
+	// 	],
+	// 	repoLinks: [
+	// 		'https://github.com/BernhardSilva/e-commerce-fullstack-nextjs-client',
+	// 		'https://github.com/BernhardSilva/e-commerce-fullstack-nextjs'
+	// 	],
+	// 	tags: ['Web Development', 'Portfolio'],
+	// 	userId: '1'
+	// },
 	{
 		_id: '102',
 		title: 'VA',
