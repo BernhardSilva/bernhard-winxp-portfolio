@@ -18,8 +18,7 @@ type WindowsPageProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
-	const { openPage, closePage, openedPages } = usePageStore();
-	const { setActivePageId, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore((state) => state);
+	const { closePage, toggleMinimizePage, activePageId, setActivePageId, setActivePreviousPageId } = usePageStore();
 	const { isMobile } = useWindowsStore((state) => state);
 	const { width, height } = useWindowDimensions();
 	const hasMounted = useHasMounted();
@@ -55,29 +54,21 @@ const WindowsPage = ({ page, index, className }: WindowsPageProps) => {
 		setIsMaximized((prev) => !prev);
 	};
 
-	const handleClose = useCallback(() => {
-		setAnimation(false);
-		setActivePreviousPage(page.id);
-
-		if (isMobile) {
-			openedPages.forEach((pageId) => {
-				if (pageId !== page.id) {
-					closePage(pageId);
-				}
-			});
-		}
-
-		closePage(page.id);
-	}, [page.id, closePage, setActivePreviousPage, isMobile, openedPages]);
-
 	const handleMinimize = useCallback(() => {
 		setAnimation(true);
-		setActivePreviousPage(page.id);
+		setActivePreviousPageId(page.id)
 		toggleMinimizePage(page.id);
-	}, [page.id, toggleMinimizePage, setActivePreviousPage]);
+	}, [page.id, toggleMinimizePage, setActivePreviousPageId]);
+
+	const handleClose = useCallback(() => {
+		setAnimation(false);
+		setActivePreviousPageId(page.id)
+		closePage(page.id);
+	}, [page.id, closePage, setActivePreviousPageId]);
+
 
 	const handleClick = (id: string) => {
-		openPage(id);
+		setActivePageId(id);
 	};
 
 	const handleDrag = (e: React.MouseEvent<HTMLDivElement>) => {

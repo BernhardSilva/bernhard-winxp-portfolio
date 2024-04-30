@@ -11,18 +11,18 @@ type TabProps = HTMLAttributes<HTMLElement> & {
 };
 
 const Tab = ({ page, className, nameClassName, iconClassName, ...props }: TabProps) => {
-	const { openPage, closePage, toggleMinimizePage, activePageId, setActivePreviousPage } = usePageStore(
+	const { closePage, toggleMinimizePage, activePageId, setActivePageId, setActivePreviousPageId } = usePageStore(
 		(state) => state
 	);
 
 	const handleClick = (id: string) => {
-		openPage(id);
+		setActivePageId(id)
 		if (page.isMinimized) toggleMinimizePage(id);
 	};
 
 	const closeHandler = () => {
 		closePage(page.id);
-		setActivePreviousPage(page.id);
+		setActivePreviousPageId(page.id);
 	};
 
 	return (

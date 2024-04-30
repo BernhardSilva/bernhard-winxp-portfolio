@@ -4,6 +4,7 @@ import { useKonamiCode } from '@/hooks/useKonamiCode';
 import { PageState, usePageStore } from '@/stores/page-store';
 import { useWindowsStore } from '@/stores/windows-store';
 import { useEffect, useState } from 'react';
+import { Page } from '@/types';
 import Desktop from './desktop';
 import Files from './files';
 import SecretWallpaper from './secret';
@@ -12,16 +13,15 @@ import WindowsPages from './window';
 
 const Windows = () => {
 	// useCustomAudio('/sounds/windows-xp/windows-xp-startup.mp3', 0.1);
-	const { pages, addNewPage, openPage, openedPages } = usePageStore((state) => state);
+	const { pages, addNewPage, openedPages, openPage } = usePageStore((state) => state);
 	const [filteredPages, setFilteredPages] = useState<PageState[]>([]);
+	const [pagesToOpen, setPagesToOpen] = useState(!openedPages ? openedPages : ['intro']);
 	const { isMobile } = useWindowsStore((state) => state);
-	const [pagesToOpen, setPagesToOpen] = useState(['intro']);
- 
+
+
 	useEffect(() => {
-		// setPagesToOpen(isMobile ? ['intro'] : ['experience', 'contact', 'services', 'projects', 'intro']);
-		setPagesToOpen(isMobile ? ['intro'] : openedPages);
-		console.log(openedPages)
-	}, [isMobile]);
+		setPagesToOpen(openedPages);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		pagesToOpen.forEach((page) => openPage(page));
@@ -29,11 +29,11 @@ const Windows = () => {
 
 	useEffect(() => {
 		const desktopPages = ['tictactoe', 'paint', 'secret', 'secret-password'];
-		const filteredMobilePages = pages.filter((page) => !desktopPages.includes(page.id));
+		const filteredMobilePages = pages.filter((page: Page) => !desktopPages.includes(page.id));
 
 		isMobile ? setFilteredPages(filteredMobilePages) : setFilteredPages(pages);
 	}, [isMobile, pages]);
-	
+
 	useEffect(() => {
 		// Function to update the height
 		const updateHeight = () => {
@@ -66,7 +66,7 @@ const Windows = () => {
 	return (
 		<div className='relative flex flex-col h-screen' style={{ height: !windowHeight ? 'h-screen' : windowHeight }}>
 			<main className='flex-grow'>
-				{pages?.some((page) => page.id === 'secret') ? (
+				{pages?.some((page: Page) => page.id === 'secret') ? (
 					<SecretWallpaper>{contentComponents}</SecretWallpaper>
 				) : (
 					<Desktop>{contentComponents}</Desktop>
