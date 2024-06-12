@@ -396,32 +396,32 @@ export const mockProjects: Project[] = [
 		tags: ['Fullstack Development', 'Netflix Clone'],
 		userId: '1'
 	},
-	{
-		_id: '104',
-		title: 'FinanceML',
-		description:
-			'A finance admin dashboard app made with the MERN stack and Regression, a Machine Learning library used for calculating predictions.',
-		image: {
-			thumbnail: '/images/portfolio/financeml.webp',
-			modalImage: '/images/portfolio/financeml-modal.webp'
-		},
-		skills: [
-			{ _id: '3', name: 'React', icon: 'logos:react' },
-			{ _id: '2', name: 'Typescript', icon: 'logos:typescript-icon-round' },
-			{ _id: '5', name: 'Redux', icon: 'devicon:redux' },
-			{ _id: '14', name: 'MaterialUI', icon: 'devicon:materialui' },
-			{ _id: '6', name: 'NodeJS', icon: 'logos:nodejs' },
-			{ _id: '9', name: 'Express', icon: 'simple-icons:express' },
-			{ _id: '18', name: 'MongoDB', icon: 'devicon:mongodb' },
-			{ _id: '40', name: 'Eslint', icon: 'logos:eslint' },
-			{ _id: '26', name: 'Vite', icon: 'skill-icons:vite-light' },
-			{ _id: '29', name: 'Git', icon: 'devicon:git' }
-		],
-		tags: ['Fullstack development', 'Finance dashboard'],
-		liveLinks: ['https://financeml.vercel.app/'],
-		repoLinks: ['https://github.com/BernhardSilva/finance-client', 'https://github.com/BernhardSilva/finance-server'],
-		userId: '1'
-	}
+	// {
+	// 	_id: '104',
+	// 	title: 'FinanceML',
+	// 	description:
+	// 		'A finance admin dashboard app made with the MERN stack and Regression, a Machine Learning library used for calculating predictions.',
+	// 	image: {
+	// 		thumbnail: '/images/portfolio/financeml.webp',
+	// 		modalImage: '/images/portfolio/financeml-modal.webp'
+	// 	},
+	// 	skills: [
+	// 		{ _id: '3', name: 'React', icon: 'logos:react' },
+	// 		{ _id: '2', name: 'Typescript', icon: 'logos:typescript-icon-round' },
+	// 		{ _id: '5', name: 'Redux', icon: 'devicon:redux' },
+	// 		{ _id: '14', name: 'MaterialUI', icon: 'devicon:materialui' },
+	// 		{ _id: '6', name: 'NodeJS', icon: 'logos:nodejs' },
+	// 		{ _id: '9', name: 'Express', icon: 'simple-icons:express' },
+	// 		{ _id: '18', name: 'MongoDB', icon: 'devicon:mongodb' },
+	// 		{ _id: '40', name: 'Eslint', icon: 'logos:eslint' },
+	// 		{ _id: '26', name: 'Vite', icon: 'skill-icons:vite-light' },
+	// 		{ _id: '29', name: 'Git', icon: 'devicon:git' }
+	// 	],
+	// 	tags: ['Fullstack development', 'Finance dashboard'],
+	// 	liveLinks: ['https://financeml.vercel.app/'],
+	// 	repoLinks: ['https://github.com/BernhardSilva/finance-client', 'https://github.com/BernhardSilva/finance-server'],
+	// 	userId: '1'
+	// }
 ];
 
 // Mock data for Skill
