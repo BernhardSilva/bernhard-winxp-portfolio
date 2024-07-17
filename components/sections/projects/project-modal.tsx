@@ -1,5 +1,4 @@
 import LinkButton from '@/components/buttons/link-button';
-import ImageSkeleton from '@/components/ui/image-skeleton';
 import Tooltip from '@/components/ui/tooltip';
 import WindowsCloseButton from '@/components/windows-xp/buttons/windows-close-button';
 import { Project } from '@/types';
@@ -14,6 +13,7 @@ type ProjectModalProps = {
 };
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, selectedProject }) => {
+	
 	return (
 		<div className='w-full h-full'>
 			{isModalOpen && selectedProject && (
@@ -22,28 +22,20 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 					onClick={closeModal} // Close modal when clicking outside
 				>
 					<div
-						className='relative rounded-md max-w-2xl min-w-md h-[570px]'
+						className='relative rounded-md max-w-full sm:max-w-2xl sm:h-auto'
 						onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from bubbling up
 					>
 						<WindowsCloseButton closeHandler={closeModal} className='absolute top-3 right-3' />
 						<div className='bg-white dark:bg-slate-950 rounded-lg p-10'>
-							<ImageSkeleton
-								image={
-									<div className='relative w-[585px] h-[200px]'>
-										<Image
-											className=' object-cover rounded-md'
-											src={selectedProject?.image.modalImage}
-											alt={selectedProject?.title}
-											sizes='(max-width: 585px, max-height: 200px)'
-											fill
-										/>
-									</div>
-								}
-								imageLoaded={!!selectedProject?.image.modalImage}
-								width={585}
-								height={200}
-							/>
-
+							<div className='relative max-w-full sm:max-w-[585px] h-[200px]'>
+								<Image
+									className=' object-cover w-full h-full sm:rounded-md'
+									src={selectedProject?.image.modalImage}
+									alt={selectedProject?.title}
+									sizes='(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, (max-width: 1280px) 100vw, cover'
+									fill
+								/>
+							</div>
 							<div className='bg-slate-100 dark:bg-slate-800 p-2 rounded-md mt-3'>
 								<h3 className='text-lg mt-2'>{selectedProject?.title}</h3>
 								<p className='text-sm py-3'>{selectedProject?.description}</p>
@@ -67,7 +59,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isModalOpen, closeModal, se
 								))}
 								{selectedProject.repoLinks?.map((link, index) => (
 									<LinkButton
-										key={index}
+										key={link}
 										text={`${index === 0 ? 'Client' : selectedProject._id === '101' ? 'CMS' : 'Server'}`}
 										color='bg-gray-800 hover:bg-gray-500'
 										link={selectedProject.liveLinks ? link : ''}

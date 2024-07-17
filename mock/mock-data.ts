@@ -161,6 +161,16 @@ export const mockUser: User = {
 			icon: 'devicon:spring'
 		},
 		{
+			_id: '224',
+			name: 'Python',
+			icon: 'logos:python'
+		},
+		{
+			_id: '225',
+			name: 'Django',
+			icon: 'skill-icons:django'
+		},
+		{
 			_id: '222',
 			name: 'Vercel',
 			icon: 'logos:vercel-icon'

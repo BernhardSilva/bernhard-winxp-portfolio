@@ -44,20 +44,20 @@ const DropDownTabs = ({ pages }: Props) => {
 					</div>
 				)}
 
-				{isOpenClickOutside && (
-					<div
+				{isOpenClickOutside && pages?.length !== 0 && (
+					<button
 						className='absolute bottom-10 p-0.5 w-44 rounded-md bg-blue-600 opacity-95'
 						onMouseEnter={() => setIsOpenClickOutside(true)}
 						onMouseLeave={() => setIsOpenClickOutside(false)}
 					>
-						<div className='py-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
+						<div className='py-1 grid' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
 							{pages?.map((page) => (
-								<div key={page.id} onClick={handleSelect}>
+								<button key={page.id} onClick={handleSelect}>
 									<Tab key={page.id} page={page} className='justify-between mx-2' />
-								</div>
+								</button>
 							))}
 						</div>
-					</div>
+					</button>
 				)}
 			</div>
 		</div>
