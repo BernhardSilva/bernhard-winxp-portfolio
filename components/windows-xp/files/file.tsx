@@ -33,7 +33,7 @@ const File = ({ file }: DesktopFileProps) => {
 		<div onMouseDown={onMouseDownDrag}>
 			<div
 				className={`absolute flex flex-col items-center bg-blue-500 bg-opacity-30
-				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[100px] ${file.element}`}
+				hover:bg-opacity-60 rounded-lg shadow-xl p-1 w-[95px] ${file.element}`}
 				style={{
 					left: position.x,
 					top: position.y

@@ -64,8 +64,8 @@ export const useDragAndDrop = ({ initialPosition, elementRef, handleDoubleClick 
 	};
 
 	const validateWindowBounds = (pos: { x: number; y: number }, elementWidth?: number, elementHeight?: number) => {
-		const width = elementWidth || 100;
-		const height = elementHeight || 82;
+		const width = elementWidth || 95;
+		const height = elementHeight || 75;
 
 		return {
 			x: Math.max(0, Math.min(pos.x, window.innerWidth - width)),
