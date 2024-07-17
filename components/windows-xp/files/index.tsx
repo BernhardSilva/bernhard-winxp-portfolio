@@ -89,11 +89,15 @@ const Files = () => {
 	fileList.sort((a, b) => order.indexOf(a.element) - order.indexOf(b.element));
 
 	return (
-		<div className='cursor-pointer grid grid-cols-2 gap-24 max-w-[120px] mt-2 ml-2 z-50'>
-			{fileList.map((file) => {
-				return <File key={file.element} file={file} />;
-			})}
-		</div>
+		<>
+			{fileList && fileList.length > 0 && (
+				<div className='cursor-pointer grid grid-cols-2 gap-24 max-w-[120px] mt-2 ml-2 z-50'>
+					{fileList.map((file) => {
+						return <File key={file.element} file={file} />;
+					})}
+				</div>
+			)}
+		</>
 	);
 };
 
