@@ -37,7 +37,7 @@ const Files = () => {
 				text: page.name,
 				icon: page.icon,
 				color: page.color,
-				size: 50,
+				size: 40,
 				onOpen: () => handleOpen(page)
 			};
 		});
@@ -48,7 +48,7 @@ const Files = () => {
 			text: 'Light/Dark',
 			icon: theme === 'dark' ? 'fa-solid:moon' : 'fa-solid:sun',
 			className: theme === 'dark' ? 'text-blue-100' : 'text-yellow-500',
-			size: 50,
+			size: 40,
 			onOpen: () => themeToggle()
 		},
 		{
@@ -56,7 +56,7 @@ const Files = () => {
 			text: 'Top Secret',
 			icon: 'ph:notepad-bold',
 			color: pages.find((page) => page.id === 'secret-password')?.color,
-			size: 45,
+			size: 40,
 			onOpen: () => openFile(pages.find((page) => page.id === 'secret-password')!)
 		},
 		...(mockUser?.contact?.socialMedia?.map((site) => ({
@@ -64,7 +64,7 @@ const Files = () => {
 			text: site.name,
 			icon: site.icon,
 			color: site.color,
-			size: 45,
+			size: 40,
 			onOpen: () => window.open(site.url, '_blank')
 		})) || []),
 		...newPagesData
