@@ -64,6 +64,11 @@ export const mockUser: User = {
 			icon: 'logos:nextjs-icon'
 		},
 		{
+			_id: '227',
+			name: 'Angular',
+			icon: 'logos:angular-icon'
+		},
+		{
 			_id: '203',
 			name: 'Redux',
 			icon: 'devicon:redux'
@@ -120,7 +125,7 @@ export const mockUser: User = {
 			icon: 'devicon:antdesign'
 		},
 		{
-			_id: '224',
+			_id: '226',
 			name: 'shadcn/ui',
 			icon: 'fluent:card-ui-24-filled'
 		},
